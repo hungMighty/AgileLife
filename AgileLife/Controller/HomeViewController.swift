@@ -79,6 +79,22 @@ extension HomeViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? LevelTableViewCell else {
+            return
+        }
+        
+        cell.containerView.backgroundColor = UIColor.cyan
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? LevelTableViewCell else {
+            return
+        }
+        
+        cell.containerView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         

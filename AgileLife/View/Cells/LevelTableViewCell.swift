@@ -26,6 +26,7 @@ class LevelTableViewCell: UITableViewCell {
     
     fileprivate func setup() {
         self.backgroundColor = UIColor.clear
+        self.selectionStyle = .none
         
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 12
@@ -40,12 +41,6 @@ class LevelTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        if selected {
-            self.backgroundColor = UIColor.red
-        } else {
-            self.backgroundColor = UIColor.clear
-        }
     }
 
 }
