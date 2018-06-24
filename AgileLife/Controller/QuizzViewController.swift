@@ -8,34 +8,27 @@
 
 import UIKit
 
+
 class QuizzViewController: UIViewController {
 
-    @IBOutlet weak var questionNumLb: UILabel!
-    @IBOutlet weak var progressBarView: UIView!
     @IBOutlet weak var questionContainerView: UIView!
+    @IBOutlet weak var questionLb: UILabel!
     @IBOutlet weak var answersTable: UITableView!
     
-    @IBOutlet weak var prevQuestionBtn: UIButton!
-    @IBOutlet weak var nextQuestionBtn: UIButton!
+    
+    var csv: CSwiftV?
+    var curQuestionSet = [String]()
+    var possibleAnswers = [String]()
     
     
     // MARK: - View Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        progressBarView.layer.masksToBounds = true
-        progressBarView.layer.cornerRadius = progressBarView.bounds.height / 2
-        progressBarView.backgroundColor = UIColor.white
+        self.setupUI()
         
-        questionContainerView.layer.masksToBounds = true
-        questionContainerView.layer.cornerRadius = 15
-        questionContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        
-        answersTable.separatorStyle = .none
-        answersTable.backgroundColor = UIColor.clear
-        answersTable.estimatedRowHeight = 200
-        answersTable.register(AnswerCellTypeOne.getNib(),
-                              forCellReuseIdentifier: AnswerCellTypeOne.className())
+        csv = CSVLoader.readFrom(fileName: "PSPO-Open-Assessment-1")
+        randomizeQuestion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +49,54 @@ class QuizzViewController: UIViewController {
     
 }
 
+// MARK: - UI Logic
+extension QuizzViewController {
+    
+    fileprivate func setupUI() {
+        questionContainerView.layer.masksToBounds = true
+        questionContainerView.layer.cornerRadius = 15
+        questionContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        
+        answersTable.showsVerticalScrollIndicator = false
+        answersTable.separatorStyle = .none
+        answersTable.backgroundColor = UIColor.clear
+        answersTable.estimatedRowHeight = 200
+        answersTable.register(AnswerCellTypeOne.getNib(),
+                              forCellReuseIdentifier: AnswerCellTypeOne.className())
+    }
+    
+    fileprivate func randomizeQuestion() {
+        guard let csv = self.csv else {
+            return
+        }
+        
+        let index = Int.randomInt(lowerBound: 0, upperBound: csv.rows.count)
+        curQuestionSet = csv.rows[index]
+        mapAnswers()
+        
+        // Reload UI
+        questionLb.text = curQuestionSet[CsvRow.question.rawValue]
+        answersTable.reloadData(
+            with: .simple(
+                duration: 0.65, direction: .rotation3D(type: .doctorStrange),
+                constantDelay: 0
+            )
+        )
+    }
+    
+    fileprivate func mapAnswers() {
+        possibleAnswers = [String]()
+        
+        for i in
+            CsvRow.firstAnswerOpt.rawValue...CsvRow.lastAnswerOpt.rawValue {
+                let answer = curQuestionSet[i]
+                if answer.isEmpty == false {
+                    possibleAnswers.append(answer)
+                }
+        }
+    }
+    
+}
 
 // MARK: - UITableViewDataSource
 extension QuizzViewController: UITableViewDataSource {
@@ -65,7 +106,7 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return possibleAnswers.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -81,8 +122,8 @@ extension QuizzViewController: UITableViewDataSource {
                 return UITableViewCell()
         }
         
-        cell.answerSymbolLb.text = "A"
-        cell.answerLb.text = "Whale \nWhale"
+        cell.answerSymbolLb.text = Alphabet.from(index: indexPath.row)
+        cell.answerLb.text = possibleAnswers[indexPath.row]
         
         return cell
     }
@@ -95,12 +136,7 @@ extension QuizzViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        answersTable.reloadData(
-            with: .simple(
-                duration: 0.65, direction: .rotation3D(type: .doctorStrange),
-                constantDelay: 0
-            )
-        )
+        randomizeQuestion()
     }
     
 }

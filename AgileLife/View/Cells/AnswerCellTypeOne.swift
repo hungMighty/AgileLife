@@ -32,7 +32,7 @@ class AnswerCellTypeOne: UITableViewCell {
         answerSymbolLb.backgroundColor = themeColor
         answerSymbolLb.textColor = UIColor.white
         
-        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         
         answerLb.backgroundColor = UIColor.clear
         answerLb.text = "Whale\n Whale\n Whale\n Whale\n"

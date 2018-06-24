@@ -35,7 +35,7 @@
                                 <rect key="frame" x="36" y="0.0" width="315" height="99.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxY-xu-v7v">
-                                        <rect key="frame" x="8" y="15" width="307" height="69.5"/>
+                                        <rect key="frame" x="8" y="15" width="299" height="69.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <string key="text">Whale
 Whale
@@ -47,7 +47,7 @@ Whale</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="VxY-xu-v7v" secondAttribute="trailing" id="Fdn-gH-MeY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VxY-xu-v7v" secondAttribute="trailing" constant="8" id="Fdn-gH-MeY"/>
                                     <constraint firstAttribute="bottom" secondItem="VxY-xu-v7v" secondAttribute="bottom" constant="15" id="OCk-kg-6li"/>
                                     <constraint firstItem="VxY-xu-v7v" firstAttribute="leading" secondItem="GSm-Fr-9y4" secondAttribute="leading" constant="8" id="OW8-xJ-LfU"/>
                                     <constraint firstItem="VxY-xu-v7v" firstAttribute="top" secondItem="GSm-Fr-9y4" secondAttribute="top" constant="15" id="UQb-Y6-qCS"/>

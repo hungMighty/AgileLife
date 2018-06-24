@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var levelsTableView: UITableView!
     
-    fileprivate var levels = [StructLevel]()
+    fileprivate var levels = [Level]()
     
     
     // MARK: - View Lifecycles
@@ -27,9 +27,9 @@ class HomeViewController: UIViewController {
         levelsTableView.tableFooterView = UIView()
         levelsTableView.backgroundColor = UIColor.clear
         
-        levels.append(StructLevel(levelValue: 0, display: "Easy"))
-        levels.append(StructLevel(levelValue: 1, display: "Medium"))
-        levels.append(StructLevel(levelValue: 2, display: "Hard"))
+        levels.append(Level(value: 0, display: "Easy"))
+        levels.append(Level(value: 1, display: "Medium"))
+        levels.append(Level(value: 2, display: "Hard"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
