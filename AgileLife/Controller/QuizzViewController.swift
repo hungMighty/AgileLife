@@ -11,14 +11,15 @@ import UIKit
 
 class QuizzViewController: UIViewController {
 
+    @IBOutlet weak var tapToContinueView: UIView!
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
     @IBOutlet weak var answersTable: UITableView!
     
-    
-    var csv: CSwiftV?
-    var curQuestionSet = [String]()
-    var possibleAnswers = [String]()
+    fileprivate var csv: CSwiftV?
+    fileprivate var curQuestionRow = [String]()
+    fileprivate var possibleAnswers = [String]()
+    fileprivate var correctAnswerIndex: Int?
     
     
     // MARK: - View Lifecycles
@@ -28,7 +29,7 @@ class QuizzViewController: UIViewController {
         self.setupUI()
         
         csv = CSVLoader.readFrom(fileName: "PSPO-Open-Assessment-1")
-        randomizeQuestion()
+        randomizeQuestionAndReload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +48,15 @@ class QuizzViewController: UIViewController {
     @IBAction func nextQuestionBtnTouch(_ sender: Any) {
     }
     
+    @objc func tapToContinue() {
+        tapToContinueView.isHidden = true
+        view.sendSubview(toBack: tapToContinueView)
+        randomizeQuestionAndReload()
+    }
+    
 }
 
-// MARK: - UI Logic
+// MARK: - Setup UI
 extension QuizzViewController {
     
     fileprivate func setupUI() {
@@ -63,19 +70,34 @@ extension QuizzViewController {
         answersTable.estimatedRowHeight = 200
         answersTable.register(AnswerCellTypeOne.getNib(),
                               forCellReuseIdentifier: AnswerCellTypeOne.className())
+        
+        tapToContinueView.isHidden = true
+        self.view.sendSubview(toBack: tapToContinueView)
+        tapToContinueView.addGestureRecognizer(UITapGestureRecognizer(
+            target: self, action: #selector(QuizzViewController.tapToContinue))
+        )
     }
     
-    fileprivate func randomizeQuestion() {
+}
+
+// MARK: - UI Logic
+extension QuizzViewController {
+    
+    fileprivate func randomizeQuestionAndReload() {
         guard let csv = self.csv else {
             return
         }
         
         let index = Int.randomInt(lowerBound: 0, upperBound: csv.rows.count)
-        curQuestionSet = csv.rows[index]
-        mapAnswers()
+        curQuestionRow = csv.rows[index]
+        mapPossibleAnswers()
+        
+        if let index = Int(curQuestionRow[CsvRow.correctResponse.rawValue]) {
+            correctAnswerIndex = index - 1
+        }
         
         // Reload UI
-        questionLb.text = curQuestionSet[CsvRow.question.rawValue]
+        questionLb.text = curQuestionRow[CsvRow.question.rawValue]
         answersTable.reloadData(
             with: .simple(
                 duration: 0.65, direction: .rotation3D(type: .doctorStrange),
@@ -84,12 +106,12 @@ extension QuizzViewController {
         )
     }
     
-    fileprivate func mapAnswers() {
+    fileprivate func mapPossibleAnswers() {
         possibleAnswers = [String]()
         
         for i in
             CsvRow.firstAnswerOpt.rawValue...CsvRow.lastAnswerOpt.rawValue {
-                let answer = curQuestionSet[i]
+                let answer = curQuestionRow[i]
                 if answer.isEmpty == false {
                     possibleAnswers.append(answer)
                 }
@@ -136,7 +158,35 @@ extension QuizzViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        randomizeQuestion()
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCellTypeOne,
+            let correctAnswerIndex = self.correctAnswerIndex else {
+                
+                randomizeQuestionAndReload()
+                return
+        }
+        
+        var isCorrect: Bool
+        if correctAnswerIndex == indexPath.row {
+            isCorrect = true
+        } else {
+            isCorrect = false
+        }
+        
+        selectedCell.displayMark(isCorrect: isCorrect) {
+            guard let correctAnswerIndex = self.correctAnswerIndex,
+                let correctCell = tableView.cellForRow(
+                    at: IndexPath(row: correctAnswerIndex, section: 0))
+                    as? AnswerCellTypeOne else {
+                        return
+            }
+            
+            if isCorrect == false {
+                selectedCell.highlight(isCorrect: false)
+            }
+            correctCell.highlight(isCorrect: true)
+            self.tapToContinueView.isHidden = false
+            self.view.bringSubview(toFront: self.tapToContinueView)
+        }
     }
     
 }

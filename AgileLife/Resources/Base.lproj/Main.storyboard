@@ -79,6 +79,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2Q-q3-M3K" userLabel="TapToContinueView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_Lego" translatesAutoresizingMaskIntoConstraints="NO" id="rcE-iY-Mai">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
@@ -118,8 +122,12 @@
                             <constraint firstItem="1cN-cY-u2s" firstAttribute="top" secondItem="JKw-Mh-csh" secondAttribute="top" constant="8" id="E0T-jQ-lNz"/>
                             <constraint firstItem="ii9-w7-DNd" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" constant="20" id="JlD-tY-bys"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="rcE-iY-Mai" secondAttribute="bottom" id="KQw-4p-oss"/>
+                            <constraint firstItem="U2Q-q3-M3K" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" id="SdM-3E-Z9T"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="trailing" secondItem="rcE-iY-Mai" secondAttribute="trailing" id="XW1-Cj-RfR"/>
+                            <constraint firstItem="U2Q-q3-M3K" firstAttribute="trailing" secondItem="JKw-Mh-csh" secondAttribute="trailing" id="YgK-f8-aP6"/>
                             <constraint firstItem="ii9-w7-DNd" firstAttribute="top" secondItem="1cN-cY-u2s" secondAttribute="bottom" constant="20" id="dak-K0-SIR"/>
+                            <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="U2Q-q3-M3K" secondAttribute="bottom" id="eGB-GR-zFJ"/>
+                            <constraint firstItem="U2Q-q3-M3K" firstAttribute="top" secondItem="JKw-Mh-csh" secondAttribute="top" id="nmm-dR-DQW"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="trailing" secondItem="ii9-w7-DNd" secondAttribute="trailing" constant="20" id="pCd-3B-obj"/>
                             <constraint firstItem="1cN-cY-u2s" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" constant="20" id="sh1-RG-eVA"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="ii9-w7-DNd" secondAttribute="bottom" constant="10" id="vQx-9f-Ky9"/>
@@ -131,6 +139,7 @@
                         <outlet property="answersTable" destination="ii9-w7-DNd" id="uxH-IK-Rrf"/>
                         <outlet property="questionContainerView" destination="1cN-cY-u2s" id="WGZ-I9-j8g"/>
                         <outlet property="questionLb" destination="AjR-vr-gcI" id="Fp9-iA-gg1"/>
+                        <outlet property="tapToContinueView" destination="U2Q-q3-M3K" id="0ui-ru-Mb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ai0-IW-L2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
