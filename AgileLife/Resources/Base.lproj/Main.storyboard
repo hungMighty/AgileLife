@@ -98,7 +98,6 @@
                                     <constraint firstAttribute="trailing" secondItem="AjR-vr-gcI" secondAttribute="trailing" constant="20" id="Imu-KA-7Ke"/>
                                     <constraint firstAttribute="bottom" secondItem="AjR-vr-gcI" secondAttribute="bottom" constant="15" id="UE4-qf-5Ec"/>
                                     <constraint firstItem="AjR-vr-gcI" firstAttribute="centerY" secondItem="1cN-cY-u2s" secondAttribute="centerY" id="VgV-S0-2K8"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="hsl-TE-5rE"/>
                                     <constraint firstItem="AjR-vr-gcI" firstAttribute="top" secondItem="1cN-cY-u2s" secondAttribute="top" constant="15" id="lHR-nn-w7V"/>
                                 </constraints>
                             </view>

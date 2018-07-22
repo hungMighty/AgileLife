@@ -69,6 +69,7 @@ extension QuizzViewController {
         answersTable.separatorStyle = .none
         answersTable.backgroundColor = UIColor.clear
         answersTable.estimatedRowHeight = 200
+        answersTable.rowHeight = UITableViewAutomaticDimension
         answersTable.register(AnswerCellTypeOne.getNib(),
                               forCellReuseIdentifier: AnswerCellTypeOne.className())
         

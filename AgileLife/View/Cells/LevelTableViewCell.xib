@@ -22,8 +22,8 @@
                         <rect key="frame" x="5" y="5" width="299" height="136.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxy-J4-WH9">
-                        <rect key="frame" x="124.5" y="59.5" width="60" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxy-J4-WH9">
+                        <rect key="frame" x="10" y="10" width="289" height="126.5"/>
                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,11 +31,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Bxy-J4-WH9" firstAttribute="centerX" secondItem="uDX-ZH-hKJ" secondAttribute="centerX" id="CN4-WF-KmB"/>
+                    <constraint firstAttribute="bottom" secondItem="Bxy-J4-WH9" secondAttribute="bottom" constant="10" id="EUB-zH-dE8"/>
+                    <constraint firstItem="Bxy-J4-WH9" firstAttribute="leading" secondItem="uDX-ZH-hKJ" secondAttribute="leading" constant="10" id="HUy-2f-dK0"/>
                     <constraint firstItem="Bxy-J4-WH9" firstAttribute="centerY" secondItem="uDX-ZH-hKJ" secondAttribute="centerY" id="JR4-ww-5dg"/>
                     <constraint firstAttribute="bottom" secondItem="Rlt-0V-1DJ" secondAttribute="bottom" constant="5" id="KdD-j9-iuJ"/>
                     <constraint firstItem="Rlt-0V-1DJ" firstAttribute="leading" secondItem="uDX-ZH-hKJ" secondAttribute="leading" constant="5" id="Wsn-eS-8eM"/>
                     <constraint firstAttribute="trailing" secondItem="Rlt-0V-1DJ" secondAttribute="trailing" constant="5" id="X6u-UV-d0W"/>
                     <constraint firstItem="Rlt-0V-1DJ" firstAttribute="top" secondItem="uDX-ZH-hKJ" secondAttribute="top" constant="5" id="YNk-PV-NrK"/>
+                    <constraint firstAttribute="trailing" secondItem="Bxy-J4-WH9" secondAttribute="trailing" constant="10" id="bcE-ik-SlH"/>
+                    <constraint firstItem="Bxy-J4-WH9" firstAttribute="top" secondItem="uDX-ZH-hKJ" secondAttribute="top" constant="10" id="jPW-Ta-jMB"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
