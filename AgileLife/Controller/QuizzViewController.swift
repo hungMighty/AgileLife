@@ -11,15 +11,17 @@ import UIKit
 
 class QuizzViewController: UIViewController {
 
-    @IBOutlet weak var tapToContinueView: UIView!
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
     @IBOutlet weak var answersTable: UITableView!
+    @IBOutlet weak var nextBtnView: UIView!
+    @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
     
     fileprivate var csv: CSwiftV?
     fileprivate var curQuestionRow = [String]()
     fileprivate var possibleAnswers = [String]()
-    fileprivate var correctAnswerIndex: Int?
+    fileprivate var correctAnswerIndexes: [Int]?
+    fileprivate var selectedIndexPaths: [IndexPath]?
     
     
     // MARK: - View Lifecycles
@@ -49,8 +51,7 @@ class QuizzViewController: UIViewController {
     }
     
     @objc func tapToContinue() {
-        tapToContinueView.isHidden = true
-        view.sendSubview(toBack: tapToContinueView)
+        nextBtnViewHeight.constant = 0
         randomizeQuestionAndReload()
     }
     
@@ -71,9 +72,9 @@ extension QuizzViewController {
         answersTable.register(AnswerCellTypeOne.getNib(),
                               forCellReuseIdentifier: AnswerCellTypeOne.className())
         
-        tapToContinueView.isHidden = true
-        self.view.sendSubview(toBack: tapToContinueView)
-        tapToContinueView.addGestureRecognizer(UITapGestureRecognizer(
+        nextBtnViewHeight.constant = 0
+        nextBtnView.roundCorners([.topLeft, .topRight], radius: 15)
+        nextBtnView.addGestureRecognizer(UITapGestureRecognizer(
             target: self, action: #selector(QuizzViewController.tapToContinue))
         )
     }
@@ -91,10 +92,7 @@ extension QuizzViewController {
         let index = Int.randomInt(lowerBound: 0, upperBound: csv.rows.count)
         curQuestionRow = csv.rows[index]
         mapPossibleAnswers()
-        
-        if let index = Int(curQuestionRow[CsvRow.correctResponse.rawValue]) {
-            correctAnswerIndex = index - 1
-        }
+        parseCorrectAnswerIndexes()
         
         // Reload UI
         questionLb.text = curQuestionRow[CsvRow.question.rawValue]
@@ -104,6 +102,7 @@ extension QuizzViewController {
                 constantDelay: 0
             )
         )
+        selectedIndexPaths = [IndexPath]()
     }
     
     fileprivate func mapPossibleAnswers() {
@@ -116,6 +115,83 @@ extension QuizzViewController {
                     possibleAnswers.append(answer)
                 }
         }
+    }
+    
+    fileprivate func parseCorrectAnswerIndexes() {
+        let strValues = curQuestionRow[CsvRow.correctResponse.rawValue]
+            .split(separator: ",")
+            .map{ String($0) }
+        
+        correctAnswerIndexes = [Int]()
+        correctAnswerIndexes = strValues
+            .compactMap{ Int($0) }.map { $0 - 1 }
+    }
+    
+    fileprivate func handleCellSelection(selectedCell: AnswerCellTypeOne,
+                                         at indexPath: IndexPath) {
+        if self.selectedIndexPaths?.contains(indexPath) == false {
+            self.selectedIndexPaths?.append(indexPath)
+            
+            if self.correctAnswerIndexes != nil &&
+                self.correctAnswerIndexes!.count >= 2 {
+                
+                selectedCell.highlightForMulChoices(
+                    color: UIColor(red: 80, green: 208, blue: 255)
+                )
+            }
+        } else {
+            selectedCell.highlightForMulChoices()
+            if let index = selectedIndexPaths?.index(of: indexPath) {
+                selectedIndexPaths?.remove(at: index)
+            }
+            return
+        }
+        
+        guard let selectedCellIndexPaths = self.selectedIndexPaths,
+            let correctAnswerIndexes = self.correctAnswerIndexes,
+            selectedCellIndexPaths.count == correctAnswerIndexes.count else {
+                return
+        }
+        
+        for i in 0..<selectedCellIndexPaths.count {
+            let curIndexPath = selectedCellIndexPaths[i]
+            let selectedCell = self.answersTable.cellForRow(
+                at: curIndexPath
+            ) as! AnswerCellTypeOne
+            
+            var isCorrect: Bool
+            if correctAnswerIndexes.contains(curIndexPath.row) {
+                isCorrect = true
+            } else {
+                isCorrect = false
+            }
+            
+            selectedCell.highlightForMulChoices()
+            selectedCell.displayMark(isCorrect: isCorrect) {
+                if i == selectedCellIndexPaths.count - 1 {
+                    self.highlightAnswerCells()
+                }
+            }
+        }
+    }
+    
+    fileprivate func highlightAnswerCells() {
+        guard let correctAnswerIndexes = self.correctAnswerIndexes,
+            let selectedIndexPaths = self.selectedIndexPaths,
+            correctAnswerIndexes.count == selectedIndexPaths.count else {
+                return
+        }
+        
+        correctAnswerIndexes.forEach {
+            if let correctCell = self.answersTable.cellForRow(
+                at: IndexPath(row: $0, section: 0)
+                ) as? AnswerCellTypeOne {
+                
+                correctCell.highlight(isCorrect: true)
+            }
+        }
+        
+        nextBtnViewHeight.constant = 60
     }
     
 }
@@ -159,34 +235,13 @@ extension QuizzViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCellTypeOne,
-            let correctAnswerIndex = self.correctAnswerIndex else {
+            let _ = self.correctAnswerIndexes else {
                 
                 randomizeQuestionAndReload()
                 return
         }
         
-        var isCorrect: Bool
-        if correctAnswerIndex == indexPath.row {
-            isCorrect = true
-        } else {
-            isCorrect = false
-        }
-        
-        selectedCell.displayMark(isCorrect: isCorrect) {
-            guard let correctAnswerIndex = self.correctAnswerIndex,
-                let correctCell = tableView.cellForRow(
-                    at: IndexPath(row: correctAnswerIndex, section: 0))
-                    as? AnswerCellTypeOne else {
-                        return
-            }
-            
-            if isCorrect == false {
-                selectedCell.highlight(isCorrect: false)
-            }
-            correctCell.highlight(isCorrect: true)
-            self.tapToContinueView.isHidden = false
-            self.view.bringSubview(toFront: self.tapToContinueView)
-        }
+        handleCellSelection(selectedCell: selectedCell, at: indexPath)
     }
     
 }

@@ -18,27 +18,27 @@ class AnswerCellTypeOne: UITableViewCell {
     @IBOutlet weak var markView: UIView!
     @IBOutlet weak var correctIcon: UIImageView!
     
+    
+    fileprivate let themeColor = UIColor(red: 56, green: 184, blue: 231)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.backgroundColor = UIColor.clear
         self.selectionStyle = .none
         
-        let themeColor = UIColor(red: 56, green: 184, blue: 231)
-        
         containerView.layer.backgroundColor = UIColor.clear.cgColor
         containerView.layer.masksToBounds = true
         containerView.layer.borderWidth = 2
-        containerView.layer.borderColor = themeColor.cgColor
         containerView.layer.cornerRadius = 8
         
-        answerSymbolLb.backgroundColor = themeColor
         answerSymbolLb.textColor = UIColor.white
+        highlightForMulChoices()
         
         answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         
         answerLb.backgroundColor = UIColor.clear
-        answerLb.text = "Whale\n Whale\n Whale\n Whale\n"
+        answerLb.text = ""
         
         markView.isHidden = true
         markView.backgroundColor = UIColor.clear
@@ -56,7 +56,7 @@ class AnswerCellTypeOne: UITableViewCell {
         if isCorrect {
             correctIcon.image = #imageLiteral(resourceName: "ic_correct")
         } else {
-            correctIcon.image = #imageLiteral(resourceName: "ic_red_mark")
+            correctIcon.image = #imageLiteral(resourceName: "ic_incorrect")
         }
         
         markView.isHidden = false
@@ -85,11 +85,24 @@ class AnswerCellTypeOne: UITableViewCell {
         }
     }
     
+    func highlightForMulChoices(color: UIColor? = nil) {
+        var borderColor = themeColor
+        var contentColor = UIColor.white.withAlphaComponent(0.9)
+        if let color = color {
+            borderColor = color
+            contentColor = UIColor.white
+        }
+        
+        containerView.layer.borderColor = borderColor.cgColor
+        answerSymbolLb.backgroundColor = borderColor
+        answerLbContainerView.backgroundColor = contentColor
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        highlightForMulChoices()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
