@@ -13,6 +13,7 @@ class QuizzViewController: UIViewController {
 
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
+    @IBOutlet weak var selectCountLb: LbWithBackground!
     @IBOutlet weak var answersTable: UITableView!
     @IBOutlet weak var nextBtnView: UIView!
     @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
@@ -126,6 +127,10 @@ extension QuizzViewController {
         correctAnswerIndexes = [Int]()
         correctAnswerIndexes = strValues
             .compactMap{ Int($0) }.map { $0 - 1 }
+        
+        let multipleText = correctAnswerIndexes != nil ?
+            "Select \(correctAnswerIndexes!.count)" : ""
+        selectCountLb.text = multipleText
     }
     
     fileprivate func handleCellSelection(selectedCell: AnswerCellTypeOne,
@@ -137,7 +142,7 @@ extension QuizzViewController {
                 self.correctAnswerIndexes!.count >= 2 {
                 
                 selectedCell.highlightForMulChoices(
-                    color: UIColor(red: 80, green: 208, blue: 255)
+                    color: UIColor.green
                 )
             }
         } else {

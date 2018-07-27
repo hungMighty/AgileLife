@@ -9,6 +9,8 @@
 import UIKit
 
 
+public let themeColor = UIColor(red: 80, green: 208, blue: 255)
+
 class AnswerCellTypeOne: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
@@ -18,8 +20,6 @@ class AnswerCellTypeOne: UITableViewCell {
     @IBOutlet weak var markView: UIView!
     @IBOutlet weak var correctIcon: UIImageView!
     
-    
-    fileprivate let themeColor = UIColor(red: 56, green: 184, blue: 231)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +35,7 @@ class AnswerCellTypeOne: UITableViewCell {
         answerSymbolLb.textColor = UIColor.white
         highlightForMulChoices()
         
-        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
         answerLb.backgroundColor = UIColor.clear
         answerLb.text = ""
@@ -87,7 +87,7 @@ class AnswerCellTypeOne: UITableViewCell {
     
     func highlightForMulChoices(color: UIColor? = nil) {
         var borderColor = themeColor
-        var contentColor = UIColor.white.withAlphaComponent(0.9)
+        var contentColor = UIColor.white.withAlphaComponent(0.8)
         if let color = color {
             borderColor = color
             contentColor = UIColor.white
@@ -101,7 +101,7 @@ class AnswerCellTypeOne: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         highlightForMulChoices()
     }
     
