@@ -169,6 +169,79 @@
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="31.934032983508249"/>
         </scene>
+        <!--Result Scene-->
+        <scene sceneID="CAo-CD-cjA">
+            <objects>
+                <viewController storyboardIdentifier="ResultViewController" id="mAA-Wa-XRu" userLabel="Result Scene" customClass="ResultViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qn2-AR-cb1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 out of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XN9-xP-mTk">
+                                <rect key="frame" x="147" y="232" width="82.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.38431372549019605" green="0.42745098039215684" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0a-lb-Y1L">
+                                <rect key="frame" x="49" y="313" width="276" height="41"/>
+                                <string key="text">Congratulations! You have managed
+to reach the end of the Quiz</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyK-hJ-Xvm">
+                                <rect key="frame" x="129.5" y="159" width="116.5" height="67"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="56"/>
+                                <color key="textColor" red="0.30196078431372547" green="0.64313725490196072" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-zz-Gix" customClass="RoundBtn" customModule="AgileLife" customModuleProvider="target">
+                                <rect key="frame" x="72.5" y="394" width="230" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="2EO-tS-3pe"/>
+                                    <constraint firstAttribute="width" constant="230" id="Z4e-RL-8Xo"/>
+                                </constraints>
+                                <state key="normal" title="BACK TO MAIN MENU"/>
+                                <connections>
+                                    <action selector="backToMenuTap:" destination="mAA-Wa-XRu" eventType="touchUpInside" id="2J8-Wa-fLP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVu-AV-6dS" customClass="RoundBtn" customModule="AgileLife" customModuleProvider="target">
+                                <rect key="frame" x="72" y="471" width="230" height="42"/>
+                                <state key="normal" title="RESTART QUESTIONS"/>
+                                <connections>
+                                    <action selector="restartTap:" destination="mAA-Wa-XRu" eventType="touchUpInside" id="Hr7-55-lzg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10588235294117647" green="0.10980392156862745" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aVu-AV-6dS" firstAttribute="width" secondItem="cpI-zz-Gix" secondAttribute="width" id="10I-QD-zxX"/>
+                            <constraint firstItem="XN9-xP-mTk" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="85y-P6-AVC"/>
+                            <constraint firstItem="aVu-AV-6dS" firstAttribute="top" secondItem="cpI-zz-Gix" secondAttribute="bottom" constant="35" id="Cd1-F6-Pna"/>
+                            <constraint firstItem="aVu-AV-6dS" firstAttribute="height" secondItem="cpI-zz-Gix" secondAttribute="height" id="GRC-8n-MRa"/>
+                            <constraint firstItem="XN9-xP-mTk" firstAttribute="top" secondItem="zyK-hJ-Xvm" secondAttribute="bottom" constant="6" id="NsY-8M-Yfg"/>
+                            <constraint firstItem="aVu-AV-6dS" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="VQQ-JE-BYM"/>
+                            <constraint firstItem="L0a-lb-Y1L" firstAttribute="centerY" secondItem="qn2-AR-cb1" secondAttribute="centerY" id="WQ4-Pz-pbc"/>
+                            <constraint firstItem="cpI-zz-Gix" firstAttribute="top" secondItem="L0a-lb-Y1L" secondAttribute="bottom" constant="40" id="Wcy-uD-W7g"/>
+                            <constraint firstItem="L0a-lb-Y1L" firstAttribute="top" secondItem="XN9-xP-mTk" secondAttribute="bottom" constant="60" id="gHW-k7-05b"/>
+                            <constraint firstItem="L0a-lb-Y1L" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="gcs-DA-mJz"/>
+                            <constraint firstItem="cpI-zz-Gix" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="j7r-h4-lPw"/>
+                            <constraint firstItem="zyK-hJ-Xvm" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="pZ7-W6-0Eo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NPL-TU-7K1"/>
+                    </view>
+                    <connections>
+                        <outlet property="numOutOfLb" destination="XN9-xP-mTk" id="kqA-ed-U4b"/>
+                        <outlet property="percentLb" destination="zyK-hJ-Xvm" id="J6W-4a-Nud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ec7-cp-hOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3036" y="32"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wum-ja-R8p">
             <objects>

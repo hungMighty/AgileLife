@@ -15,7 +15,7 @@ extension UIStoryboard {
     static func viewController<T: UIViewController>(fromIdentifier identifier: String,
                                                     storyboard: String = "Main") -> T? {
         guard let view = UIStoryboard(name: storyboard, bundle: nil)
-            .instantiateViewController(withIdentifier: QuizzViewController.className())
+            .instantiateViewController(withIdentifier: identifier)
             as? T else {
                 return nil
         }

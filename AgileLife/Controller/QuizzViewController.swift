@@ -19,6 +19,7 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
     
     fileprivate var csv: CSwiftV?
+    fileprivate var curCSVRow = 0
     fileprivate var curQuestionRow = [String]()
     fileprivate var possibleAnswers = [String]()
     fileprivate var correctAnswerIndexes: [Int]?
@@ -32,7 +33,7 @@ class QuizzViewController: UIViewController {
         self.setupUI()
         
         csv = CSVLoader.readFrom(fileName: "PSPO-Open-Assessment-1")
-        randomizeQuestionAndReload()
+        loadNextQuestion()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +54,7 @@ class QuizzViewController: UIViewController {
     
     @objc func tapToContinue() {
         nextBtnViewHeight.constant = 0
-        randomizeQuestionAndReload()
+        loadNextQuestion()
     }
     
 }
@@ -86,13 +87,18 @@ extension QuizzViewController {
 // MARK: - UI Logic
 extension QuizzViewController {
     
-    fileprivate func randomizeQuestionAndReload() {
-        guard let csv = self.csv else {
+    fileprivate func loadNextQuestion() {
+        guard let csv = self.csv, curCSVRow < 2 else {
+            
+            if let view = UIStoryboard.viewController(
+                fromIdentifier: ResultViewController.className()) {
+                self.navigationController?.pushViewController(view, animated: true)
+            }
+            
             return
         }
         
-        let index = Int.randomInt(lowerBound: 0, upperBound: csv.rows.count)
-        curQuestionRow = csv.rows[index]
+        curQuestionRow = csv.rows[curCSVRow]
         mapPossibleAnswers()
         parseCorrectAnswerIndexes()
         
@@ -105,6 +111,8 @@ extension QuizzViewController {
             )
         )
         selectedIndexPaths = [IndexPath]()
+        
+        curCSVRow += 1
     }
     
     fileprivate func mapPossibleAnswers() {
@@ -243,7 +251,7 @@ extension QuizzViewController: UITableViewDelegate {
         guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCellTypeOne,
             let _ = self.correctAnswerIndexes else {
                 
-                randomizeQuestionAndReload()
+                loadNextQuestion()
                 return
         }
         
