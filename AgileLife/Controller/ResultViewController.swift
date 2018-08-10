@@ -10,8 +10,12 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
-    @IBOutlet weak var numOutOfLb: UILabel!
     @IBOutlet weak var percentLb: UILabel!
+    @IBOutlet weak var numOutOfLb: UILabel!
+    
+    
+    var totalQuestions = 0
+    var numOfCorrectAnswers = 0
     
     
     override func viewDidLoad() {
@@ -20,6 +24,11 @@ class ResultViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let percentage = Int(numOfCorrectAnswers / totalQuestions * 100)
+        
+        percentLb.text = "\(percentage)%"
+        numOutOfLb.text = "\(numOfCorrectAnswers) out of \(totalQuestions)"
     }
     
     @IBAction func backToMenuTap(_ sender: Any) {

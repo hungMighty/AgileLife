@@ -19,11 +19,14 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
     
     fileprivate var csv: CSwiftV?
-    fileprivate var curCSVRow = 0
-    fileprivate var curQuestionRow = [String]()
+    
+    fileprivate var curQuestionIndex = 0
+    fileprivate var curQuestionData = [String]()
     fileprivate var possibleAnswers = [String]()
     fileprivate var correctAnswerIndexes: [Int]?
     fileprivate var selectedIndexPaths: [IndexPath]?
+    
+    fileprivate var numOfCorrectAnswers = 0
     
     
     // MARK: - View Lifecycles
@@ -88,22 +91,29 @@ extension QuizzViewController {
 extension QuizzViewController {
     
     fileprivate func loadNextQuestion() {
-        guard let csv = self.csv, curCSVRow < 2 else {
+        guard let csv = self.csv, curQuestionIndex < csv.rows.count else {
             
             if let view = UIStoryboard.viewController(
-                fromIdentifier: ResultViewController.className()) {
+                fromIdentifier: ResultViewController.className())
+                as? ResultViewController {
+                
+                view.totalQuestions = self.csv?.rows.count ?? 0
+                view.numOfCorrectAnswers = numOfCorrectAnswers
+                
                 self.navigationController?.pushViewController(view, animated: true)
             }
             
             return
         }
         
-        curQuestionRow = csv.rows[curCSVRow]
+        answersTable.allowsSelection = true
+        
+        curQuestionData = csv.rows[curQuestionIndex]
         mapPossibleAnswers()
         parseCorrectAnswerIndexes()
         
         // Reload UI
-        questionLb.text = curQuestionRow[CsvRow.question.rawValue]
+        questionLb.text = curQuestionData[CsvRow.question.rawValue]
         answersTable.reloadData(
             with: .simple(
                 duration: 0.65, direction: .rotation3D(type: .doctorStrange),
@@ -112,23 +122,22 @@ extension QuizzViewController {
         )
         selectedIndexPaths = [IndexPath]()
         
-        curCSVRow += 1
+        curQuestionIndex += 1
     }
     
     fileprivate func mapPossibleAnswers() {
         possibleAnswers = [String]()
         
-        for i in
-            CsvRow.firstAnswerOpt.rawValue...CsvRow.lastAnswerOpt.rawValue {
-                let answer = curQuestionRow[i]
-                if answer.isEmpty == false {
-                    possibleAnswers.append(answer)
-                }
+        for i in CsvRow.firstAnswerOpt.rawValue...CsvRow.lastAnswerOpt.rawValue {
+            let answer = curQuestionData[i]
+            if answer.isEmpty == false {
+                possibleAnswers.append(answer)
+            }
         }
     }
     
     fileprivate func parseCorrectAnswerIndexes() {
-        let strValues = curQuestionRow[CsvRow.correctResponse.rawValue]
+        let strValues = curQuestionData[CsvRow.correctResponse.rawValue]
             .split(separator: ",")
             .map{ String($0) }
         
@@ -194,6 +203,15 @@ extension QuizzViewController {
             let selectedIndexPaths = self.selectedIndexPaths,
             correctAnswerIndexes.count == selectedIndexPaths.count else {
                 return
+        }
+        
+        answersTable.allowsSelection = false
+        
+        let isAllCorrect = selectedIndexPaths
+            .filter{ correctAnswerIndexes.contains($0.row) }
+            .count == correctAnswerIndexes.count
+        if isAllCorrect {
+            numOfCorrectAnswers += 1
         }
         
         correctAnswerIndexes.forEach {
