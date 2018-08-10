@@ -20,12 +20,14 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = " "
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let percentage = Int(numOfCorrectAnswers / totalQuestions * 100)
+        let percentage = Int(CGFloat(numOfCorrectAnswers) / CGFloat(totalQuestions) * 100)
         
         percentLb.text = "\(percentage)%"
         numOutOfLb.text = "\(numOfCorrectAnswers) out of \(totalQuestions)"

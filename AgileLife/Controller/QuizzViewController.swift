@@ -11,6 +11,7 @@ import UIKit
 
 class QuizzViewController: UIViewController {
 
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
     @IBOutlet weak var selectCountLb: LbWithBackground!
@@ -83,6 +84,10 @@ extension QuizzViewController {
         nextBtnView.addGestureRecognizer(UITapGestureRecognizer(
             target: self, action: #selector(QuizzViewController.tapToContinue))
         )
+        
+        // Progress bar for title
+        progressView.progressTintColor = UIColor.green
+        progressView.transform = CGAffineTransform(scaleX: 1, y: 4)
     }
     
 }
@@ -107,6 +112,10 @@ extension QuizzViewController {
         }
         
         answersTable.allowsSelection = true
+        self.title = "\(curQuestionIndex + 1) / \(csv.rows.count)"
+        progressView.setProgress(
+            Float(curQuestionIndex + 1) / Float(csv.rows.count),
+            animated: true)
         
         curQuestionData = csv.rows[curQuestionIndex]
         mapPossibleAnswers()
