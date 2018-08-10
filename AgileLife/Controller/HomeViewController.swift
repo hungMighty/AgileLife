@@ -8,6 +8,34 @@
 
 import UIKit
 
+
+enum QuestionTemplate: Int {
+    
+    case easy = 0, medium, hard
+    
+    func name() -> String {
+        switch self {
+        case .easy, .medium:
+            return "PSPO-Open-Assessment-1"
+        case .hard:
+            return "Udemy - PT1 PSM1 Series 2"
+        }
+    }
+    
+    func limit() -> Int? {
+        switch self {
+        case .easy:
+            return 5
+        case .medium:
+            return nil
+        case .hard:
+            return nil
+        }
+    }
+    
+}
+
+
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var levelsTableView: UITableView!
@@ -98,9 +126,13 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let view = UIStoryboard.viewController(fromIdentifier: QuizzViewController.className()) else {
+        guard let view = UIStoryboard.viewController(
+            fromIdentifier: QuizzViewController.className())
+            as? QuizzViewController else {
             return
         }
+        
+        view.questionTemplate = QuestionTemplate(rawValue: indexPath.row)!
         
         self.navigationController?.pushViewController(view, animated: true)
     }

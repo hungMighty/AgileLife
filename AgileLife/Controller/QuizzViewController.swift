@@ -20,6 +20,8 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
     
     fileprivate var csv: CSwiftV?
+    var questionTemplate: QuestionTemplate = .easy
+    fileprivate var loadingLimit = 0
     
     fileprivate var curQuestionIndex = 0
     fileprivate var curQuestionData = [String]()
@@ -36,7 +38,8 @@ class QuizzViewController: UIViewController {
         
         self.setupUI()
         
-        csv = CSVLoader.readFrom(fileName: "PSPO-Open-Assessment-1")
+        csv = CSVLoader.readFrom(fileName: questionTemplate.name())
+        loadingLimit = questionTemplate.limit() ?? csv?.rows.count ?? 1
         loadNextQuestion()
     }
     
@@ -96,14 +99,15 @@ extension QuizzViewController {
 extension QuizzViewController {
     
     fileprivate func loadNextQuestion() {
-        guard let csv = self.csv, curQuestionIndex < csv.rows.count else {
+        guard let csv = self.csv, curQuestionIndex < loadingLimit else {
             
             if let view = UIStoryboard.viewController(
                 fromIdentifier: ResultViewController.className())
                 as? ResultViewController {
                 
-                view.totalQuestions = self.csv?.rows.count ?? 0
+                view.totalQuestions = loadingLimit ?? 0
                 view.numOfCorrectAnswers = numOfCorrectAnswers
+                view.questionTemplate = questionTemplate
                 
                 self.navigationController?.pushViewController(view, animated: true)
             }
@@ -112,9 +116,9 @@ extension QuizzViewController {
         }
         
         answersTable.allowsSelection = true
-        self.title = "\(curQuestionIndex + 1) / \(csv.rows.count)"
+        self.title = "\(curQuestionIndex + 1) / \(loadingLimit)"
         progressView.setProgress(
-            Float(curQuestionIndex + 1) / Float(csv.rows.count),
+            Float(curQuestionIndex + 1) / Float(loadingLimit),
             animated: true)
         
         curQuestionData = csv.rows[curQuestionIndex]

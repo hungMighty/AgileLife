@@ -13,7 +13,7 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var percentLb: UILabel!
     @IBOutlet weak var numOutOfLb: UILabel!
     
-    
+    var questionTemplate: QuestionTemplate = .easy
     var totalQuestions = 0
     var numOfCorrectAnswers = 0
     
@@ -34,11 +34,31 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func backToMenuTap(_ sender: Any) {
+        guard let view = self.navigationController?.viewControllers.first
+            as? HomeViewController else {
+                return
+        }
         
+        self.navigationController?.popToViewController(view, animated: true)
     }
     
     @IBAction func restartTap(_ sender: Any) {
+        guard let homeView = self.navigationController?.viewControllers.first
+            as? HomeViewController else {
+                return
+        }
         
+        guard var vcArray = self.navigationController?.viewControllers,
+            let quizzView = UIStoryboard.viewController(
+                fromIdentifier: QuizzViewController.className())
+                as? QuizzViewController else {
+                    return
+        }
+        
+        quizzView.questionTemplate = self.questionTemplate
+        vcArray = [homeView]
+        vcArray.append(quizzView)
+        self.navigationController?.setViewControllers(vcArray, animated: true)
     }
     
 }
