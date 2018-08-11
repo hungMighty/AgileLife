@@ -1,5 +1,5 @@
 //
-//  AnswerCellTypeOne.swift
+//  AnswerCell.swift
 //  AgileLife
 //
 //  Created by Tea Bee on 6/11/18.
@@ -11,7 +11,7 @@ import UIKit
 
 public let themeColor = UIColor(red: 80, green: 208, blue: 255)
 
-class AnswerCellTypeOne: UITableViewCell {
+class AnswerCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var answerSymbolLb: UILabel!
@@ -101,7 +101,6 @@ class AnswerCellTypeOne: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        answerLbContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         highlightForMulChoices()
     }
     

@@ -123,8 +123,8 @@ extension QuizzViewController {
         answersTable.estimatedRowHeight = 200
         answersTable.rowHeight = UITableViewAutomaticDimension
         answersTable.register(
-            AnswerCellTypeOne.getNib(),
-            forCellReuseIdentifier: AnswerCellTypeOne.className()
+            AnswerCell.getNib(),
+            forCellReuseIdentifier: AnswerCell.className()
         )
         
         // Next View
@@ -245,7 +245,7 @@ extension QuizzViewController {
         selectCountLb.text = multipleText
     }
     
-    fileprivate func handleCellSelection(selectedCell: AnswerCellTypeOne,
+    fileprivate func handleCellSelection(selectedCell: AnswerCell,
                                          at indexPath: IndexPath) {
         if self.selectedIndexPaths?.contains(indexPath) == false {
             self.selectedIndexPaths?.append(indexPath)
@@ -275,7 +275,7 @@ extension QuizzViewController {
             let curIndexPath = selectedCellIndexPaths[i]
             let selectedCell = self.answersTable.cellForRow(
                 at: curIndexPath
-            ) as! AnswerCellTypeOne
+            ) as! AnswerCell
             
             var isCorrect: Bool
             if correctAnswerIndexes.contains(curIndexPath.row) {
@@ -312,7 +312,7 @@ extension QuizzViewController {
         correctAnswerIndexes.forEach {
             if let correctCell = self.answersTable.cellForRow(
                 at: IndexPath(row: $0, section: 0)
-                ) as? AnswerCellTypeOne {
+                ) as? AnswerCell {
                 
                 correctCell.highlight(isCorrect: true)
             }
@@ -351,10 +351,8 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: AnswerCellTypeOne.className(),
-                                 for: indexPath)
-            as? AnswerCellTypeOne else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.className(), for: indexPath)
+            as? AnswerCell else {
                 return UITableViewCell()
         }
         
@@ -372,7 +370,7 @@ extension QuizzViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCellTypeOne,
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCell,
             let _ = self.correctAnswerIndexes else {
                 
                 loadNextQuestion()

@@ -20,8 +20,8 @@
 		5BF66C7D20CD8BEE00DC4A4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7820CD8BEE00DC4A4C /* LaunchScreen.storyboard */; };
 		5BF66C7E20CD8BEE00DC4A4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7A20CD8BEE00DC4A4C /* Main.storyboard */; };
 		5BF66C8020CD906200DC4A4C /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C7F20CD906200DC4A4C /* UIStoryboard+Extension.swift */; };
-		5BF66C8320CD945200DC4A4C /* AnswerCellTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8120CD945200DC4A4C /* AnswerCellTypeOne.swift */; };
-		5BF66C8420CD945200DC4A4C /* AnswerCellTypeOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C8220CD945200DC4A4C /* AnswerCellTypeOne.xib */; };
+		5BF66C8320CD945200DC4A4C /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8120CD945200DC4A4C /* AnswerCell.swift */; };
+		5BF66C8420CD945200DC4A4C /* AnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C8220CD945200DC4A4C /* AnswerCell.xib */; };
 		5BF66C8A20CD99D300DC4A4C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */; };
 		5BF66C8C20CDA0BB00DC4A4C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */; };
 		A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E0210B60DE00987997 /* LbWithBackground.swift */; };
@@ -51,8 +51,8 @@
 		5BF66C7920CD8BEE00DC4A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BF66C7B20CD8BEE00DC4A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5BF66C7F20CD906200DC4A4C /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
-		5BF66C8120CD945200DC4A4C /* AnswerCellTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCellTypeOne.swift; sourceTree = "<group>"; };
-		5BF66C8220CD945200DC4A4C /* AnswerCellTypeOne.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCellTypeOne.xib; sourceTree = "<group>"; };
+		5BF66C8120CD945200DC4A4C /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
+		5BF66C8220CD945200DC4A4C /* AnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
 		5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		A00048E0210B60DE00987997 /* LbWithBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LbWithBackground.swift; sourceTree = "<group>"; };
@@ -144,8 +144,8 @@
 			children = (
 				5B720E1320CD506C001A5532 /* LevelTableViewCell.swift */,
 				5B720E1520CD508D001A5532 /* LevelTableViewCell.xib */,
-				5BF66C8120CD945200DC4A4C /* AnswerCellTypeOne.swift */,
-				5BF66C8220CD945200DC4A4C /* AnswerCellTypeOne.xib */,
+				5BF66C8120CD945200DC4A4C /* AnswerCell.swift */,
+				5BF66C8220CD945200DC4A4C /* AnswerCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BF66C8420CD945200DC4A4C /* AnswerCellTypeOne.xib in Resources */,
+				5BF66C8420CD945200DC4A4C /* AnswerCell.xib in Resources */,
 				5B720E1620CD508D001A5532 /* LevelTableViewCell.xib in Resources */,
 				5BF66C7520CD8BDE00DC4A4C /* Info.plist in Resources */,
 				A0079701211DDFDE004AC746 /* Udemy - PT1 PSM1 Series 2.csv in Resources */,
@@ -303,7 +303,7 @@
 				5B720E1B20CD561E001A5532 /* UIView+Extension.swift in Sources */,
 				A0DE658C20DFDA2C0006706A /* CSVLoader.swift in Sources */,
 				A0DE658E20DFE1030006706A /* IntExtension.swift in Sources */,
-				5BF66C8320CD945200DC4A4C /* AnswerCellTypeOne.swift in Sources */,
+				5BF66C8320CD945200DC4A4C /* AnswerCell.swift in Sources */,
 				5BF66C6E20CD8AE000DC4A4C /* QuizzViewController.swift in Sources */,
 				5B720E1420CD506C001A5532 /* LevelTableViewCell.swift in Sources */,
 				5BF66C8020CD906200DC4A4C /* UIStoryboard+Extension.swift in Sources */,
