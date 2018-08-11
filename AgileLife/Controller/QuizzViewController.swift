@@ -12,12 +12,27 @@ import UIKit
 class QuizzViewController: UIViewController {
 
     @IBOutlet weak var progressView: UIProgressView!
+    
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
     @IBOutlet weak var selectCountLb: LbWithBackground!
+    
     @IBOutlet weak var answersTable: UITableView!
-    @IBOutlet weak var nextBtnView: UIView!
-    @IBOutlet weak var nextBtnViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var nextView: UIView!
+    @IBOutlet weak var nextBtnImage: UIImageView!
+    @IBOutlet weak var tipImage: UIImageView!
+    @IBOutlet weak var tipView: UIView!
+    
+    
+    // Constraints
+    @IBOutlet weak var nextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tipViewHeight: NSLayoutConstraint!
+    
+    
+    // ViewControllers
+    var tipViewController: TipViewController?
+    
     
     fileprivate var csv: CSwiftV?
     var questionTemplate: QuestionTemplate = .easy
@@ -30,6 +45,10 @@ class QuizzViewController: UIViewController {
     fileprivate var selectedIndexPaths: [IndexPath]?
     
     fileprivate var numOfCorrectAnswers = 0
+    
+    // Width and Height
+    fileprivate let nextViewNormalHeight: CGFloat = 60
+    fileprivate let hintHeight: CGFloat = 200
     
     
     // MARK: - View Lifecycles
@@ -60,8 +79,26 @@ class QuizzViewController: UIViewController {
     }
     
     @objc func tapToContinue() {
-        nextBtnViewHeight.constant = 0
         loadNextQuestion()
+    }
+    
+    @objc func tapToShowTip() {
+        guard let tipView = tipViewController,
+            (tipView.textHint.isEmpty == false) else {
+            
+                return
+        }
+        
+        view.layoutIfNeeded()
+        if self.tipViewHeight.constant == 0 {
+            self.tipViewHeight.constant = self.hintHeight
+        } else {
+            self.tipViewHeight.constant = 0
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
 }
@@ -70,27 +107,55 @@ class QuizzViewController: UIViewController {
 extension QuizzViewController {
     
     fileprivate func setupUI() {
+        // Progress bar for title
+        progressView.progressTintColor = UIColor.green
+        progressView.transform = CGAffineTransform(scaleX: 1, y: 4)
+        
+        // Question View
         questionContainerView.layer.masksToBounds = true
         questionContainerView.layer.cornerRadius = 15
         questionContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
+        // Answers Table
         answersTable.showsVerticalScrollIndicator = false
         answersTable.separatorStyle = .none
         answersTable.backgroundColor = UIColor.clear
         answersTable.estimatedRowHeight = 200
         answersTable.rowHeight = UITableViewAutomaticDimension
-        answersTable.register(AnswerCellTypeOne.getNib(),
-                              forCellReuseIdentifier: AnswerCellTypeOne.className())
-        
-        nextBtnViewHeight.constant = 0
-        nextBtnView.roundCorners([.topLeft, .topRight], radius: 15)
-        nextBtnView.addGestureRecognizer(UITapGestureRecognizer(
-            target: self, action: #selector(QuizzViewController.tapToContinue))
+        answersTable.register(
+            AnswerCellTypeOne.getNib(),
+            forCellReuseIdentifier: AnswerCellTypeOne.className()
         )
         
-        // Progress bar for title
-        progressView.progressTintColor = UIColor.green
-        progressView.transform = CGAffineTransform(scaleX: 1, y: 4)
+        // Next View
+        nextViewHeight.constant = 0
+        nextView.roundCorners([.topLeft, .topRight], radius: 15)
+        
+        nextBtnImage.isUserInteractionEnabled = true
+        tipImage.isUserInteractionEnabled = true
+        
+        nextBtnImage.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self, action: #selector(QuizzViewController.tapToContinue)
+            )
+        )
+        tipImage.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self, action: #selector(QuizzViewController.tapToShowTip)
+            )
+        )
+    }
+    
+    fileprivate func pulseTipIcon() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.duration = 0.7
+        animation.repeatCount = Float.infinity
+        animation.autoreverses = true
+        animation.fromValue = 1.0
+        animation.toValue = 0.7
+        animation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
+        
+        tipImage.layer.add(animation, forKey: "animateOpacity")
     }
     
 }
@@ -105,7 +170,7 @@ extension QuizzViewController {
                 fromIdentifier: ResultViewController.className())
                 as? ResultViewController {
                 
-                view.totalQuestions = loadingLimit ?? 0
+                view.totalQuestions = loadingLimit
                 view.numOfCorrectAnswers = numOfCorrectAnswers
                 view.questionTemplate = questionTemplate
                 
@@ -115,26 +180,43 @@ extension QuizzViewController {
             return
         }
         
-        answersTable.allowsSelection = true
-        self.title = "\(curQuestionIndex + 1) / \(loadingLimit)"
-        progressView.setProgress(
-            Float(curQuestionIndex + 1) / Float(loadingLimit),
-            animated: true)
         
+        // Setup next question
         curQuestionData = csv.rows[curQuestionIndex]
         mapPossibleAnswers()
         parseCorrectAnswerIndexes()
         
         // Reload UI
+        self.title = "\(curQuestionIndex + 1) / \(loadingLimit)"
+        progressView.setProgress(
+            Float(curQuestionIndex + 1) / Float(loadingLimit),
+            animated: true
+        )
+        
         questionLb.text = curQuestionData[CsvRow.question.rawValue]
+        
+        answersTable.allowsSelection = true
         answersTable.reloadData(
             with: .simple(
                 duration: 0.65, direction: .rotation3D(type: .doctorStrange),
                 constantDelay: 0
             )
         )
-        selectedIndexPaths = [IndexPath]()
         
+        nextViewHeight.constant = 0
+        tipViewHeight.constant = 0
+        tipImage.layer.removeAllAnimations()
+        
+        let txtHint = curQuestionData[CsvRow.explanation.rawValue]
+        if let view = tipViewController,
+            txtHint.isEmpty == false {
+            
+            view.textHint = txtHint
+            pulseTipIcon()
+        }
+        
+        // Reset flags
+        selectedIndexPaths = [IndexPath]()
         curQuestionIndex += 1
     }
     
@@ -236,7 +318,18 @@ extension QuizzViewController {
             }
         }
         
-        nextBtnViewHeight.constant = 60
+        nextViewHeight.constant = nextViewNormalHeight
+    }
+    
+}
+
+// MARK: - Routers
+extension QuizzViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tipView = segue.destination as? TipViewController {
+            self.tipViewController = tipView
+        }
     }
     
 }

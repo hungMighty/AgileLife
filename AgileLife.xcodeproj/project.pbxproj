@@ -28,6 +28,7 @@
 		A00048E3210B610C00987997 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E2210B610C00987997 /* RoundBtn.swift */; };
 		A00048E5210B631B00987997 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E4210B631B00987997 /* ResultViewController.swift */; };
 		A0079701211DDFDE004AC746 /* Udemy - PT1 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = A0079700211DDFDE004AC746 /* Udemy - PT1 PSM1 Series 2.csv */; };
+		A020BB4D211F08DD00C0337D /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A020BB4C211F08DD00C0337D /* TipViewController.swift */; };
 		A0DE658720DE5AD40006706A /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DE658620DE5AD40006706A /* CSwiftV.swift */; };
 		A0DE658A20DE604B0006706A /* PSPO-Open-Assessment-1.csv in Resources */ = {isa = PBXBuildFile; fileRef = A0DE658920DE604B0006706A /* PSPO-Open-Assessment-1.csv */; };
 		A0DE658C20DFDA2C0006706A /* CSVLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DE658B20DFDA2C0006706A /* CSVLoader.swift */; };
@@ -58,6 +59,7 @@
 		A00048E2210B610C00987997 /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		A00048E4210B631B00987997 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A0079700211DDFDE004AC746 /* Udemy - PT1 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Udemy - PT1 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		A020BB4C211F08DD00C0337D /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		A0DE658620DE5AD40006706A /* CSwiftV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		A0DE658920DE604B0006706A /* PSPO-Open-Assessment-1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PSPO-Open-Assessment-1.csv"; sourceTree = "<group>"; };
 		A0DE658B20DFDA2C0006706A /* CSVLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVLoader.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				5B720E1020CD5013001A5532 /* HomeViewController.swift */,
 				5BF66C6D20CD8AE000DC4A4C /* QuizzViewController.swift */,
 				A00048E4210B631B00987997 /* ResultViewController.swift */,
+				A020BB4C211F08DD00C0337D /* TipViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				5B720E1420CD506C001A5532 /* LevelTableViewCell.swift in Sources */,
 				5BF66C8020CD906200DC4A4C /* UIStoryboard+Extension.swift in Sources */,
 				5B720E1D20CD5678001A5532 /* NSObject+Extension.swift in Sources */,
+				A020BB4D211F08DD00C0337D /* TipViewController.swift in Sources */,
 				5BF66C8C20CDA0BB00DC4A4C /* UITableView+Extension.swift in Sources */,
 				A00048E5210B631B00987997 /* ResultViewController.swift in Sources */,
 			);
