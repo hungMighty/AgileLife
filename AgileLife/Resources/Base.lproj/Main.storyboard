@@ -125,22 +125,22 @@
                                         <rect key="frame" x="67" y="5" width="241" height="50"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tipBulb" translatesAutoresizingMaskIntoConstraints="NO" id="W7d-g4-Gd4">
-                                        <rect key="frame" x="320" y="5" width="50" height="50"/>
+                                        <rect key="frame" x="310" y="0.0" width="60" height="60"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="5mN-0b-NjJ"/>
                                             <constraint firstAttribute="width" secondItem="W7d-g4-Gd4" secondAttribute="height" multiplier="1:1" id="gn8-MQ-WUH"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="W7d-g4-Gd4" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="5" id="QHf-1C-Wv2"/>
-                                    <constraint firstAttribute="trailing" secondItem="W7d-g4-Gd4" secondAttribute="trailing" constant="5" id="YKP-hh-WvS"/>
                                     <constraint firstItem="2mV-D7-rKr" firstAttribute="leading" secondItem="hWg-Ov-boQ" secondAttribute="leading" constant="67" id="eqJ-If-vig"/>
                                     <constraint firstItem="2mV-D7-rKr" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="5" id="gfs-cO-70K"/>
                                     <constraint firstAttribute="trailing" secondItem="2mV-D7-rKr" secondAttribute="trailing" constant="67" id="h95-VG-l68"/>
                                     <constraint firstAttribute="bottom" secondItem="2mV-D7-rKr" secondAttribute="bottom" constant="5" id="iHP-0Y-y4T"/>
-                                    <constraint firstAttribute="bottom" secondItem="W7d-g4-Gd4" secondAttribute="bottom" constant="5" id="oiB-2p-Z1A"/>
+                                    <constraint firstItem="W7d-g4-Gd4" firstAttribute="centerY" secondItem="hWg-Ov-boQ" secondAttribute="centerY" id="q6M-Ac-uIY"/>
                                     <constraint firstAttribute="height" constant="60" id="wn8-QO-YST"/>
+                                    <constraint firstAttribute="trailing" secondItem="W7d-g4-Gd4" secondAttribute="trailing" constant="5" id="yya-20-I9s"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt9-IP-FFO" userLabel="Tip View">
@@ -174,7 +174,7 @@
                             <constraint firstItem="hWg-Ov-boQ" firstAttribute="top" secondItem="ii9-w7-DNd" secondAttribute="bottom" id="mVy-Le-qc1"/>
                             <constraint firstItem="hp0-W5-h5E" firstAttribute="top" secondItem="1cN-cY-u2s" secondAttribute="bottom" constant="10" id="mr9-Kv-3Jg"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="trailing" secondItem="ii9-w7-DNd" secondAttribute="trailing" constant="20" id="pCd-3B-obj"/>
-                            <constraint firstItem="JKw-Mh-csh" firstAttribute="trailing" secondItem="hWg-Ov-boQ" secondAttribute="trailing" id="prp-wE-78k"/>
+                            <constraint firstItem="hWg-Ov-boQ" firstAttribute="trailing" secondItem="JKw-Mh-csh" secondAttribute="trailing" id="prp-wE-78k"/>
                             <constraint firstItem="1cN-cY-u2s" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" constant="20" id="sh1-RG-eVA"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="ii9-w7-DNd" secondAttribute="bottom" priority="750" constant="10" id="vQx-9f-Ky9"/>
                             <constraint firstItem="rcE-iY-Mai" firstAttribute="top" secondItem="JKw-Mh-csh" secondAttribute="top" id="zww-cQ-lDS"/>
@@ -184,6 +184,7 @@
                     <connections>
                         <outlet property="backgroundImg" destination="rcE-iY-Mai" id="W1E-qq-oD9"/>
                         <outlet property="choicesTable" destination="ii9-w7-DNd" id="cMS-PC-bCZ"/>
+                        <outlet property="navItem" destination="3qb-uO-iki" id="3s4-0o-SOE"/>
                         <outlet property="nextBtnImage" destination="2mV-D7-rKr" id="iCX-0g-ES3"/>
                         <outlet property="nextView" destination="hWg-Ov-boQ" id="uuK-Vd-hJa"/>
                         <outlet property="nextViewHeight" destination="wn8-QO-YST" id="LmC-tp-rmd"/>
@@ -196,6 +197,9 @@
                         <outlet property="tipViewHeight" destination="b1t-tc-4Rg" id="GNq-No-kQI"/>
                     </connections>
                 </viewController>
+                <navigationItem id="3qb-uO-iki">
+                    <barButtonItem key="backBarButtonItem" title="He he" id="C62-OS-j6c"/>
+                </navigationItem>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ai0-IW-L2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957.5999999999999" y="31.934032983508249"/>

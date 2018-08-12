@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Live with an Agile Life"
+        self.title = "Agile Life"
         
         levelsTableView.register(LevelTableViewCell.getNib(),
                                 forCellReuseIdentifier: LevelTableViewCell.className())

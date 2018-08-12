@@ -11,6 +11,8 @@ import UIKit
 
 class QuizzViewController: UIViewController {
 
+    @IBOutlet var navItem: UINavigationItem!
+    
     @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
     
@@ -63,10 +65,10 @@ class QuizzViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupUI()
-        
         csv = CSVLoader.readFrom(fileName: questionTemplate.name())
         numOfQuestionsToBeLoaded = questionTemplate.limit() ?? csv?.rows.count ?? 1
+        
+        self.setupUI()
         loadNextQuestion()
     }
     
@@ -142,8 +144,6 @@ extension QuizzViewController {
         
         // Next View
         nextViewHeight.constant = 0
-        nextView.roundCorners([.topLeft, .topRight], radius: 15)
-        
         nextBtnImage.isUserInteractionEnabled = true
         tipImage.isUserInteractionEnabled = true
         
