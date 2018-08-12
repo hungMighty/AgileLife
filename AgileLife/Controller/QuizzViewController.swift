@@ -58,7 +58,7 @@ class QuizzViewController: UIViewController {
     
     // Width and Height
     fileprivate let nextViewNormalHeight: CGFloat = 60
-    fileprivate let hintHeight: CGFloat = 200
+    fileprivate var hintHeight: CGFloat = 200
     
     
     // MARK: - View Lifecycles
@@ -244,6 +244,12 @@ extension QuizzViewController {
             
             view.textHint = txtHint
             pulseTipIcon()
+            
+            if let textView = view.hintTextView {
+                let contentSize = textView.sizeThatFits(textView.bounds.size)
+                print("Expected content size: \(contentSize)")
+                hintHeight = contentSize.height + 30
+            }
         }
         
         // Index to next question
