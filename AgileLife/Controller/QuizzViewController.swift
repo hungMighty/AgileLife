@@ -248,7 +248,7 @@ extension QuizzViewController {
             if let textView = view.hintTextView {
                 let contentSize = textView.sizeThatFits(textView.bounds.size)
                 print("Expected content size: \(contentSize)")
-                hintHeight = contentSize.height + 30
+                hintHeight = contentSize.height + 40
             }
         }
         
