@@ -34,7 +34,7 @@ class QuizzViewController: UIViewController {
     var tipViewController: TipViewController?
     
     // UI Objs
-    var scoreBtn = UIButton()
+    fileprivate var scoreBtn = UIBarButtonItem()
     
     
     fileprivate var csv: CSwiftV?
@@ -113,12 +113,8 @@ extension QuizzViewController {
     
     fileprivate func setupUI() {
         // Right navigation item
-        scoreBtn.setTitle("Score: 0", for: .normal)
-        scoreBtn.isUserInteractionEnabled = false
-        scoreBtn.setTitleColor(UIColor(red: 60, green: 136, blue: 246), for: .normal)
-        
-        let barButton = UIBarButtonItem.init(customView: scoreBtn)
-        self.navigationItem.rightBarButtonItem = barButton
+        scoreBtn.title = "Score: 0"
+        self.navigationItem.rightBarButtonItem = scoreBtn
         
         // Progress bar for title
         progressView.progressTintColor = UIColor.green
@@ -325,7 +321,7 @@ extension QuizzViewController {
             .count == answerIndexes.count
         if selectedCellsMatchAnswers {
             scores += 1
-            scoreBtn.setTitle("Score: \(scores)", for: .normal)
+            scoreBtn.title = "Score: \(scores)"
         }
         
         answerIndexes.forEach {
