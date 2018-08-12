@@ -21,6 +21,8 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.title = " "
     }
     
@@ -33,12 +35,19 @@ class ResultViewController: UIViewController {
         numOutOfLb.text = "\(numOfCorrectAnswers) out of \(totalQuestions)"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
     @IBAction func backToMenuTap(_ sender: Any) {
         guard let view = self.navigationController?.viewControllers.first
             as? HomeViewController else {
                 return
         }
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.popToViewController(view, animated: true)
     }
     
@@ -58,6 +67,8 @@ class ResultViewController: UIViewController {
         quizzView.questionTemplate = self.questionTemplate
         vcArray = [homeView]
         vcArray.append(quizzView)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setViewControllers(vcArray, animated: true)
     }
     

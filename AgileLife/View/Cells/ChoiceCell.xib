@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerCell" rowHeight="108" id="KGk-i7-Jjw" customClass="AnswerCell" customModule="AgileLife" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoiceCell" rowHeight="108" id="KGk-i7-Jjw" customClass="ChoiceCell" customModule="AgileLife" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="361" height="108"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="View">
@@ -99,12 +99,12 @@ Whale</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="answerLb" destination="VxY-xu-v7v" id="9pX-au-hTv"/>
-                <outlet property="answerLbContainerView" destination="GSm-Fr-9y4" id="Ysa-9J-8mv"/>
-                <outlet property="answerSymbolLb" destination="Ahf-mq-b3S" id="f07-2c-lWU"/>
                 <outlet property="containerView" destination="2CC-vV-P3O" id="YgZ-uR-VtS"/>
-                <outlet property="correctIcon" destination="PgG-Fh-3KP" id="CEA-j4-fha"/>
-                <outlet property="markView" destination="8Ud-3w-IuO" id="0J3-Fu-kp8"/>
+                <outlet property="contentContainerView" destination="GSm-Fr-9y4" id="JRZ-Pb-Tpb"/>
+                <outlet property="contentLb" destination="VxY-xu-v7v" id="dho-Ty-7Z2"/>
+                <outlet property="letterLb" destination="Ahf-mq-b3S" id="9w4-qc-qb2"/>
+                <outlet property="markingIcon" destination="PgG-Fh-3KP" id="B8t-qr-qI5"/>
+                <outlet property="markingView" destination="8Ud-3w-IuO" id="ohm-fd-MZe"/>
             </connections>
             <point key="canvasLocation" x="42" y="130"/>
         </tableViewCell>

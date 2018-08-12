@@ -182,14 +182,14 @@
                         <viewLayoutGuide key="safeArea" id="JKw-Mh-csh"/>
                     </view>
                     <connections>
-                        <outlet property="answersTable" destination="ii9-w7-DNd" id="uxH-IK-Rrf"/>
+                        <outlet property="choicesTable" destination="ii9-w7-DNd" id="cMS-PC-bCZ"/>
                         <outlet property="nextBtnImage" destination="2mV-D7-rKr" id="iCX-0g-ES3"/>
                         <outlet property="nextView" destination="hWg-Ov-boQ" id="uuK-Vd-hJa"/>
                         <outlet property="nextViewHeight" destination="wn8-QO-YST" id="LmC-tp-rmd"/>
+                        <outlet property="numOfChoicesToSelectLb" destination="hp0-W5-h5E" id="OgV-C2-wfB"/>
                         <outlet property="progressView" destination="E9s-up-lCM" id="5Pr-iu-noa"/>
                         <outlet property="questionContainerView" destination="1cN-cY-u2s" id="WGZ-I9-j8g"/>
                         <outlet property="questionLb" destination="AjR-vr-gcI" id="Fp9-iA-gg1"/>
-                        <outlet property="selectCountLb" destination="hp0-W5-h5E" id="1Hp-sk-1wp"/>
                         <outlet property="tipImage" destination="W7d-g4-Gd4" id="aea-EZ-D0a"/>
                         <outlet property="tipView" destination="nt9-IP-FFO" id="0uC-VG-0oE"/>
                         <outlet property="tipViewHeight" destination="b1t-tc-4Rg" id="GNq-No-kQI"/>

@@ -15,9 +15,9 @@ class QuizzViewController: UIViewController {
     
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
-    @IBOutlet weak var selectCountLb: LbWithBackground!
+    @IBOutlet weak var numOfChoicesToSelectLb: LbWithBackground!
     
-    @IBOutlet weak var answersTable: UITableView!
+    @IBOutlet weak var choicesTable: UITableView!
     
     @IBOutlet weak var nextView: UIView!
     @IBOutlet weak var nextBtnImage: UIImageView!
@@ -33,18 +33,25 @@ class QuizzViewController: UIViewController {
     // ViewControllers
     var tipViewController: TipViewController?
     
+    // UI Objs
+    var scoreBtn = UIButton()
+    
     
     fileprivate var csv: CSwiftV?
     var questionTemplate: QuestionTemplate = .easy
-    fileprivate var loadingLimit = 0
+    fileprivate var numOfQuestionsToBeLoaded = 0
     
-    fileprivate var curQuestionIndex = 0
     fileprivate var curQuestionData = [String]()
-    fileprivate var possibleAnswers = [String]()
-    fileprivate var correctAnswerIndexes: [Int]?
-    fileprivate var selectedIndexPaths: [IndexPath]?
+    fileprivate var curQuestionIndex = 0
+    fileprivate var availableChoices = [String]()
+    fileprivate var answerIndexes = [Int]()
     
-    fileprivate var numOfCorrectAnswers = 0
+    
+    fileprivate var isMultipleChoice = false
+    fileprivate var areAnswersBeingDisplayed: Bool = false
+    fileprivate var selectedIndexes = [Int]()
+    
+    fileprivate var scores = 0
     
     // Width and Height
     fileprivate let nextViewNormalHeight: CGFloat = 60
@@ -58,7 +65,7 @@ class QuizzViewController: UIViewController {
         self.setupUI()
         
         csv = CSVLoader.readFrom(fileName: questionTemplate.name())
-        loadingLimit = questionTemplate.limit() ?? csv?.rows.count ?? 1
+        numOfQuestionsToBeLoaded = questionTemplate.limit() ?? csv?.rows.count ?? 1
         loadNextQuestion()
     }
     
@@ -83,10 +90,8 @@ class QuizzViewController: UIViewController {
     }
     
     @objc func tapToShowTip() {
-        guard let tipView = tipViewController,
-            (tipView.textHint.isEmpty == false) else {
-            
-                return
+        guard let tipView = tipViewController, (tipView.textHint.isEmpty == false) else {
+            return
         }
         
         view.layoutIfNeeded()
@@ -107,6 +112,14 @@ class QuizzViewController: UIViewController {
 extension QuizzViewController {
     
     fileprivate func setupUI() {
+        // Right navigation item
+        scoreBtn.setTitle("Score: 0", for: .normal)
+        scoreBtn.isUserInteractionEnabled = false
+        scoreBtn.setTitleColor(UIColor(red: 60, green: 136, blue: 246), for: .normal)
+        
+        let barButton = UIBarButtonItem.init(customView: scoreBtn)
+        self.navigationItem.rightBarButtonItem = barButton
+        
         // Progress bar for title
         progressView.progressTintColor = UIColor.green
         progressView.transform = CGAffineTransform(scaleX: 1, y: 4)
@@ -117,14 +130,14 @@ extension QuizzViewController {
         questionContainerView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
         // Answers Table
-        answersTable.showsVerticalScrollIndicator = false
-        answersTable.separatorStyle = .none
-        answersTable.backgroundColor = UIColor.clear
-        answersTable.estimatedRowHeight = 200
-        answersTable.rowHeight = UITableViewAutomaticDimension
-        answersTable.register(
-            AnswerCell.getNib(),
-            forCellReuseIdentifier: AnswerCell.className()
+        choicesTable.showsVerticalScrollIndicator = false
+        choicesTable.separatorStyle = .none
+        choicesTable.backgroundColor = UIColor.clear
+        choicesTable.estimatedRowHeight = 200
+        choicesTable.rowHeight = UITableViewAutomaticDimension
+        choicesTable.register(
+            ChoiceCell.getNib(),
+            forCellReuseIdentifier: ChoiceCell.className()
         )
         
         // Next View
@@ -164,15 +177,16 @@ extension QuizzViewController {
 extension QuizzViewController {
     
     fileprivate func loadNextQuestion() {
-        guard let csv = self.csv, curQuestionIndex < loadingLimit else {
+        guard let csv = self.csv, curQuestionIndex < numOfQuestionsToBeLoaded else {
             
+            // Reach the end -> Show Result Scene
             if let view = UIStoryboard.viewController(
                 fromIdentifier: ResultViewController.className())
                 as? ResultViewController {
                 
-                view.totalQuestions = loadingLimit
-                view.numOfCorrectAnswers = numOfCorrectAnswers
                 view.questionTemplate = questionTemplate
+                view.totalQuestions = numOfQuestionsToBeLoaded
+                view.numOfCorrectAnswers = scores
                 
                 self.navigationController?.pushViewController(view, animated: true)
             }
@@ -181,27 +195,44 @@ extension QuizzViewController {
         }
         
         
-        // Setup next question
+        // Reset flags
+        areAnswersBeingDisplayed = false
+        selectedIndexes = [Int]()
+        
+        // Setup for next question
         curQuestionData = csv.rows[curQuestionIndex]
-        mapPossibleAnswers()
-        parseCorrectAnswerIndexes()
+        mapAvailableChoices()
+        parseAnswerIndexes()
         
         // Reload UI
-        self.title = "\(curQuestionIndex + 1) / \(loadingLimit)"
+        self.title = "\(curQuestionIndex + 1) / \(numOfQuestionsToBeLoaded)"
         progressView.setProgress(
-            Float(curQuestionIndex + 1) / Float(loadingLimit),
+            Float(curQuestionIndex + 1) / Float(numOfQuestionsToBeLoaded),
             animated: true
         )
         
         questionLb.text = curQuestionData[CsvRow.question.rawValue]
         
-        answersTable.allowsSelection = true
-        answersTable.reloadData(
-            with: .simple(
-                duration: 0.65, direction: .rotation3D(type: .doctorStrange),
-                constantDelay: 0
+        let numOfChoicesToSelect = "Select \(answerIndexes.count)"
+        numOfChoicesToSelectLb.text = numOfChoicesToSelect
+        
+        choicesTable.allowsSelection = true
+        
+        UIView.animate(withDuration: 0.2,
+                       animations: {
+                        self.choicesTable.scrollToRow(
+                            at: IndexPath(row: 0, section: 0),
+                            at: .top, animated: false
+                        )
+        }) { (isComplete) in
+            self.choicesTable.reloadData(
+                with: .simple(
+                    duration: 0.65, direction: .rotation3D(type: .doctorStrange),
+                    constantDelay: 0
+                )
             )
-        )
+        }
+
         
         nextViewHeight.constant = 0
         tipViewHeight.constant = 0
@@ -215,78 +246,73 @@ extension QuizzViewController {
             pulseTipIcon()
         }
         
-        // Reset flags
-        selectedIndexPaths = [IndexPath]()
+        // Index to next question
         curQuestionIndex += 1
     }
     
-    fileprivate func mapPossibleAnswers() {
-        possibleAnswers = [String]()
+    fileprivate func mapAvailableChoices() {
+        availableChoices = [String]()
         
         for i in CsvRow.firstAnswerOpt.rawValue...CsvRow.lastAnswerOpt.rawValue {
-            let answer = curQuestionData[i]
-            if answer.isEmpty == false {
-                possibleAnswers.append(answer)
+            let choice = curQuestionData[i]
+            if choice.isEmpty == false {
+                availableChoices.append(choice)
             }
         }
     }
     
-    fileprivate func parseCorrectAnswerIndexes() {
+    fileprivate func parseAnswerIndexes() {
         let strValues = curQuestionData[CsvRow.correctResponse.rawValue]
-            .split(separator: ",")
-            .map{ String($0) }
+            .split(separator: ",").map{ String($0) }
         
-        correctAnswerIndexes = [Int]()
-        correctAnswerIndexes = strValues
-            .compactMap{ Int($0) }.map { $0 - 1 }
+        answerIndexes = [Int]()
+        answerIndexes = strValues.compactMap{ Int($0) }.map { $0 - 1 }
         
-        let multipleText = correctAnswerIndexes != nil ?
-            "Select \(correctAnswerIndexes!.count)" : ""
-        selectCountLb.text = multipleText
+        isMultipleChoice = false
+        if answerIndexes.count > 1 {
+            isMultipleChoice = true
+        }
     }
     
-    fileprivate func handleCellSelection(selectedCell: AnswerCell,
-                                         at indexPath: IndexPath) {
-        if self.selectedIndexPaths?.contains(indexPath) == false {
-            self.selectedIndexPaths?.append(indexPath)
+    fileprivate func handleCellTap(cell: ChoiceCell,
+                                   at indexPath: IndexPath) {
+        
+        // Add or remove currently Selected Cells
+        if self.selectedIndexes.contains(indexPath.row)  {
+            cell.highlight(option: .unselected)
+            if let index = selectedIndexes.index(of: indexPath.row) {
+                selectedIndexes.remove(at: index)
+            }
             
-            if self.correctAnswerIndexes != nil &&
-                self.correctAnswerIndexes!.count >= 2 {
-                
-                selectedCell.highlightForMulChoices(
-                    color: UIColor.green
-                )
-            }
+            return
+            
         } else {
-            selectedCell.highlightForMulChoices()
-            if let index = selectedIndexPaths?.index(of: indexPath) {
-                selectedIndexPaths?.remove(at: index)
+            self.selectedIndexes.append(indexPath.row)
+            
+            if isMultipleChoice {
+                cell.highlight(option: .selected)
             }
+        }
+        
+        // Select enough -> Trigger marking process
+        guard selectedIndexes.count == answerIndexes.count else {
             return
         }
         
-        guard let selectedCellIndexPaths = self.selectedIndexPaths,
-            let correctAnswerIndexes = self.correctAnswerIndexes,
-            selectedCellIndexPaths.count == correctAnswerIndexes.count else {
-                return
-        }
+        areAnswersBeingDisplayed = true
+        choicesTable.allowsSelection = false
         
-        for i in 0..<selectedCellIndexPaths.count {
-            let curIndexPath = selectedCellIndexPaths[i]
-            let selectedCell = self.answersTable.cellForRow(
-                at: curIndexPath
-            ) as! AnswerCell
-            
-            var isCorrect: Bool
-            if correctAnswerIndexes.contains(curIndexPath.row) {
-                isCorrect = true
-            } else {
-                isCorrect = false
+        selectedIndexes.enumerated().forEach { tuple in
+            guard let cell = self.choicesTable.cellForRow(
+                at: IndexPath(row: tuple.element, section: 0)) as? ChoiceCell else {
+                    return
             }
             
-            selectedCell.highlightForMulChoices()
-            selectedCell.displayMark(isCorrect: isCorrect) {
-                if i == selectedCellIndexPaths.count - 1 {
+            cell.highlight(option: .unselected)
+            
+            cell.showMarkingIcon(isCorrect: answerIndexes.contains(tuple.element)) {
+                // Finish marking process
+                if tuple.offset == self.selectedIndexes.count - 1 {
                     self.highlightAnswerCells()
                 }
             }
@@ -294,27 +320,19 @@ extension QuizzViewController {
     }
     
     fileprivate func highlightAnswerCells() {
-        guard let correctAnswerIndexes = self.correctAnswerIndexes,
-            let selectedIndexPaths = self.selectedIndexPaths,
-            correctAnswerIndexes.count == selectedIndexPaths.count else {
-                return
+        let selectedCellsMatchAnswers = selectedIndexes
+            .filter{ answerIndexes.contains($0) }
+            .count == answerIndexes.count
+        if selectedCellsMatchAnswers {
+            scores += 1
+            scoreBtn.setTitle("Score: \(scores)", for: .normal)
         }
         
-        answersTable.allowsSelection = false
-        
-        let isAllCorrect = selectedIndexPaths
-            .filter{ correctAnswerIndexes.contains($0.row) }
-            .count == correctAnswerIndexes.count
-        if isAllCorrect {
-            numOfCorrectAnswers += 1
-        }
-        
-        correctAnswerIndexes.forEach {
-            if let correctCell = self.answersTable.cellForRow(
-                at: IndexPath(row: $0, section: 0)
-                ) as? AnswerCell {
+        answerIndexes.forEach {
+            if let cell = self.choicesTable.cellForRow(
+                at: IndexPath(row: $0, section: 0)) as? ChoiceCell {
                 
-                correctCell.highlight(isCorrect: true)
+                cell.highlight(option: .answer)
             }
         }
         
@@ -342,7 +360,7 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return possibleAnswers.count
+        return availableChoices.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -351,13 +369,21 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AnswerCell.className(), for: indexPath)
-            as? AnswerCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChoiceCell.className(), for: indexPath)
+            as? ChoiceCell else {
                 return UITableViewCell()
         }
         
-        cell.answerSymbolLb.text = Alphabet.from(index: indexPath.row)
-        cell.answerLb.text = possibleAnswers[indexPath.row]
+        cell.letterLb.text = Alphabet.from(index: indexPath.row)
+        cell.contentLb.text = availableChoices[indexPath.row]
+        
+        if areAnswersBeingDisplayed == false && selectedIndexes.contains(indexPath.row) {
+            cell.highlight(option: .selected)
+        }
+        
+        if areAnswersBeingDisplayed, answerIndexes.contains(indexPath.row) {
+            cell.highlight(option: .answer)
+        }
         
         return cell
     }
@@ -370,14 +396,12 @@ extension QuizzViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard let selectedCell = tableView.cellForRow(at: indexPath) as? AnswerCell,
-            let _ = self.correctAnswerIndexes else {
-                
-                loadNextQuestion()
-                return
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? ChoiceCell else {
+            loadNextQuestion()
+            return
         }
         
-        handleCellSelection(selectedCell: selectedCell, at: indexPath)
+        handleCellTap(cell: selectedCell, at: indexPath)
     }
     
 }
