@@ -218,7 +218,7 @@ extension QuizzViewController {
         
         choicesTable.allowsSelection = true
         
-        UIView.animate(withDuration: 0.2,
+        UIView.animate(withDuration: 0.5,
                        animations: {
                         self.choicesTable.scrollToRow(
                             at: IndexPath(row: 0, section: 0),
@@ -369,8 +369,8 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChoiceCell.className(), for: indexPath)
-            as? ChoiceCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChoiceCell.className(), for: indexPath) as? ChoiceCell,
+            indexPath.row < availableChoices.count else {
                 return UITableViewCell()
         }
         
