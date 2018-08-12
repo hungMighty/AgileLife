@@ -33,6 +33,17 @@ enum QuestionTemplate: Int {
         }
     }
     
+    func background() -> String {
+        switch self {
+        case .easy:
+            return "background_Lego"
+        case .medium:
+            return "background_cheetah1"
+        case .hard:
+            return "background_cheetah2"
+        }
+    }
+    
 }
 
 

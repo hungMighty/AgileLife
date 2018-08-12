@@ -11,6 +11,7 @@ import UIKit
 
 class QuizzViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
     
     @IBOutlet weak var questionContainerView: UIView!
@@ -112,6 +113,9 @@ class QuizzViewController: UIViewController {
 extension QuizzViewController {
     
     fileprivate func setupUI() {
+        // Background
+        backgroundImg.image = UIImage(named: questionTemplate.background())
+        
         // Right navigation item
         scoreBtn.title = "Score: 0"
         self.navigationItem.rightBarButtonItem = scoreBtn

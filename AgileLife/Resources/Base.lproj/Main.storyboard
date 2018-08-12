@@ -182,6 +182,7 @@
                         <viewLayoutGuide key="safeArea" id="JKw-Mh-csh"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundImg" destination="rcE-iY-Mai" id="W1E-qq-oD9"/>
                         <outlet property="choicesTable" destination="ii9-w7-DNd" id="cMS-PC-bCZ"/>
                         <outlet property="nextBtnImage" destination="2mV-D7-rKr" id="iCX-0g-ES3"/>
                         <outlet property="nextView" destination="hWg-Ov-boQ" id="uuK-Vd-hJa"/>
