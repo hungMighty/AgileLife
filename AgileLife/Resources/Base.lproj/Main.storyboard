@@ -126,29 +126,29 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-D7-rKr">
-                                        <rect key="frame" x="67" y="5" width="241" height="50"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tipBulb" translatesAutoresizingMaskIntoConstraints="NO" id="W7d-g4-Gd4">
-                                        <rect key="frame" x="314" y="2" width="56" height="56"/>
+                                        <rect key="frame" x="283" y="5" width="80" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="W7d-g4-Gd4" secondAttribute="height" multiplier="1:1" id="gn8-MQ-WUH"/>
+                                            <constraint firstAttribute="width" constant="80" id="wzq-ST-h5b"/>
                                         </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tipBulb" translatesAutoresizingMaskIntoConstraints="NO" id="W7d-g4-Gd4">
+                                        <rect key="frame" x="92" y="2" width="191" height="56"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="W7d-g4-Gd4" secondAttribute="bottom" constant="2" id="9j3-0l-xKb"/>
                                     <constraint firstAttribute="bottom" secondItem="VRS-0A-VR0" secondAttribute="bottom" id="CBQ-rX-hFm"/>
-                                    <constraint firstItem="W7d-g4-Gd4" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="2" id="SCn-bT-Zu5"/>
+                                    <constraint firstItem="W7d-g4-Gd4" firstAttribute="centerX" secondItem="hWg-Ov-boQ" secondAttribute="centerX" id="SpZ-34-eTY"/>
                                     <constraint firstItem="VRS-0A-VR0" firstAttribute="leading" secondItem="hWg-Ov-boQ" secondAttribute="leading" id="TGs-Zu-gXH"/>
-                                    <constraint firstItem="2mV-D7-rKr" firstAttribute="leading" secondItem="hWg-Ov-boQ" secondAttribute="leading" constant="67" id="eqJ-If-vig"/>
+                                    <constraint firstAttribute="trailing" secondItem="2mV-D7-rKr" secondAttribute="trailing" constant="12" id="YPq-gP-Ut9"/>
                                     <constraint firstItem="2mV-D7-rKr" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="5" id="gfs-cO-70K"/>
-                                    <constraint firstAttribute="trailing" secondItem="2mV-D7-rKr" secondAttribute="trailing" constant="67" id="h95-VG-l68"/>
                                     <constraint firstAttribute="bottom" secondItem="2mV-D7-rKr" secondAttribute="bottom" constant="5" id="iHP-0Y-y4T"/>
+                                    <constraint firstItem="W7d-g4-Gd4" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="2" id="j65-fa-hvX"/>
                                     <constraint firstAttribute="trailing" secondItem="VRS-0A-VR0" secondAttribute="trailing" id="pBx-c0-Jd4"/>
                                     <constraint firstItem="W7d-g4-Gd4" firstAttribute="centerY" secondItem="hWg-Ov-boQ" secondAttribute="centerY" id="q6M-Ac-uIY"/>
                                     <constraint firstItem="VRS-0A-VR0" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" id="sw2-XZ-e8S"/>
                                     <constraint firstAttribute="height" constant="60" id="wn8-QO-YST"/>
-                                    <constraint firstAttribute="bottom" secondItem="W7d-g4-Gd4" secondAttribute="bottom" constant="2" id="ycn-oJ-En3"/>
-                                    <constraint firstAttribute="trailing" secondItem="W7d-g4-Gd4" secondAttribute="trailing" constant="5" id="yya-20-I9s"/>
+                                    <constraint firstItem="2mV-D7-rKr" firstAttribute="leading" secondItem="W7d-g4-Gd4" secondAttribute="trailing" id="zYd-p4-BZX"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt9-IP-FFO" userLabel="Tip View">
