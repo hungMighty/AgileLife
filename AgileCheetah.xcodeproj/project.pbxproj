@@ -467,10 +467,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teaFox.MyAgileLife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaFox.AgileCheetah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f86cfe5c-6164-437d-ad60-220a090beca6";
-				PROVISIONING_PROFILE_SPECIFIER = "Agile Life Dev Profile";
+				PROVISIONING_PROFILE = "16e8ea02-32dc-4100-b914-820696b1255a";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Provi";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -480,7 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BRV99KT76X;
 				INFOPLIST_FILE = "$(SRCROOT)/AgileLife/Config/Info.plist";
@@ -489,10 +489,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.teaFox.MyAgileLife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teaFox.AgileCheetah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f86cfe5c-6164-437d-ad60-220a090beca6";
-				PROVISIONING_PROFILE_SPECIFIER = "Agile Life Dev Profile";
+				PROVISIONING_PROFILE = "ed6f3cbc-800b-424e-a044-907ae133610c";
+				PROVISIONING_PROFILE_SPECIFIER = "Pro Provi";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
