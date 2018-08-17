@@ -15,17 +15,19 @@ enum QuestionTemplate: Int {
     
     func name() -> String {
         switch self {
-        case .easy, .medium:
-            return "PSPO-Open-Assessment-1"
+        case .easy:
+            return "Agile Cheetah - Easy"
+        case .medium:
+            return "Agile Cheetah - Medium"
         case .hard:
-            return "Udemy - PT1 PSM1 Series 2"
+            return "Agile Cheetah - Hard"
         }
     }
     
     func limit() -> Int? {
         switch self {
         case .easy:
-            return 5
+            return nil
         case .medium:
             return nil
         case .hard:

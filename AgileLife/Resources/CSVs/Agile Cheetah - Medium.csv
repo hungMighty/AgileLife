@@ -1,0 +1,24 @@
+,Question Type (multiple-choice or multi-select),Answer Option 1,Answer Option 2,Answer Option 3,Answer Option 4,Answer Option 5,Answer Option 6,Correct Response,Explanation,Knowledge Area
+Which of the following describe the definition of 'Done'?,multi-select,Helps increase velocity,Increases transparency,Ensures everything is documented,Helps ensure the Increment is releasable,,,"2,4",Definition of 'Done' increases transparency because everyone knows what it means by 'Done'. It includes everything required for creating something usable by the end users (potentially releasable).,Artifact Transparency
+Pick FOUR activities that are the responsibility of the Development Team.,multi-select,Using Story Point estimations.,Provide estimates,Break down epic user stories into smaller ones,Design software,Make technical decisions,Volunteer for tasks,"1,3,4,5",Designing the software is part of the development and should be done by the developers. They are self-organized and make technical decisions and volunteer for tasks (assign them to themselves). Estimation is the responsibility of the developers because they are the people who will develop the item.,The Scrum Team
+Which of the following is a valid service from the Scrum Master to the Product Owner?,multiple-choice,Helping the Product Owner find techniques for managing the Product Backlog.,Act as a proxy when the Product Owner is not available to the team.,Helping the Product Owner order the Product Backlog items in order to maximize value.,"Act as the middleman between the Product Owner and the Development Team, as requested or required",,,1,"The following are the Scrum Master services to the Product Owner as described in the Scrum Guide:
+-Finding techniques for effective Product Backlog management;
+-Helping the Scrum Team understand the need for clear and concise Product Backlog items;
+-Understanding product planning in an empirical environment;
+-Ensuring the Product Owner knows how to arrange the Product Backlog to maximize value;
+-Understanding and practicing agility;
+-Facilitating Scrum events as requested or needed.
+-These are mainly focused on coaching/training, rather than getting involved and helping someone do something.",The Scrum Team
+When does inspection occur?,multiple-choice,When the Product Owner finds necessary,"Frequently, but not so often that gets in the way of work.",All the time,At the Sprint Review,,,2,"All Scrum events are opportunities for inspection and adaptation.
+
+Inspection makes adaptation possible and that's why it's important. However, like anything else in Agile, we just like to have 'enough' of it.",Scrum Theory
+When is it time for integrating the solution?,multiple-choice,Before releasing the Increment,At the end of the Sprint,During the Sprint,At the end of the project,,,3,Integration is part of the development of each item and a step in a normal definition of 'Done'. Agile projects use continuous integration to make the output potentially releasable.,Scrum Events
+Which role is responsible for managing the Development Team?,multiple-choice,Team leader,Development Team,Product Owner,Scrum Master,Scrum Team,,2,The Development Team is self-organized and manages itself instead of receiving orders.,The Scrum Team
+The Sprint Backlog makes visible all of the work the ... identifies as necessary to meet the Sprint Goal.,multiple-choice,Development Team,Scrum Team,Product Owner,Scrum Master,,,1,"This is up to the developers to identify how to accomplish the goal. After all, they are the technical people in the project.
+
+The question is about the Sprint Backlog tasks, rather than items.",Scrum Artifacts
+Who monitors the remaining work of the Product Backlog?,multiple-choice,The Development Team,The Scrum Master,The Product Owner,The Scrum Team,,,3,"The Product Owner is responsible for measuring the progress of the project and tracking the remaining work in the Product Backlog.
+
+The Development Team is responsible for measuring the progress of the Sprint and tracking the remaining work in the Sprint Backlog.",The Scrum Team
+Who can change the Sprint Backlog in the middle of the Sprint?,multiple-choice,Only the Scrum Master,Only the Development Team,Only the Product Owner,The Scrum Team,,,2,he Product Backlog items selected for the Sprint do not change but the Sprint Backlog also contains tasks and tasks evolve through the Sprint. The Development Team owns the Sprint Backlog and only they can change the Sprint Backlog. This is sometimes done based on the input from the Product Owner.,Scrum Artifacts
+What type of process control is Scrum?,multiple-choice,Traditional,Adaptive,Empirical,Modern,,,3,Scrum is empirical; based on the real-world experiences.,Scrum Theory

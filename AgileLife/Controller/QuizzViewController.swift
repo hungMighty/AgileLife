@@ -123,7 +123,7 @@ extension QuizzViewController {
         self.navigationItem.rightBarButtonItem = scoreBtn
         
         // Progress bar for title
-        progressView.progressTintColor = UIColor.green
+        progressView.progressTintColor = themeColor
         progressView.transform = CGAffineTransform(scaleX: 1, y: 4)
         
         // Question View
