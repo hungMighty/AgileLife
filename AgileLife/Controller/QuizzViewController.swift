@@ -143,6 +143,11 @@ extension QuizzViewController {
         )
         
         // Next View
+        nextView.layer.masksToBounds = true
+        nextView.layer.borderColor = UIColor.black.cgColor
+        nextView.layer.borderWidth = 1
+        nextView.layer.cornerRadius = 12
+        
         nextViewHeight.constant = 0
         nextBtnImage.isUserInteractionEnabled = true
         tipImage.isUserInteractionEnabled = true

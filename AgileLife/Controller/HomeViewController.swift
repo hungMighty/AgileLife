@@ -36,11 +36,11 @@ enum QuestionTemplate: Int {
     func background() -> String {
         switch self {
         case .easy:
-            return "background_Lego"
-        case .medium:
             return "background_cheetah1"
+        case .medium:
+            return "background_cheetah3"
         case .hard:
-            return "background_cheetah2"
+            return "background_cheetah4"
         }
     }
     
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Agile Life"
+        self.title = "Agile Cheetah"
         
         levelsTableView.register(LevelTableViewCell.getNib(),
                                 forCellReuseIdentifier: LevelTableViewCell.className())

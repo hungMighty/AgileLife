@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B720DF820CD4C2B001A5532 /* AgileLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B720DF820CD4C2B001A5532 /* AgileCheetah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileCheetah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B720DFB20CD4C2B001A5532 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B720E1020CD5013001A5532 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B720E1320CD506C001A5532 /* LevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		5B720DF920CD4C2B001A5532 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B720DF820CD4C2B001A5532 /* AgileLife.app */,
+				5B720DF820CD4C2B001A5532 /* AgileCheetah.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,9 +219,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B720DF720CD4C2B001A5532 /* AgileLife */ = {
+		5B720DF720CD4C2B001A5532 /* AgileCheetah */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B720E0A20CD4C2B001A5532 /* Build configuration list for PBXNativeTarget "AgileLife" */;
+			buildConfigurationList = 5B720E0A20CD4C2B001A5532 /* Build configuration list for PBXNativeTarget "AgileCheetah" */;
 			buildPhases = (
 				5B720DF420CD4C2B001A5532 /* Sources */,
 				5B720DF520CD4C2B001A5532 /* Frameworks */,
@@ -231,9 +231,9 @@
 			);
 			dependencies = (
 			);
-			name = AgileLife;
+			name = AgileCheetah;
 			productName = AgileLife;
-			productReference = 5B720DF820CD4C2B001A5532 /* AgileLife.app */;
+			productReference = 5B720DF820CD4C2B001A5532 /* AgileCheetah.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -251,7 +251,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5B720DF320CD4C2B001A5532 /* Build configuration list for PBXProject "AgileLife" */;
+			buildConfigurationList = 5B720DF320CD4C2B001A5532 /* Build configuration list for PBXProject "AgileCheetah" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -264,7 +264,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B720DF720CD4C2B001A5532 /* AgileLife */,
+				5B720DF720CD4C2B001A5532 /* AgileCheetah */,
 			);
 		};
 /* End PBXProject section */
@@ -497,7 +497,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B720DF320CD4C2B001A5532 /* Build configuration list for PBXProject "AgileLife" */ = {
+		5B720DF320CD4C2B001A5532 /* Build configuration list for PBXProject "AgileCheetah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B720E0820CD4C2B001A5532 /* Debug */,
@@ -506,7 +506,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B720E0A20CD4C2B001A5532 /* Build configuration list for PBXNativeTarget "AgileLife" */ = {
+		5B720E0A20CD4C2B001A5532 /* Build configuration list for PBXNativeTarget "AgileCheetah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B720E0B20CD4C2B001A5532 /* Debug */,

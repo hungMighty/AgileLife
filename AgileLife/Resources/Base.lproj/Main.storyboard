@@ -14,7 +14,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="AgileCheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
         <!--Quizz View Controller-->
         <scene sceneID="9rC-KG-Dfk">
             <objects>
-                <viewController storyboardIdentifier="QuizzViewController" id="Fxw-nM-FgP" customClass="QuizzViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizzViewController" id="Fxw-nM-FgP" customClass="QuizzViewController" customModule="AgileCheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="haB-ff-yZb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,7 @@
                                     <constraint firstItem="AjR-vr-gcI" firstAttribute="top" secondItem="1cN-cY-u2s" secondAttribute="top" constant="15" id="lHR-nn-w7V"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-W5-h5E" customClass="LbWithBackground" customModule="AgileLife" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-W5-h5E" customClass="LbWithBackground" customModule="AgileCheetah" customModuleProvider="target">
                                 <rect key="frame" x="155.5" y="116" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -121,6 +121,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWg-Ov-boQ" userLabel="Next btn view">
                                 <rect key="frame" x="0.0" y="527" width="375" height="60"/>
                                 <subviews>
+                                    <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRS-0A-VR0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-D7-rKr">
                                         <rect key="frame" x="67" y="5" width="241" height="50"/>
                                     </imageView>
@@ -131,14 +135,17 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="VRS-0A-VR0" secondAttribute="bottom" id="CBQ-rX-hFm"/>
                                     <constraint firstItem="W7d-g4-Gd4" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="2" id="SCn-bT-Zu5"/>
+                                    <constraint firstItem="VRS-0A-VR0" firstAttribute="leading" secondItem="hWg-Ov-boQ" secondAttribute="leading" id="TGs-Zu-gXH"/>
                                     <constraint firstItem="2mV-D7-rKr" firstAttribute="leading" secondItem="hWg-Ov-boQ" secondAttribute="leading" constant="67" id="eqJ-If-vig"/>
                                     <constraint firstItem="2mV-D7-rKr" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" constant="5" id="gfs-cO-70K"/>
                                     <constraint firstAttribute="trailing" secondItem="2mV-D7-rKr" secondAttribute="trailing" constant="67" id="h95-VG-l68"/>
                                     <constraint firstAttribute="bottom" secondItem="2mV-D7-rKr" secondAttribute="bottom" constant="5" id="iHP-0Y-y4T"/>
+                                    <constraint firstAttribute="trailing" secondItem="VRS-0A-VR0" secondAttribute="trailing" id="pBx-c0-Jd4"/>
                                     <constraint firstItem="W7d-g4-Gd4" firstAttribute="centerY" secondItem="hWg-Ov-boQ" secondAttribute="centerY" id="q6M-Ac-uIY"/>
+                                    <constraint firstItem="VRS-0A-VR0" firstAttribute="top" secondItem="hWg-Ov-boQ" secondAttribute="top" id="sw2-XZ-e8S"/>
                                     <constraint firstAttribute="height" constant="60" id="wn8-QO-YST"/>
                                     <constraint firstAttribute="bottom" secondItem="W7d-g4-Gd4" secondAttribute="bottom" constant="2" id="ycn-oJ-En3"/>
                                     <constraint firstAttribute="trailing" secondItem="W7d-g4-Gd4" secondAttribute="trailing" constant="5" id="yya-20-I9s"/>
@@ -163,7 +170,7 @@
                             <constraint firstItem="1cN-cY-u2s" firstAttribute="top" secondItem="JKw-Mh-csh" secondAttribute="top" constant="12" id="E0T-jQ-lNz"/>
                             <constraint firstItem="E9s-up-lCM" firstAttribute="leading" secondItem="haB-ff-yZb" secondAttribute="leading" id="H2k-AW-K3C"/>
                             <constraint firstItem="ii9-w7-DNd" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" constant="20" id="JlD-tY-bys"/>
-                            <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="rcE-iY-Mai" secondAttribute="bottom" id="KQw-4p-oss"/>
+                            <constraint firstAttribute="bottom" secondItem="rcE-iY-Mai" secondAttribute="bottom" id="KQw-4p-oss"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="bottom" secondItem="nt9-IP-FFO" secondAttribute="bottom" id="Lcd-gL-JGa"/>
                             <constraint firstItem="hWg-Ov-boQ" firstAttribute="leading" secondItem="JKw-Mh-csh" secondAttribute="leading" id="PWc-eS-vRq"/>
                             <constraint firstItem="JKw-Mh-csh" firstAttribute="trailing" secondItem="nt9-IP-FFO" secondAttribute="trailing" id="VB7-ja-odK"/>
@@ -208,7 +215,7 @@
         <!--Result Scene-->
         <scene sceneID="CAo-CD-cjA">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" id="mAA-Wa-XRu" userLabel="Result Scene" customClass="ResultViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultViewController" id="mAA-Wa-XRu" userLabel="Result Scene" customClass="ResultViewController" customModule="AgileCheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qn2-AR-cb1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,7 +240,7 @@ to reach the end of the Quiz</string>
                                 <color key="textColor" red="0.30196078431372547" green="0.64313725490196072" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-zz-Gix" customClass="RoundBtn" customModule="AgileLife" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-zz-Gix" customClass="RoundBtn" customModule="AgileCheetah" customModuleProvider="target">
                                 <rect key="frame" x="72.5" y="394" width="230" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="2EO-tS-3pe"/>
@@ -244,7 +251,7 @@ to reach the end of the Quiz</string>
                                     <action selector="backToMenuTap:" destination="mAA-Wa-XRu" eventType="touchUpInside" id="2J8-Wa-fLP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVu-AV-6dS" customClass="RoundBtn" customModule="AgileLife" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVu-AV-6dS" customClass="RoundBtn" customModule="AgileCheetah" customModuleProvider="target">
                                 <rect key="frame" x="72" y="471" width="230" height="42"/>
                                 <state key="normal" title="RESTART QUESTIONS"/>
                                 <connections>
@@ -299,7 +306,7 @@ to reach the end of the Quiz</string>
         <!--Tip View Controller-->
         <scene sceneID="Ufh-Cc-d2N">
             <objects>
-                <viewController id="E6y-5L-NkF" userLabel="Tip View Controller" customClass="TipViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="E6y-5L-NkF" userLabel="Tip View Controller" customClass="TipViewController" customModule="AgileCheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1T-eO-af6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -312,7 +319,6 @@ to reach the end of the Quiz</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hHc-YT-xpZ" firstAttribute="top" secondItem="Ecr-Rz-ZIK" secondAttribute="top" constant="20" id="P9Y-pD-Iaa"/>
                             <constraint firstItem="Ecr-Rz-ZIK" firstAttribute="trailing" secondItem="hHc-YT-xpZ" secondAttribute="trailing" constant="20" id="QJk-XV-p3x"/>
