@@ -26,8 +26,8 @@
                                     <constraint firstAttribute="width" constant="160" id="kkI-fI-QGZ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Agile Quizz!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-PD-RK5">
-                                <rect key="frame" x="37" y="267" width="300" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready to start your Quiz!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-PD-RK5">
+                                <rect key="frame" x="32" y="267" width="310.5" height="27"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="22"/>
                                 <color key="textColor" red="0.43137254901960786" green="0.38039215686274508" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
