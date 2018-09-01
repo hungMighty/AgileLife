@@ -260,6 +260,30 @@ to reach the end of the Quiz</string>
                                     <action selector="restartTap:" destination="mAA-Wa-XRu" eventType="touchUpInside" id="Hr7-55-lzg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUF-ve-khb" customClass="RoundBtn" customModule="AgileCheetah" customModuleProvider="target">
+                                <rect key="frame" x="87" y="548" width="200" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="mm2-sD-TDg"/>
+                                </constraints>
+                                <state key="normal" title="Share this app"/>
+                                <connections>
+                                    <action selector="shareAppTap:" destination="mAA-Wa-XRu" eventType="touchUpInside" id="8a6-oT-NYi"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_Facebook" translatesAutoresizingMaskIntoConstraints="NO" id="avZ-OI-Wr6" userLabel="FB Icon">
+                                <rect key="frame" x="97" y="554" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="avZ-OI-Wr6" secondAttribute="height" multiplier="1:1" id="Y5c-EZ-HQ9"/>
+                                    <constraint firstAttribute="height" constant="30" id="edQ-CN-QEt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_Twitter" translatesAutoresizingMaskIntoConstraints="NO" id="pKh-1t-wyu" userLabel="Twiiter Icon">
+                                <rect key="frame" x="247" y="554" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9GI-1x-azG"/>
+                                    <constraint firstAttribute="width" secondItem="pKh-1t-wyu" secondAttribute="height" multiplier="1:1" id="EF1-HH-8nX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235294117647" green="0.10980392156862745" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -268,12 +292,19 @@ to reach the end of the Quiz</string>
                             <constraint firstItem="aVu-AV-6dS" firstAttribute="top" secondItem="cpI-zz-Gix" secondAttribute="bottom" constant="35" id="Cd1-F6-Pna"/>
                             <constraint firstItem="aVu-AV-6dS" firstAttribute="height" secondItem="cpI-zz-Gix" secondAttribute="height" id="GRC-8n-MRa"/>
                             <constraint firstItem="XN9-xP-mTk" firstAttribute="top" secondItem="zyK-hJ-Xvm" secondAttribute="bottom" constant="6" id="NsY-8M-Yfg"/>
+                            <constraint firstItem="TUF-ve-khb" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="P5y-ms-nqm"/>
+                            <constraint firstItem="avZ-OI-Wr6" firstAttribute="leading" secondItem="TUF-ve-khb" secondAttribute="leading" constant="10" id="S4Z-Vv-nkk"/>
                             <constraint firstItem="aVu-AV-6dS" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="VQQ-JE-BYM"/>
                             <constraint firstItem="L0a-lb-Y1L" firstAttribute="centerY" secondItem="qn2-AR-cb1" secondAttribute="centerY" id="WQ4-Pz-pbc"/>
                             <constraint firstItem="cpI-zz-Gix" firstAttribute="top" secondItem="L0a-lb-Y1L" secondAttribute="bottom" constant="40" id="Wcy-uD-W7g"/>
+                            <constraint firstItem="avZ-OI-Wr6" firstAttribute="centerY" secondItem="TUF-ve-khb" secondAttribute="centerY" id="XGZ-A9-1P1"/>
                             <constraint firstItem="L0a-lb-Y1L" firstAttribute="top" secondItem="XN9-xP-mTk" secondAttribute="bottom" constant="60" id="gHW-k7-05b"/>
                             <constraint firstItem="L0a-lb-Y1L" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="gcs-DA-mJz"/>
                             <constraint firstItem="cpI-zz-Gix" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="j7r-h4-lPw"/>
+                            <constraint firstItem="pKh-1t-wyu" firstAttribute="trailing" secondItem="TUF-ve-khb" secondAttribute="trailing" constant="-10" id="jhZ-yV-LaK"/>
+                            <constraint firstItem="pKh-1t-wyu" firstAttribute="centerY" secondItem="TUF-ve-khb" secondAttribute="centerY" id="nTg-YK-kXd"/>
+                            <constraint firstItem="TUF-ve-khb" firstAttribute="height" secondItem="aVu-AV-6dS" secondAttribute="height" id="o6V-Bf-tsT"/>
+                            <constraint firstItem="TUF-ve-khb" firstAttribute="top" secondItem="aVu-AV-6dS" secondAttribute="bottom" constant="35" id="oxq-DO-Pkw"/>
                             <constraint firstItem="zyK-hJ-Xvm" firstAttribute="centerX" secondItem="qn2-AR-cb1" secondAttribute="centerX" id="pZ7-W6-0Eo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NPL-TU-7K1"/>
@@ -281,11 +312,12 @@ to reach the end of the Quiz</string>
                     <connections>
                         <outlet property="numOutOfLb" destination="XN9-xP-mTk" id="kqA-ed-U4b"/>
                         <outlet property="percentLb" destination="zyK-hJ-Xvm" id="J6W-4a-Nud"/>
+                        <outlet property="shareAppBtn" destination="TUF-ve-khb" id="dxQ-53-moI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ec7-cp-hOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036" y="32"/>
+            <point key="canvasLocation" x="3036" y="31.934032983508249"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wum-ja-R8p">
@@ -340,7 +372,9 @@ to reach the end of the Quiz</string>
     </scenes>
     <resources>
         <image name="background_Lego" width="542" height="673"/>
+        <image name="ic_Facebook" width="512" height="512"/>
         <image name="ic_Scrum_2" width="520" height="260"/>
+        <image name="ic_Twitter" width="300" height="300"/>
         <image name="ic_right_arrow" width="300" height="300"/>
         <image name="ic_tipBulb" width="300" height="300"/>
     </resources>

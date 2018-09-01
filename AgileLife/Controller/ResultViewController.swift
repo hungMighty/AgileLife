@@ -8,12 +8,15 @@
 
 import UIKit
 import StoreKit
+import Social
 
 
 class ResultViewController: UIViewController {
 
     @IBOutlet weak var percentLb: UILabel!
     @IBOutlet weak var numOutOfLb: UILabel!
+    @IBOutlet weak var shareAppBtn: RoundBtn!
+    
     
     var questionTemplate: QuestionTemplate = .easy
     var totalQuestions = 0
@@ -27,6 +30,10 @@ class ResultViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.title = " "
+        
+        shareAppBtn.layer.cornerRadius = 8
+        shareAppBtn.backgroundColor = UIColor(red: 224, green: 238, blue: 252)
+        shareAppBtn.setTitleColor(UIColor.black, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +87,10 @@ class ResultViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setViewControllers(vcArray, animated: true)
+    }
+    
+    @IBAction func shareAppTap(_ sender: Any) {
+        
     }
     
 }
