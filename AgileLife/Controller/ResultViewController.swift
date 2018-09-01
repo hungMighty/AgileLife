@@ -90,7 +90,37 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func shareAppTap(_ sender: Any) {
+        var shareContents: [Any] = []
         
+        shareContents.append("Ready to challenge yourself with Agile Quiz?\n")
+        if let url = URL(string: "https://itunes.apple.com/us/app/agile-cheetah/id1429878591") {
+            shareContents.append(url)
+        }
+        
+        if shareContents.count == 0 { return }
+        
+        let copyLinkActivity = CopyLinkActivity()
+        
+        let activityView = UIActivityViewController(
+            activityItems: shareContents, applicationActivities: [copyLinkActivity]
+        )
+        
+        activityView.excludedActivityTypes = [
+            .airDrop, .assignToContact, .saveToCameraRoll,
+            .print, .copyToPasteboard,
+            .addToReadingList, .openInIBooks,
+            .postToVimeo, .postToWeibo, .postToFlickr,
+        ]
+        
+        if let popover = activityView.popoverPresentationController {
+            popover.barButtonItem = self.navigationItem.rightBarButtonItem
+            popover.permittedArrowDirections = .up
+        }
+        
+        activityView.completionWithItemsHandler = { (activity, success, items, error) in
+        }
+        
+        self.present(activityView, animated: true, completion: nil)
     }
     
 }

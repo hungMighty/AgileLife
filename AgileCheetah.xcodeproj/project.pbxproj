@@ -29,6 +29,7 @@
 		A00048E5210B631B00987997 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E4210B631B00987997 /* ResultViewController.swift */; };
 		A020BB4D211F08DD00C0337D /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A020BB4C211F08DD00C0337D /* TipViewController.swift */; };
 		A02A05F9213AB8FC00CFDCD6 /* CurSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A05F8213AB8FC00CFDCD6 /* CurSession.swift */; };
+		A02A05FB213AE52200CFDCD6 /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A05FA213AE52200CFDCD6 /* CopyLinkActivity.swift */; };
 		A063607621270B4000FBDFCF /* Agile Cheetah - Easy.csv in Resources */ = {isa = PBXBuildFile; fileRef = A063607521270B4000FBDFCF /* Agile Cheetah - Easy.csv */; };
 		A063607821270BCC00FBDFCF /* Agile Cheetah - Medium.csv in Resources */ = {isa = PBXBuildFile; fileRef = A063607721270BCC00FBDFCF /* Agile Cheetah - Medium.csv */; };
 		A063607A21270BF100FBDFCF /* Agile Cheetah - Hard.csv in Resources */ = {isa = PBXBuildFile; fileRef = A063607921270BF100FBDFCF /* Agile Cheetah - Hard.csv */; };
@@ -62,6 +63,7 @@
 		A00048E4210B631B00987997 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A020BB4C211F08DD00C0337D /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		A02A05F8213AB8FC00CFDCD6 /* CurSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurSession.swift; sourceTree = "<group>"; };
+		A02A05FA213AE52200CFDCD6 /* CopyLinkActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyLinkActivity.swift; sourceTree = "<group>"; };
 		A063607521270B4000FBDFCF /* Agile Cheetah - Easy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Agile Cheetah - Easy.csv"; sourceTree = "<group>"; };
 		A063607721270BCC00FBDFCF /* Agile Cheetah - Medium.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Agile Cheetah - Medium.csv"; sourceTree = "<group>"; };
 		A063607921270BF100FBDFCF /* Agile Cheetah - Hard.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Agile Cheetah - Hard.csv"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				A0DE658620DE5AD40006706A /* CSwiftV.swift */,
 				A0DE658B20DFDA2C0006706A /* CSVLoader.swift */,
 				A02A05F8213AB8FC00CFDCD6 /* CurSession.swift */,
+				A02A05FA213AE52200CFDCD6 /* CopyLinkActivity.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			files = (
 				A0DE659020DFE61E0006706A /* CSVComponents.swift in Sources */,
 				A02A05F9213AB8FC00CFDCD6 /* CurSession.swift in Sources */,
+				A02A05FB213AE52200CFDCD6 /* CopyLinkActivity.swift in Sources */,
 				A0DE658720DE5AD40006706A /* CSwiftV.swift in Sources */,
 				A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */,
 				5B720DFC20CD4C2B001A5532 /* AppDelegate.swift in Sources */,
