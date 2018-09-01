@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import StoreKit
+
 
 class ResultViewController: UIViewController {
 
@@ -18,6 +20,7 @@ class ResultViewController: UIViewController {
     var numOfCorrectAnswers = 0
     
     
+    // MARK: - View Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +44,13 @@ class ResultViewController: UIViewController {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        CurSession.shared.popUpRatingMenu()
+    }
+    
+    // MARK: - Actions
     @IBAction func backToMenuTap(_ sender: Any) {
         guard let view = self.navigationController?.viewControllers.first
             as? HomeViewController else {
@@ -73,3 +83,9 @@ class ResultViewController: UIViewController {
     }
     
 }
+
+// MARK: UI Logic
+extension ResultViewController {
+    
+}
+
