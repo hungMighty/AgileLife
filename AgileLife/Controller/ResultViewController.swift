@@ -34,6 +34,8 @@ class ResultViewController: UIViewController {
         shareAppBtn.layer.cornerRadius = 8
         shareAppBtn.backgroundColor = UIColor(red: 224, green: 238, blue: 252)
         shareAppBtn.setTitleColor(UIColor.black, for: .normal)
+        
+        CurSession.shared.popUpRatingMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,8 +55,6 @@ class ResultViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        CurSession.shared.popUpRatingMenu()
     }
     
     // MARK: - Actions
@@ -92,7 +92,7 @@ class ResultViewController: UIViewController {
     @IBAction func shareAppTap(_ sender: Any) {
         var shareContents: [Any] = []
         
-        shareContents.append("Ready to challenge yourself with Agile Quiz?\n")
+        shareContents.append("Ready to gain more Agile Methodology knowledge and challenge yourself with Agile Cheetah?\n")
         if let url = URL(string: "https://itunes.apple.com/us/app/agile-cheetah/id1429878591") {
             shareContents.append(url)
         }
