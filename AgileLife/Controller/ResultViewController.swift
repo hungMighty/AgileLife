@@ -92,7 +92,7 @@ class ResultViewController: UIViewController {
     @IBAction func shareAppTap(_ sender: Any) {
         var shareContents: [Any] = []
         
-        shareContents.append("Ready to gain more Agile Methodology knowledge and challenge yourself with Agile Cheetah?\n")
+        shareContents.append("Ready to gain more Agile knowledge and challenge yourself with Agile Cheetah?\n")
         if let url = URL(string: "https://itunes.apple.com/us/app/agile-cheetah/id1429878591") {
             shareContents.append(url)
         }
