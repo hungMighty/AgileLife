@@ -15,7 +15,6 @@
 		5B720E1B20CD561E001A5532 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B720E1A20CD561E001A5532 /* UIView+Extension.swift */; };
 		5B720E1D20CD5678001A5532 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B720E1C20CD5678001A5532 /* NSObject+Extension.swift */; };
 		5BF66C6E20CD8AE000DC4A4C /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C6D20CD8AE000DC4A4C /* QuizzViewController.swift */; };
-		5BF66C7520CD8BDE00DC4A4C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7420CD8BDE00DC4A4C /* Info.plist */; };
 		5BF66C7C20CD8BEE00DC4A4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7720CD8BEE00DC4A4C /* Assets.xcassets */; };
 		5BF66C7D20CD8BEE00DC4A4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7820CD8BEE00DC4A4C /* LaunchScreen.storyboard */; };
 		5BF66C7E20CD8BEE00DC4A4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C7A20CD8BEE00DC4A4C /* Main.storyboard */; };
@@ -287,7 +286,6 @@
 				5BF66C8420CD945200DC4A4C /* ChoiceCell.xib in Resources */,
 				A063607821270BCC00FBDFCF /* Agile Cheetah - Medium.csv in Resources */,
 				5B720E1620CD508D001A5532 /* LevelTableViewCell.xib in Resources */,
-				5BF66C7520CD8BDE00DC4A4C /* Info.plist in Resources */,
 				A063607621270B4000FBDFCF /* Agile Cheetah - Easy.csv in Resources */,
 				5BF66C7E20CD8BEE00DC4A4C /* Main.storyboard in Resources */,
 				5BF66C7D20CD8BEE00DC4A4C /* LaunchScreen.storyboard in Resources */,
