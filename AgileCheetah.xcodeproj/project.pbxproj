@@ -23,6 +23,12 @@
 		5BF66C8420CD945200DC4A4C /* ChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */; };
 		5BF66C8A20CD99D300DC4A4C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */; };
 		5BF66C8C20CDA0BB00DC4A4C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */; };
+		97F145192202F3C500B8900E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145182202F3C500B8900E /* TabBarController.swift */; };
+		97F1451D2202F96900B8900E /* InAppPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */; };
+		97F1451F2202FA6100B8900E /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451E2202FA6100B8900E /* PurchaseCell.swift */; };
+		97F145232203008F00B8900E /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145212203008F00B8900E /* IAPHelper.swift */; };
+		97F145242203008F00B8900E /* PremiumProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145222203008F00B8900E /* PremiumProducts.swift */; };
+		97F145282203033C00B8900E /* QuestionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145272203033C00B8900E /* QuestionTemplate.swift */; };
 		A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E0210B60DE00987997 /* LbWithBackground.swift */; };
 		A00048E3210B610C00987997 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E2210B610C00987997 /* RoundBtn.swift */; };
 		A00048E5210B631B00987997 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E4210B631B00987997 /* ResultViewController.swift */; };
@@ -57,6 +63,12 @@
 		5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceCell.xib; sourceTree = "<group>"; };
 		5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		97F145182202F3C500B8900E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseVC.swift; sourceTree = "<group>"; };
+		97F1451E2202FA6100B8900E /* PurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
+		97F145212203008F00B8900E /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		97F145222203008F00B8900E /* PremiumProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiumProducts.swift; sourceTree = "<group>"; };
+		97F145272203033C00B8900E /* QuestionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTemplate.swift; sourceTree = "<group>"; };
 		A00048E0210B60DE00987997 /* LbWithBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LbWithBackground.swift; sourceTree = "<group>"; };
 		A00048E2210B610C00987997 /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		A00048E4210B631B00987997 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +117,7 @@
 				5BF66C7320CD8BDE00DC4A4C /* Config */,
 				5B720DFB20CD4C2B001A5532 /* AppDelegate.swift */,
 				5B720E1920CD5607001A5532 /* Extension */,
+				97F145202203008F00B8900E /* Storekit */,
 				A0DE658520DE569C0006706A /* Helpers */,
 				5B720E0F20CD4FF0001A5532 /* Model */,
 				5B720E0D20CD4FDE001A5532 /* Controller */,
@@ -117,7 +130,9 @@
 		5B720E0D20CD4FDE001A5532 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				97F145182202F3C500B8900E /* TabBarController.swift */,
 				5B720E1020CD5013001A5532 /* HomeViewController.swift */,
+				97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */,
 				5BF66C6D20CD8AE000DC4A4C /* QuizzViewController.swift */,
 				A00048E4210B631B00987997 /* ResultViewController.swift */,
 				A020BB4C211F08DD00C0337D /* TipViewController.swift */,
@@ -138,6 +153,7 @@
 		5B720E0F20CD4FF0001A5532 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				97F145272203033C00B8900E /* QuestionTemplate.swift */,
 				5B720E1720CD559D001A5532 /* Level.swift */,
 				A0DE658F20DFE61E0006706A /* CSVComponents.swift */,
 			);
@@ -151,6 +167,7 @@
 				5B720E1520CD508D001A5532 /* LevelTableViewCell.xib */,
 				5BF66C8120CD945200DC4A4C /* ChoiceCell.swift */,
 				5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */,
+				97F1451E2202FA6100B8900E /* PurchaseCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -185,6 +202,15 @@
 				5BF66C7820CD8BEE00DC4A4C /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		97F145202203008F00B8900E /* Storekit */ = {
+			isa = PBXGroup;
+			children = (
+				97F145212203008F00B8900E /* IAPHelper.swift */,
+				97F145222203008F00B8900E /* PremiumProducts.swift */,
+			);
+			path = Storekit;
 			sourceTree = "<group>";
 		};
 		A00048DC210B60CF00987997 /* Labels */ = {
@@ -301,20 +327,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0DE659020DFE61E0006706A /* CSVComponents.swift in Sources */,
+				97F1451D2202F96900B8900E /* InAppPurchaseVC.swift in Sources */,
 				A02A05F9213AB8FC00CFDCD6 /* CurSession.swift in Sources */,
 				A02A05FB213AE52200CFDCD6 /* CopyLinkActivity.swift in Sources */,
+				97F145282203033C00B8900E /* QuestionTemplate.swift in Sources */,
 				A0DE658720DE5AD40006706A /* CSwiftV.swift in Sources */,
 				A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */,
 				5B720DFC20CD4C2B001A5532 /* AppDelegate.swift in Sources */,
 				5B720E1820CD559D001A5532 /* Level.swift in Sources */,
+				97F1451F2202FA6100B8900E /* PurchaseCell.swift in Sources */,
 				A00048E3210B610C00987997 /* RoundBtn.swift in Sources */,
 				5BF66C8A20CD99D300DC4A4C /* UIColor+Extension.swift in Sources */,
 				5B720E1120CD5013001A5532 /* HomeViewController.swift in Sources */,
 				5B720E1B20CD561E001A5532 /* UIView+Extension.swift in Sources */,
 				A0DE658C20DFDA2C0006706A /* CSVLoader.swift in Sources */,
+				97F145242203008F00B8900E /* PremiumProducts.swift in Sources */,
 				A0DE658E20DFE1030006706A /* IntExtension.swift in Sources */,
+				97F145192202F3C500B8900E /* TabBarController.swift in Sources */,
 				5BF66C8320CD945200DC4A4C /* ChoiceCell.swift in Sources */,
 				5BF66C6E20CD8AE000DC4A4C /* QuizzViewController.swift in Sources */,
+				97F145232203008F00B8900E /* IAPHelper.swift in Sources */,
 				5B720E1420CD506C001A5532 /* LevelTableViewCell.swift in Sources */,
 				5BF66C8020CD906200DC4A4C /* UIStoryboard+Extension.swift in Sources */,
 				5B720E1D20CD5678001A5532 /* NSObject+Extension.swift in Sources */,

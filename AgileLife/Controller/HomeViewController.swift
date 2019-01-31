@@ -8,47 +8,6 @@
 
 import UIKit
 
-
-enum QuestionTemplate: Int {
-    
-    case easy = 0, medium, hard
-    
-    func name() -> String {
-        switch self {
-        case .easy:
-            return "Agile Cheetah - Easy"
-        case .medium:
-            return "Agile Cheetah - Medium"
-        case .hard:
-            return "Agile Cheetah - Hard"
-        }
-    }
-    
-    func limit() -> Int? {
-        switch self {
-        case .easy:
-            return nil
-        case .medium:
-            return nil
-        case .hard:
-            return nil
-        }
-    }
-    
-    func background() -> String {
-        switch self {
-        case .easy:
-            return "background_cheetah1"
-        case .medium:
-            return "background_cheetah3"
-        case .hard:
-            return "background_cheetah4"
-        }
-    }
-    
-}
-
-
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var levelsTableView: UITableView!
@@ -60,7 +19,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Agile Cheetah"
+        self.navigationItem.title = "Agile Cheetah"
         
         levelsTableView.register(LevelTableViewCell.getNib(),
                                 forCellReuseIdentifier: LevelTableViewCell.className())
@@ -142,13 +101,11 @@ extension HomeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let view = UIStoryboard.viewController(
-            fromIdentifier: QuizzViewController.className())
-            as? QuizzViewController else {
-            return
+            fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
+                return
         }
         
         view.questionTemplate = QuestionTemplate(rawValue: indexPath.row)!
-        
         self.navigationController?.pushViewController(view, animated: true)
     }
     
