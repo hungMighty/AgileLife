@@ -11,19 +11,14 @@ class InAppPurchaseVC: UIViewController {
         super.prepare(for: segue, sender: sender)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .IAPHelperPurchaseNotification, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Agile Store"
-        
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = UIRefreshControl()
-            self.tableView.refreshControl?.addTarget(
-                self, action: #selector(InAppPurchaseVC.reloadProductsList), for: .valueChanged
-            )
-        } else {
-        }
-        
+        self.navigationItem.title = "PSM Exam Store"
         let restoreButton = UIBarButtonItem(
             title: "Restore", style: .plain, target: self,
             action: #selector(InAppPurchaseVC.restoreTapped(_:))
@@ -34,6 +29,17 @@ class InAppPurchaseVC: UIViewController {
             self, selector: #selector(InAppPurchaseVC.handlePurchaseNotification(_:)),
             name: .IAPHelperPurchaseNotification, object: nil
         )
+        
+        // TableView
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = UIRefreshControl()
+            self.tableView.refreshControl?.addTarget(
+                self, action: #selector(InAppPurchaseVC.reloadProductsList), for: .valueChanged
+            )
+        } else {
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,7 +89,8 @@ extension InAppPurchaseVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.className(), for: indexPath) as! PurchaseCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: PurchaseCell.className(), for: indexPath) as! PurchaseCell
         
         let product = products[indexPath.row]
         cell.product = product
@@ -107,13 +114,16 @@ extension InAppPurchaseVC: UITableViewDelegate {
         guard PremiumProducts.store.isProductPurchased(product.productIdentifier) else {
             return
         }
-        let questionBundle = PremiumProducts.getQuestionTemplate(productID: product.productIdentifier)
+        
+        let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
         
         guard let vc = UIStoryboard.viewController(
             fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
                 return
         }
-        vc.questionTemplate = questionBundle
+        
+        vc.hidesBottomBarWhenPushed = true
+        vc.questionTemplate = template
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

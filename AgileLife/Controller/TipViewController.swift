@@ -37,7 +37,7 @@ extension TipViewController {
     fileprivate func setupUI() {
         hintTextView.isEditable = false
         hintTextView.layer.cornerRadius = 8
-        hintTextView.textContainerInset = UIEdgeInsetsMake(12, 12, 12, 12)
+        hintTextView.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         hintTextView.layer.borderColor = UIColor.black.cgColor
         hintTextView.layer.borderWidth = 1.5
         hintTextView.backgroundColor = UIColor.white.withAlphaComponent(0.9)

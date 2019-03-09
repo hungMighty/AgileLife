@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tabIcon_shopCart_selected.png",
+      "filename" : "icon_discount.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tabIcon_shopCart_selected@2x.png",
+      "filename" : "icon_discount@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tabIcon_shopCart_selected@3x.png",
+      "filename" : "icon_discount@3x.png",
       "scale" : "3x"
     }
   ],

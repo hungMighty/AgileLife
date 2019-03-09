@@ -1,5 +1,5 @@
 //
-//  LbWithBackground.swift
+//  InsetsLb.swift
 //  AgileLife
 //
 //  Created by Ahri on 7/27/18.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class LbWithBackground: UILabel {
+class InsetsLb: UILabel {
     
     let padding = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8)
     
@@ -31,7 +31,7 @@ class LbWithBackground: UILabel {
     }
     
     override func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, padding))
+        super.drawText(in: rect.inset(by: padding))
     }
     
 }

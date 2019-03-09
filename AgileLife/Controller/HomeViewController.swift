@@ -21,8 +21,9 @@ class HomeViewController: UIViewController {
         
         self.navigationItem.title = "Agile Cheetah"
         
-        levelsTableView.register(LevelTableViewCell.getNib(),
-                                forCellReuseIdentifier: LevelTableViewCell.className())
+        levelsTableView.register(
+            LevelTableViewCell.getNib(), forCellReuseIdentifier: LevelTableViewCell.className()
+        )
         
         levelsTableView.isScrollEnabled = false
         levelsTableView.separatorStyle = .none
@@ -100,13 +101,14 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let view = UIStoryboard.viewController(
+        guard let vc = UIStoryboard.viewController(
             fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
                 return
         }
         
-        view.questionTemplate = QuestionTemplate(rawValue: indexPath.row)!
-        self.navigationController?.pushViewController(view, animated: true)
+        vc.hidesBottomBarWhenPushed = true
+        vc.questionTemplate = QuestionTemplate(index: indexPath.row)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

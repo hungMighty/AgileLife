@@ -23,13 +23,19 @@
 		5BF66C8420CD945200DC4A4C /* ChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */; };
 		5BF66C8A20CD99D300DC4A4C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */; };
 		5BF66C8C20CDA0BB00DC4A4C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */; };
+		972D587F22329D29007535C2 /* PT4 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587922329D28007535C2 /* PT4 PSM1 Series 2.csv */; };
+		972D588022329D29007535C2 /* PT5 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587A22329D28007535C2 /* PT5 PSM1 Series 2.csv */; };
+		972D588122329D29007535C2 /* PT3 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587B22329D28007535C2 /* PT3 PSM1 Series 2.csv */; };
+		972D588222329D29007535C2 /* PT6 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587C22329D28007535C2 /* PT6 PSM1 Series 2.csv */; };
+		972D588322329D29007535C2 /* PT2 PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587D22329D28007535C2 /* PT2 PSM1 Series 2.csv */; };
+		972D588422329D29007535C2 /* Udemy PSM1 Series 2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 972D587E22329D28007535C2 /* Udemy PSM1 Series 2.csv */; };
 		97F145192202F3C500B8900E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145182202F3C500B8900E /* TabBarController.swift */; };
 		97F1451D2202F96900B8900E /* InAppPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */; };
 		97F1451F2202FA6100B8900E /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451E2202FA6100B8900E /* PurchaseCell.swift */; };
 		97F145232203008F00B8900E /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145212203008F00B8900E /* IAPHelper.swift */; };
 		97F145242203008F00B8900E /* PremiumProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145222203008F00B8900E /* PremiumProducts.swift */; };
 		97F145282203033C00B8900E /* QuestionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145272203033C00B8900E /* QuestionTemplate.swift */; };
-		A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E0210B60DE00987997 /* LbWithBackground.swift */; };
+		A00048E1210B60DE00987997 /* InsetsLb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E0210B60DE00987997 /* InsetsLb.swift */; };
 		A00048E3210B610C00987997 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E2210B610C00987997 /* RoundBtn.swift */; };
 		A00048E5210B631B00987997 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E4210B631B00987997 /* ResultViewController.swift */; };
 		A020BB4D211F08DD00C0337D /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A020BB4C211F08DD00C0337D /* TipViewController.swift */; };
@@ -63,13 +69,19 @@
 		5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceCell.xib; sourceTree = "<group>"; };
 		5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		972D587922329D28007535C2 /* PT4 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PT4 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		972D587A22329D28007535C2 /* PT5 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PT5 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		972D587B22329D28007535C2 /* PT3 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PT3 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		972D587C22329D28007535C2 /* PT6 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PT6 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		972D587D22329D28007535C2 /* PT2 PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PT2 PSM1 Series 2.csv"; sourceTree = "<group>"; };
+		972D587E22329D28007535C2 /* Udemy PSM1 Series 2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Udemy PSM1 Series 2.csv"; sourceTree = "<group>"; };
 		97F145182202F3C500B8900E /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseVC.swift; sourceTree = "<group>"; };
 		97F1451E2202FA6100B8900E /* PurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
 		97F145212203008F00B8900E /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		97F145222203008F00B8900E /* PremiumProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiumProducts.swift; sourceTree = "<group>"; };
 		97F145272203033C00B8900E /* QuestionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTemplate.swift; sourceTree = "<group>"; };
-		A00048E0210B60DE00987997 /* LbWithBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LbWithBackground.swift; sourceTree = "<group>"; };
+		A00048E0210B60DE00987997 /* InsetsLb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetsLb.swift; sourceTree = "<group>"; };
 		A00048E2210B610C00987997 /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		A00048E4210B631B00987997 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A020BB4C211F08DD00C0337D /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
@@ -216,7 +228,7 @@
 		A00048DC210B60CF00987997 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				A00048E0210B60DE00987997 /* LbWithBackground.swift */,
+				A00048E0210B60DE00987997 /* InsetsLb.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -246,6 +258,12 @@
 				A063607521270B4000FBDFCF /* Agile Cheetah - Easy.csv */,
 				A063607721270BCC00FBDFCF /* Agile Cheetah - Medium.csv */,
 				A063607921270BF100FBDFCF /* Agile Cheetah - Hard.csv */,
+				972D587D22329D28007535C2 /* PT2 PSM1 Series 2.csv */,
+				972D587B22329D28007535C2 /* PT3 PSM1 Series 2.csv */,
+				972D587922329D28007535C2 /* PT4 PSM1 Series 2.csv */,
+				972D587A22329D28007535C2 /* PT5 PSM1 Series 2.csv */,
+				972D587C22329D28007535C2 /* PT6 PSM1 Series 2.csv */,
+				972D587E22329D28007535C2 /* Udemy PSM1 Series 2.csv */,
 			);
 			path = CSVs;
 			sourceTree = "<group>";
@@ -308,10 +326,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972D588022329D29007535C2 /* PT5 PSM1 Series 2.csv in Resources */,
+				972D588422329D29007535C2 /* Udemy PSM1 Series 2.csv in Resources */,
 				A063607A21270BF100FBDFCF /* Agile Cheetah - Hard.csv in Resources */,
 				5BF66C8420CD945200DC4A4C /* ChoiceCell.xib in Resources */,
 				A063607821270BCC00FBDFCF /* Agile Cheetah - Medium.csv in Resources */,
+				972D588322329D29007535C2 /* PT2 PSM1 Series 2.csv in Resources */,
+				972D588122329D29007535C2 /* PT3 PSM1 Series 2.csv in Resources */,
+				972D587F22329D29007535C2 /* PT4 PSM1 Series 2.csv in Resources */,
 				5B720E1620CD508D001A5532 /* LevelTableViewCell.xib in Resources */,
+				972D588222329D29007535C2 /* PT6 PSM1 Series 2.csv in Resources */,
 				A063607621270B4000FBDFCF /* Agile Cheetah - Easy.csv in Resources */,
 				5BF66C7E20CD8BEE00DC4A4C /* Main.storyboard in Resources */,
 				5BF66C7D20CD8BEE00DC4A4C /* LaunchScreen.storyboard in Resources */,
@@ -332,7 +356,7 @@
 				A02A05FB213AE52200CFDCD6 /* CopyLinkActivity.swift in Sources */,
 				97F145282203033C00B8900E /* QuestionTemplate.swift in Sources */,
 				A0DE658720DE5AD40006706A /* CSwiftV.swift in Sources */,
-				A00048E1210B60DE00987997 /* LbWithBackground.swift in Sources */,
+				A00048E1210B60DE00987997 /* InsetsLb.swift in Sources */,
 				5B720DFC20CD4C2B001A5532 /* AppDelegate.swift in Sources */,
 				5B720E1820CD559D001A5532 /* Level.swift in Sources */,
 				97F1451F2202FA6100B8900E /* PurchaseCell.swift in Sources */,
@@ -509,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5d65a681-eb1f-4ee9-a504-58a01ae80609";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Provi";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -531,7 +555,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ed6f3cbc-800b-424e-a044-907ae133610c";
 				PROVISIONING_PROFILE_SPECIFIER = "Pro Provi";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

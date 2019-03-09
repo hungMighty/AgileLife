@@ -105,7 +105,7 @@
                                     <constraint firstItem="AjR-vr-gcI" firstAttribute="top" secondItem="1cN-cY-u2s" secondAttribute="top" constant="15" id="lHR-nn-w7V"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-W5-h5E" customClass="LbWithBackground" customModule="AgileCheetah" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp0-W5-h5E" customClass="InsetsLb" customModule="AgileCheetah" customModuleProvider="target">
                                 <rect key="frame" x="156" y="116" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -345,7 +345,7 @@ to reach the end of the Quiz</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="hHc-YT-xpZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHc-YT-xpZ">
                                 <rect key="frame" x="20" y="20" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -381,30 +381,74 @@ to reach the end of the Quiz</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseCell" textLabel="tqm-QP-3H9" detailTextLabel="3R9-ix-VJ3" style="IBUITableViewCellStyleSubtitle" id="KGu-hh-gef" customClass="PurchaseCell" customModule="AgileCheetah" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PurchaseCell" rowHeight="62" id="V2Y-io-J36" customClass="PurchaseCell" customModule="AgileCheetah" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGu-hh-gef" id="32j-g6-5Cj">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V2Y-io-J36" id="tx7-BN-lKo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tqm-QP-3H9">
-                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSM 1 - Pass it now!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFa-Mb-w6R">
+                                                    <rect key="frame" x="48" y="8" width="147" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3R9-ix-VJ3">
-                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Save 50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N16-js-djQ" customClass="InsetsLb" customModule="AgileCheetah" customModuleProvider="target">
+                                                    <rect key="frame" x="203" y="10.5" width="57" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 questions!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-yF-oNc">
+                                                    <rect key="frame" x="48" y="35.5" width="240" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUX-5i-uBE">
+                                                    <rect key="frame" x="296" y="16" width="63" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
+                                                    <state key="normal" title="$9.99"/>
+                                                    <connections>
+                                                        <action selector="priceBtnTap:" destination="V2Y-io-J36" eventType="touchUpInside" id="0aN-hV-z5U"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_discount" translatesAutoresizingMaskIntoConstraints="NO" id="kLQ-Xo-0zt">
+                                                    <rect key="frame" x="16" y="18" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="XZ8-Vy-5C7"/>
+                                                        <constraint firstAttribute="width" secondItem="kLQ-Xo-0zt" secondAttribute="height" multiplier="1:1" id="qjA-sy-hBR"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="nUX-5i-uBE" secondAttribute="trailing" constant="16" id="2Ln-HP-6bc"/>
+                                                <constraint firstItem="N16-js-djQ" firstAttribute="centerY" secondItem="vFa-Mb-w6R" secondAttribute="centerY" id="CsJ-xJ-Ftg"/>
+                                                <constraint firstItem="N16-js-djQ" firstAttribute="leading" secondItem="vFa-Mb-w6R" secondAttribute="trailing" constant="8" id="F2y-3s-VPy"/>
+                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="centerY" secondItem="tx7-BN-lKo" secondAttribute="centerY" id="Ll5-B1-l9g"/>
+                                                <constraint firstItem="rhQ-yF-oNc" firstAttribute="leading" secondItem="vFa-Mb-w6R" secondAttribute="leading" id="TvB-D4-j4J"/>
+                                                <constraint firstItem="vFa-Mb-w6R" firstAttribute="leading" secondItem="kLQ-Xo-0zt" secondAttribute="trailing" constant="6" id="YWl-CT-kHn"/>
+                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="leading" secondItem="rhQ-yF-oNc" secondAttribute="trailing" constant="8" id="boZ-QH-F6U"/>
+                                                <constraint firstItem="kLQ-Xo-0zt" firstAttribute="centerY" secondItem="tx7-BN-lKo" secondAttribute="centerY" id="cpf-OL-RED"/>
+                                                <constraint firstAttribute="bottom" secondItem="rhQ-yF-oNc" secondAttribute="bottom" constant="10" id="h9h-H7-6ra"/>
+                                                <constraint firstItem="rhQ-yF-oNc" firstAttribute="top" secondItem="vFa-Mb-w6R" secondAttribute="bottom" constant="8" id="ket-p0-jZH"/>
+                                                <constraint firstItem="kLQ-Xo-0zt" firstAttribute="leading" secondItem="tx7-BN-lKo" secondAttribute="leading" constant="16" id="pJH-sT-8LS"/>
+                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N16-js-djQ" secondAttribute="trailing" constant="4" id="q8d-Ls-88d"/>
+                                                <constraint firstItem="vFa-Mb-w6R" firstAttribute="top" secondItem="tx7-BN-lKo" secondAttribute="top" constant="8" id="tPh-Uv-Xeq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="descriptionLb" destination="rhQ-yF-oNc" id="Ses-FY-k5c"/>
+                                            <outlet property="discountIcon" destination="kLQ-Xo-0zt" id="9sS-6c-c3I"/>
+                                            <outlet property="discountIconTrailingSpace" destination="YWl-CT-kHn" id="6Qn-dR-NXk"/>
+                                            <outlet property="discountIconWidth" destination="XZ8-Vy-5C7" id="TyB-9m-OHz"/>
+                                            <outlet property="discountLb" destination="N16-js-djQ" id="yQn-b9-igt"/>
+                                            <outlet property="purchaseBtn" destination="nUX-5i-uBE" id="8X8-ac-49W"/>
+                                            <outlet property="titleLb" destination="vFa-Mb-w6R" id="yZx-HD-k5m"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -429,7 +473,7 @@ to reach the end of the Quiz</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfA-ca-W9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="851"/>
+            <point key="canvasLocation" x="1029.5999999999999" y="850.52473763118451"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RFB-V6-ouY">
@@ -457,5 +501,6 @@ to reach the end of the Quiz</string>
         <image name="ic_Twitter" width="300" height="300"/>
         <image name="ic_right_arrow" width="225" height="225"/>
         <image name="ic_tipBulb" width="300" height="300"/>
+        <image name="icon_discount" width="86.400001525878906" height="86.400001525878906"/>
     </resources>
 </document>

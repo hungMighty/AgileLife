@@ -18,7 +18,7 @@ class QuizzViewController: UIViewController {
     
     @IBOutlet weak var questionContainerView: UIView!
     @IBOutlet weak var questionLb: UILabel!
-    @IBOutlet weak var numOfChoicesToSelectLb: LbWithBackground!
+    @IBOutlet weak var numOfChoicesToSelectLb: InsetsLb!
     
     @IBOutlet weak var choicesTable: UITableView!
     
@@ -65,7 +65,7 @@ class QuizzViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        csv = CSVLoader.readFrom(fileName: questionTemplate.name())
+        csv = CSVLoader.readFrom(fileName: questionTemplate.csvName())
         numOfQuestionsToBeLoaded = questionTemplate.limit() ?? csv?.rows.count ?? 1
         
         self.setupUI()
@@ -116,7 +116,7 @@ extension QuizzViewController {
     
     fileprivate func setupUI() {
         // Background
-        backgroundImg.image = UIImage(named: questionTemplate.background())
+        backgroundImg.image = UIImage(named: questionTemplate.backgroundImg())
         
         // Right navigation item
         scoreBtn.title = "Score: 0"
@@ -136,7 +136,7 @@ extension QuizzViewController {
         choicesTable.separatorStyle = .none
         choicesTable.backgroundColor = UIColor.clear
         choicesTable.estimatedRowHeight = 200
-        choicesTable.rowHeight = UITableViewAutomaticDimension
+        choicesTable.rowHeight = UITableView.automaticDimension
         choicesTable.register(
             ChoiceCell.getNib(),
             forCellReuseIdentifier: ChoiceCell.className()
@@ -171,7 +171,7 @@ extension QuizzViewController {
         animation.autoreverses = true
         animation.fromValue = 1.0
         animation.toValue = 0.7
-        animation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
+        animation.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeIn)
         
         tipImage.layer.add(animation, forKey: "animateOpacity")
     }
@@ -374,9 +374,8 @@ extension QuizzViewController: UITableViewDataSource {
         return availableChoices.count
     }
     
-    func tableView(_ tableView: UITableView,
-                   estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

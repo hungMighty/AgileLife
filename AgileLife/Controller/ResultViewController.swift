@@ -59,34 +59,29 @@ class ResultViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func backToMenuTap(_ sender: Any) {
-        guard let view = self.navigationController?.viewControllers.first
-            as? HomeViewController else {
-                return
+        guard let vc = self.navigationController?.viewControllers.first else {
+            return
         }
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.popToViewController(view, animated: true)
+        self.navigationController?.popToViewController(vc, animated: true)
     }
     
     @IBAction func restartTap(_ sender: Any) {
-        guard let homeView = self.navigationController?.viewControllers.first
-            as? HomeViewController else {
+        guard let rootVC = self.navigationController?.viewControllers.first else {
+            return
+        }
+        
+        guard let vc = UIStoryboard.viewController(
+            fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
                 return
         }
         
-        guard var vcArray = self.navigationController?.viewControllers,
-            let quizzView = UIStoryboard.viewController(
-                fromIdentifier: QuizzViewController.className())
-                as? QuizzViewController else {
-                    return
-        }
-        
-        quizzView.questionTemplate = self.questionTemplate
-        vcArray = [homeView]
-        vcArray.append(quizzView)
+        vc.hidesBottomBarWhenPushed = true
+        vc.questionTemplate = self.questionTemplate
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.setViewControllers(vcArray, animated: true)
+        self.navigationController?.setViewControllers([rootVC, vc], animated: true)
     }
     
     @IBAction func shareAppTap(_ sender: Any) {

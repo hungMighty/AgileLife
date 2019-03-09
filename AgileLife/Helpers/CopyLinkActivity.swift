@@ -13,13 +13,13 @@ class CopyLinkActivity: UIActivity {
     
     private var url = URL(string: "")
     
-    override class var activityCategory: UIActivityCategory {
+    override class var activityCategory: UIActivity.Category {
         return .action
     }
     
-    override var activityType: UIActivityType? {
+    override var activityType: UIActivity.ActivityType? {
         guard let bundleID = Bundle.main.bundleIdentifier else { return nil }
-        return UIActivityType(rawValue: bundleID + "\(CopyLinkActivity.className())")
+        return UIActivity.ActivityType(rawValue: bundleID + "\(CopyLinkActivity.className())")
     }
     
     override var activityTitle: String? {

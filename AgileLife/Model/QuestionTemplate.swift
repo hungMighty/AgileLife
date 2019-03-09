@@ -8,11 +8,31 @@
 
 import Foundation
 
-enum QuestionTemplate: Int {
+enum QuestionTemplate: String {
     
-    case easy = 0, medium, hard, psm1
+    case easy, medium, hard, COMBO1, PSMA, PSMB, PSMC, PSMD, PSME, PSMF
     
-    func name() -> String {
+    init(index: Int) {
+        switch index {
+        case 1:
+            self = .medium
+        case 2:
+            self = .hard
+        default:
+            self = .easy
+        }
+    }
+    
+    static var storeProductIDs: Set<ProductIdentifier> {
+        let productIdsSet: Set<ProductIdentifier> = [
+            self.COMBO1.rawValue,
+            self.PSMA.rawValue, self.PSMB.rawValue, self.PSMC.rawValue,
+            self.PSMD.rawValue, self.PSME.rawValue, self.PSMF.rawValue
+        ]
+        return productIdsSet
+    }
+    
+    func csvName() -> String {
         switch self {
         case .easy:
             return "Agile Cheetah - Easy"
@@ -20,8 +40,21 @@ enum QuestionTemplate: Int {
             return "Agile Cheetah - Medium"
         case .hard:
             return "Agile Cheetah - Hard"
-        case .psm1:
-            return "PSM1"
+        
+        case .COMBO1:
+            return "Udemy PSM1 Series 2"
+        case .PSMA:
+            return "Udemy PSM1 Series 2"
+        case .PSMB:
+            return "PT2 PSM1 Series 2"
+        case .PSMC:
+            return "PT3 PSM1 Series 2"
+        case .PSMD:
+            return "PT4 PSM1 Series 2"
+        case .PSME:
+            return "PT5 PSM1 Series 2"
+        case .PSMF:
+            return "PT6 PSM1 Series 2"
         }
     }
     
@@ -38,7 +71,7 @@ enum QuestionTemplate: Int {
         }
     }
     
-    func background() -> String {
+    func backgroundImg() -> String {
         switch self {
         case .easy:
             return "background_cheetah1"
@@ -46,7 +79,8 @@ enum QuestionTemplate: Int {
             return "background_cheetah3"
         case .hard:
             return "background_cheetah4"
-        case .psm1:
+            
+        default:
             return ""
         }
     }
