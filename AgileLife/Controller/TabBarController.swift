@@ -89,7 +89,7 @@ class TabBarController: UITabBarController {
         )
         homeTabItem.selectedImage = UIImage(named: "tabIcon_free_selected")?
             .withRenderingMode(.alwaysOriginal)
-        homeTabItem.title = "Amateur"
+        homeTabItem.title = "Free"
         self.homeVC.tabBarItem = homeTabItem
         
         let myJobsTabItem = UITabBarItem(

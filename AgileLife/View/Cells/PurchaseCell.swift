@@ -16,13 +16,13 @@ class PurchaseCell: UITableViewCell {
     fileprivate var indicator: UIActivityIndicatorView?
     
     enum PurchaseBtnState {
-        case showPrice, begin
+        case showPrice, beginTest
         
-        var color: UIColor {
+        var theme: UIColor {
             switch self {
             case .showPrice:
                 return UIColor(red: 72, green: 138, blue: 247)
-            case .begin:
+            case .beginTest:
                 return .red
             }
         }
@@ -31,7 +31,7 @@ class PurchaseCell: UITableViewCell {
             switch self {
             case .showPrice:
                 return ""
-            case .begin:
+            case .beginTest:
                 return "Begin"
             }
         }
@@ -50,36 +50,41 @@ class PurchaseCell: UITableViewCell {
         didSet {
             guard let product = product else { return }
             
-            selectionStyle = .none
-            let fullTitle = product.localizedTitle
-            var title = fullTitle
-            var discountTxt = ""
-            
-            if let range = fullTitle.lowercased().range(of: "save") {
+            let storeProductTitle = product.localizedTitle
+            let storeProductDescription = product.localizedDescription
+            var productTitleTxt = storeProductTitle
+            var productDiscountTxt = ""
+            if let range = storeProductTitle.lowercased().range(of: "save") {
                 let lowerBound = range.lowerBound
-                title = String(fullTitle[..<lowerBound])
-                discountTxt = String(fullTitle[lowerBound..<fullTitle.endIndex])
+                productTitleTxt = String(storeProductTitle[..<lowerBound])
+                productDiscountTxt = String(storeProductTitle[lowerBound..<storeProductTitle.endIndex])
+            }
+            var numOfQuestionsTxt = ""
+            if let range = storeProductDescription.lowercased().range(of: "question") {
+                let num = storeProductDescription[storeProductDescription.startIndex..<range.lowerBound]
+                numOfQuestionsTxt = String("\(num)questions!"
+                )
             }
             
+            discountIcon.image = nil
             discountIconWidth.constant = 0
             discountIconTrailingSpace.constant = 0
-            discountIcon.image = nil
-            titleLb.text = title
+            titleLb.text = productTitleTxt
             discountLb.isHidden = true
-            descriptionLb.text = "20 questions!"
+            descriptionLb.text = numOfQuestionsTxt
             indicator?.removeFromSuperview()
             indicator = nil
             
             if PremiumProducts.store.isProductPurchased(product.productIdentifier) {
-                setupPurchaseBtn(state: .begin)
+                setupPurchaseBtn(state: .beginTest)
                 
             } else if IAPHelper.canMakePayments() {
                 PurchaseCell.priceFormatter.locale = product.priceLocale
                 setupPurchaseBtn(
                     state: .showPrice, price: PurchaseCell.priceFormatter.string(from: product.price)
                 )
-                discountLb.text = discountTxt
-                if discountTxt.isEmpty {
+                discountLb.text = productDiscountTxt
+                if productDiscountTxt.isEmpty {
                     discountLb.isHidden = true
                 } else {
                     discountIconWidth.constant = 26
@@ -95,12 +100,20 @@ class PurchaseCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
         discountIcon.image = nil
+        titleLb.text = nil
         discountLb.isHidden = true
         discountLb.text = nil
+        descriptionLb.text = nil
+        purchaseBtn.isHidden = true
     }
     
     override func layoutSubviews() {
@@ -114,16 +127,6 @@ class PurchaseCell: UITableViewCell {
         discountLb.backgroundColor = UIColor(red: 220, green: 20, blue: 60)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        titleLb.text = ""
-        discountLb.text = ""
-        discountLb.isHidden = true
-        descriptionLb.text = ""
-        purchaseBtn.setTitle("", for: .normal)
-    }
-    
     fileprivate func setupPurchaseBtn(state: PurchaseBtnState, price: String? = nil) {
         purchaseBtn.isHidden = false
         
@@ -132,7 +135,7 @@ class PurchaseCell: UITableViewCell {
         purchaseBtnLayer.cornerRadius = 6
         purchaseBtnLayer.borderWidth = 1.5
         
-        let color = state.color
+        let color = state.theme
         purchaseBtnLayer.borderColor = color.cgColor
         purchaseBtn.setTitleColor(color, for: .normal)
         
@@ -153,18 +156,19 @@ class PurchaseCell: UITableViewCell {
     }
     
     @IBAction func priceBtnTap(_ sender: Any) {
-        purchaseBtn.isHidden = true
-        
-        let indicator = newLoadingIndicator()
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(indicator)
-        NSLayoutConstraint(
-            item: indicator, attribute: .centerY, relatedBy: .equal,
-            toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(
-            item: indicator, attribute: .trailing, relatedBy: .equal,
-            toItem: self, attribute: .trailing, multiplier: 1.0, constant: -30).isActive = true
-        self.indicator = indicator
+        if PremiumProducts.store.isProductPurchased(product!.productIdentifier) == false {
+            purchaseBtn.isHidden = true
+            let indicator = newLoadingIndicator()
+            indicator.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(indicator)
+            NSLayoutConstraint(
+                item: indicator, attribute: .centerY, relatedBy: .equal,
+                toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(
+                item: indicator, attribute: .trailing, relatedBy: .equal,
+                toItem: self, attribute: .trailing, multiplier: 1.0, constant: -30).isActive = true
+            self.indicator = indicator
+        }
         
         buyButtonHandler?(product!)
     }

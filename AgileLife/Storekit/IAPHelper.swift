@@ -117,7 +117,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
     
     private func complete(transaction: SKPaymentTransaction) {
         print("complete...")
-        deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier)
+        deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier, isSuccess: true)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
@@ -125,27 +125,42 @@ extension IAPHelper: SKPaymentTransactionObserver {
         guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
         
         print("restore... \(productIdentifier)")
-        deliverPurchaseNotificationFor(identifier: productIdentifier)
+        deliverPurchaseNotificationFor(identifier: productIdentifier, isSuccess: true)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
     private func fail(transaction: SKPaymentTransaction) {
         print("fail...")
+        var returnError = ""
         if let transactionError = transaction.error as NSError?,
             let localizedDescription = transaction.error?.localizedDescription,
             transactionError.code != SKError.paymentCancelled.rawValue {
-            print("Transaction Error: \(localizedDescription)")
+            
+            returnError = "Transaction Error: \(localizedDescription)"
         }
-        
+        deliverPurchaseNotificationFor(
+            identifier: transaction.payment.productIdentifier, isSuccess: false,
+            transactionError: returnError
+        )
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
-    private func deliverPurchaseNotificationFor(identifier: String?) {
+    static let purchaseNotiProductIDKey = "ProductID"
+    static let purchaseNotiIsSuccessKey = "IsSuccess"
+    static let purchaseNotiErrorKey = "PurchaseError"
+    
+    private func deliverPurchaseNotificationFor(identifier: String?, isSuccess: Bool, transactionError: String = "") {
         guard let identifier = identifier else { return }
-        
-        purchasedProductIdentifiers.insert(identifier)
-        UserDefaults.standard.set(true, forKey: identifier)
-        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: identifier)
+        if isSuccess {
+            purchasedProductIdentifiers.insert(identifier)
+            UserDefaults.standard.set(true, forKey: identifier)
+        }
+        let postObj: [String: Any] = [
+            IAPHelper.purchaseNotiProductIDKey: identifier,
+            IAPHelper.purchaseNotiIsSuccessKey: isSuccess,
+            IAPHelper.purchaseNotiErrorKey: transactionError
+        ]
+        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: postObj)
     }
     
 }

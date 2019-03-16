@@ -27,7 +27,7 @@ enum QuestionTemplate: String {
         let productIdsSet: Set<ProductIdentifier> = [
             self.COMBO1.rawValue,
             self.PSMA.rawValue, self.PSMB.rawValue, self.PSMC.rawValue,
-            self.PSMD.rawValue, self.PSME.rawValue, self.PSMF.rawValue
+            self.PSMD.rawValue, self.PSME.rawValue
         ]
         return productIdsSet
     }
@@ -42,19 +42,19 @@ enum QuestionTemplate: String {
             return "Agile Cheetah - Hard"
         
         case .COMBO1:
-            return "Udemy PSM1 Series 2"
+            return ""
         case .PSMA:
-            return "Udemy PSM1 Series 2"
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3"
         case .PSMB:
-            return "PT2 PSM1 Series 2"
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3"
         case .PSMC:
-            return "PT3 PSM1 Series 2"
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT3 PSM1 Series 3"
         case .PSMD:
-            return "PT4 PSM1 Series 2"
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3"
         case .PSME:
-            return "PT5 PSM1 Series 2"
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT5 PSM1 Series 3 (Random)"
         case .PSMF:
-            return "PT6 PSM1 Series 2"
+            return ""
         }
     }
     

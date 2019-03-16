@@ -119,7 +119,7 @@ extension QuizzViewController {
         backgroundImg.image = UIImage(named: questionTemplate.backgroundImg())
         
         // Right navigation item
-        scoreBtn.title = "Score: 0"
+        scoreBtn.title = "0 correct!"
         self.navigationItem.rightBarButtonItem = scoreBtn
         
         // Progress bar for title
@@ -137,10 +137,7 @@ extension QuizzViewController {
         choicesTable.backgroundColor = UIColor.clear
         choicesTable.estimatedRowHeight = 200
         choicesTable.rowHeight = UITableView.automaticDimension
-        choicesTable.register(
-            ChoiceCell.getNib(),
-            forCellReuseIdentifier: ChoiceCell.className()
-        )
+        choicesTable.register(ChoiceCell.getNib(), forCellReuseIdentifier: ChoiceCell.className())
         
         // Next View
         nextView.layer.masksToBounds = true
@@ -336,7 +333,7 @@ extension QuizzViewController {
             .count == answerIndexes.count
         if selectedCellsMatchAnswers {
             scores += 1
-            scoreBtn.title = "Score: \(scores)"
+            scoreBtn.title = "\(scores) correct!"
         }
         
         answerIndexes.forEach {

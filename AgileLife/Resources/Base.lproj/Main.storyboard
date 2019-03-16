@@ -459,7 +459,7 @@ to reach the end of the Quiz</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="952-Ni-d3r" firstAttribute="top" secondItem="RDh-fg-cek" secondAttribute="top" id="2Ej-Xp-ZaG"/>
+                            <constraint firstItem="952-Ni-d3r" firstAttribute="top" secondItem="RDh-fg-cek" secondAttribute="top" id="7K0-xq-ha3"/>
                             <constraint firstItem="RDh-fg-cek" firstAttribute="trailing" secondItem="952-Ni-d3r" secondAttribute="trailing" id="CPa-9Q-geC"/>
                             <constraint firstItem="952-Ni-d3r" firstAttribute="leading" secondItem="RDh-fg-cek" secondAttribute="leading" id="LBu-c7-dMC"/>
                             <constraint firstItem="RDh-fg-cek" firstAttribute="bottom" secondItem="952-Ni-d3r" secondAttribute="bottom" id="vRM-bj-WZl"/>

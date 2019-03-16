@@ -77,7 +77,6 @@ extension ChoiceCell {
     }
     
     func highlight(option: HighlightOption) {
-        
         switch option {
         case .answer:
             containerView.layer.borderColor = themeColor.cgColor
@@ -85,8 +84,8 @@ extension ChoiceCell {
             contentContainerView.backgroundColor = UIColor(red: 223, green: 253, blue: 172)
             
         case .selected:
-            containerView.layer.borderColor = UIColor(red: 80, green: 208, blue: 255).cgColor
-            letterLb.backgroundColor = UIColor(red: 80, green: 208, blue: 255)
+            containerView.layer.borderColor = UIColor(red: 161, green: 58, blue: 241).cgColor
+            letterLb.backgroundColor = UIColor(red: 161, green: 58, blue: 241)
             contentContainerView.backgroundColor = UIColor.white
             
         case .unselected:

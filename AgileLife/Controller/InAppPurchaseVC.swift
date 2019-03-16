@@ -6,6 +6,7 @@ class InAppPurchaseVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var products: [SKProduct] = []
+    fileprivate let refreshControl = UIRefreshControl()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -34,23 +35,27 @@ class InAppPurchaseVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = UIRefreshControl()
-            self.tableView.refreshControl?.addTarget(
-                self, action: #selector(InAppPurchaseVC.reloadProductsList), for: .valueChanged
-            )
+            tableView.refreshControl = refreshControl
         } else {
+            tableView.addSubview(refreshControl)
         }
+        refreshControl.addTarget(
+            self, action: #selector(InAppPurchaseVC.reloadProductsList), for: .valueChanged
+        )
+        
+        reloadProductsList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        reloadProductsList()
     }
     
     @objc fileprivate func reloadProductsList() {
         products = []
         tableView.reloadData()
+        if refreshControl.isRefreshing == false {
+            refreshControl.beginRefreshing()
+        }
         
         PremiumProducts.store.requestProducts{ [weak self] success, products in
             guard let self = self else { return }
@@ -58,11 +63,8 @@ class InAppPurchaseVC: UIViewController {
                 self.products = products!
                 self.tableView.reloadData()
             }
-            
-            if #available(iOS 10.0, *) {
-                self.tableView.refreshControl?.endRefreshing()
-            } else {
-            }
+            self.refreshControl.endRefreshing()
+            self.tableView.contentOffset = CGPoint.zero
         }
     }
     
@@ -71,11 +73,15 @@ class InAppPurchaseVC: UIViewController {
     }
     
     @objc func handlePurchaseNotification(_ notification: Notification) {
-        guard let productID = notification.object as? String,
-            let index = products.index(where: { product -> Bool in
-                product.productIdentifier == productID
-            }) else { return }
+        guard let notiObj = notification.object as? [String: Any],
+            let productID = notiObj[IAPHelper.purchaseNotiProductIDKey] as? String,
+            let index = products.index(where: { $0.productIdentifier == productID }) else { return }
         
+        if let errorStr = notiObj[IAPHelper.purchaseNotiErrorKey] as? String {
+            let alert = UIAlertController(title: "Error!", message: errorStr, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
     }
 }
@@ -94,8 +100,18 @@ extension InAppPurchaseVC: UITableViewDataSource {
         
         let product = products[indexPath.row]
         cell.product = product
-        cell.buyButtonHandler = { product in
-            PremiumProducts.store.buyProduct(product)
+        cell.buyButtonHandler = { [unowned self] product in
+            guard PremiumProducts.store.isProductPurchased(product.productIdentifier),
+                let vc = UIStoryboard.viewController(
+                    fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
+                        PremiumProducts.store.buyProduct(product)
+                        return
+            }
+            
+            let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
+            vc.hidesBottomBarWhenPushed = true
+            vc.questionTemplate = template
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         return cell
@@ -109,22 +125,6 @@ extension InAppPurchaseVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let product = products[indexPath.row]
-        guard PremiumProducts.store.isProductPurchased(product.productIdentifier) else {
-            return
-        }
-        
-        let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
-        
-        guard let vc = UIStoryboard.viewController(
-            fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
-                return
-        }
-        
-        vc.hidesBottomBarWhenPushed = true
-        vc.questionTemplate = template
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
