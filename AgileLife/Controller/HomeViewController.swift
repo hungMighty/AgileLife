@@ -100,15 +100,36 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         guard let vc = UIStoryboard.viewController(
             fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
                 return
         }
         
         vc.hidesBottomBarWhenPushed = true
-        vc.questionTemplate = QuestionTemplate(index: indexPath.row)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let questionTemplate = QuestionTemplate(index: indexPath.row)
+        vc.questionTemplate = questionTemplate
+        
+        if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue) as? [String: Any],
+            let lastQuestionIndex = dict[quizzLastQuestionIndexKey] as? Int,
+            let score = dict[quizzLastScoreKey] as? Int {
+            
+            let alert = UIAlertController(
+                title: "Howdy!", message: "Do you want to continue where you left?", preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Yes", style: .default) { [unowned self] (action) in
+                vc.curQuestionIndex = lastQuestionIndex
+                vc.score = score
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(UIAlertAction(title: "No", style: .default) { [unowned self] (action) in
+                UserDefaults.standard.set(nil, forKey: questionTemplate.rawValue)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let quizzLastQuestionIndexKey = "quizzLastQuestionIndex"
+let quizzLastScoreKey = "quizzLastScore"
 
 class QuizzViewController: UIViewController {
 
@@ -45,16 +47,15 @@ class QuizzViewController: UIViewController {
     fileprivate var numOfQuestionsToBeLoaded = 0
     
     fileprivate var curQuestionData = [String]()
-    fileprivate var curQuestionIndex = 0
+    var curQuestionIndex = 0
     fileprivate var availableChoices = [String]()
     fileprivate var answerIndexes = [Int]()
-    
     
     fileprivate var isMultipleChoice = false
     fileprivate var areAnswersBeingDisplayed: Bool = false
     fileprivate var selectedIndexes = [Int]()
     
-    fileprivate var scores = 0
+    var score = 0
     
     // Width and Height
     fileprivate let nextViewNormalHeight: CGFloat = 60
@@ -65,10 +66,16 @@ class QuizzViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backBtnItem = UIBarButtonItem(
+            title: "Back", style: .plain, target: self, action: #selector(backBtnAction)
+        )
+        backBtnItem.image = UIImage(named: "ic_backBtn")
+        self.navigationItem.leftBarButtonItem = backBtnItem
+        
         csv = CSVLoader.readFrom(fileName: questionTemplate.csvName())
         numOfQuestionsToBeLoaded = questionTemplate.sessionLimit() ?? csv?.rows.count ?? 1
         
-        self.setupUI()
+        setupUI()
         loadNextQuestion()
     }
     
@@ -82,17 +89,21 @@ class QuizzViewController: UIViewController {
     
     // MARK: - IB Actions
     
-    @IBAction func prevQuestionBtnTouch(_ sender: Any) {
+    @objc fileprivate func backBtnAction() {
+        let dict = [
+            quizzLastQuestionIndexKey:
+                areAnswersBeingDisplayed ? curQuestionIndex : curQuestionIndex - 1,
+            quizzLastScoreKey: score
+        ]
+        UserDefaults.standard.set(dict, forKey: questionTemplate.rawValue)
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func nextQuestionBtnTouch(_ sender: Any) {
-    }
-    
-    @objc func tapToContinue() {
+    @objc fileprivate func tapToContinue() {
         loadNextQuestion()
     }
     
-    @objc func tapToShowTip() {
+    @objc fileprivate func tapToShowTip() {
         guard let tipView = tipViewController, (tipView.textHint.isEmpty == false) else {
             return
         }
@@ -103,7 +114,6 @@ class QuizzViewController: UIViewController {
         } else {
             self.tipViewHeight.constant = 0
         }
-        
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
@@ -119,7 +129,7 @@ extension QuizzViewController {
         backgroundImg.image = UIImage(named: questionTemplate.backgroundImg())
         
         // Right navigation item
-        scoreBtn.title = "0 correct!"
+        scoreBtn.title = "\(score) correct!"
         self.navigationItem.rightBarButtonItem = scoreBtn
         
         // Progress bar for title
@@ -180,22 +190,19 @@ extension QuizzViewController {
     
     fileprivate func loadNextQuestion() {
         guard let csv = self.csv, curQuestionIndex < numOfQuestionsToBeLoaded else {
-            
             // Reach the end -> Show Result Scene
             if let view = UIStoryboard.viewController(
-                fromIdentifier: ResultViewController.className())
-                as? ResultViewController {
+                fromIdentifier: ResultViewController.className()) as? ResultViewController {
                 
+                UserDefaults.standard.set(nil, forKey: questionTemplate.rawValue)
                 view.questionTemplate = questionTemplate
                 view.totalQuestions = numOfQuestionsToBeLoaded
-                view.numOfCorrectAnswers = scores
-                
+                view.numOfCorrectAnswers = score
                 self.navigationController?.pushViewController(view, animated: true)
             }
             
             return
         }
-        
         
         // Reset flags
         areAnswersBeingDisplayed = false
@@ -282,21 +289,17 @@ extension QuizzViewController {
         }
     }
     
-    fileprivate func handleCellTap(cell: ChoiceCell,
-                                   at indexPath: IndexPath) {
-        
+    fileprivate func handleCellTap(cell: ChoiceCell, at indexPath: IndexPath) {
         // Add or remove currently Selected Cells
         if self.selectedIndexes.contains(indexPath.row)  {
             cell.highlight(option: .unselected)
             if let index = selectedIndexes.index(of: indexPath.row) {
                 selectedIndexes.remove(at: index)
             }
-            
             return
             
         } else {
             self.selectedIndexes.append(indexPath.row)
-            
             if isMultipleChoice {
                 cell.highlight(option: .selected)
             }
@@ -329,17 +332,14 @@ extension QuizzViewController {
     
     fileprivate func highlightAnswerCells() {
         let selectedCellsMatchAnswers = selectedIndexes
-            .filter{ answerIndexes.contains($0) }
-            .count == answerIndexes.count
+            .filter{ answerIndexes.contains($0) }.count == answerIndexes.count
         if selectedCellsMatchAnswers {
-            scores += 1
-            scoreBtn.title = "\(scores) correct!"
+            score += 1
+            scoreBtn.title = "\(score) correct!"
         }
         
         answerIndexes.forEach {
-            if let cell = self.choicesTable.cellForRow(
-                at: IndexPath(row: $0, section: 0)) as? ChoiceCell {
-                
+            if let cell = self.choicesTable.cellForRow(at: IndexPath(row: $0, section: 0)) as? ChoiceCell {
                 cell.highlight(option: .answer)
             }
         }
@@ -376,7 +376,8 @@ extension QuizzViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChoiceCell.className(), for: indexPath) as? ChoiceCell,
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: ChoiceCell.className(), for: indexPath) as? ChoiceCell,
             indexPath.row < availableChoices.count else {
                 return UITableViewCell()
         }
@@ -387,7 +388,6 @@ extension QuizzViewController: UITableViewDataSource {
         if areAnswersBeingDisplayed == false && selectedIndexes.contains(indexPath.row) {
             cell.highlight(option: .selected)
         }
-        
         if areAnswersBeingDisplayed, answerIndexes.contains(indexPath.row) {
             cell.highlight(option: .answer)
         }

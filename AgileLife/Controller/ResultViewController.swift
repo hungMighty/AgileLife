@@ -71,7 +71,6 @@ class ResultViewController: UIViewController {
         guard let rootVC = self.navigationController?.viewControllers.first else {
             return
         }
-        
         guard let vc = UIStoryboard.viewController(
             fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
                 return
@@ -79,7 +78,6 @@ class ResultViewController: UIViewController {
         
         vc.hidesBottomBarWhenPushed = true
         vc.questionTemplate = self.questionTemplate
-        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setViewControllers([rootVC, vc], animated: true)
     }
