@@ -23,6 +23,7 @@
 		5BF66C8420CD945200DC4A4C /* ChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */; };
 		5BF66C8A20CD99D300DC4A4C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */; };
 		5BF66C8C20CDA0BB00DC4A4C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */; };
+		6D828DD1BF8E1C0DB15FC99B /* Pods_AgileCheetah.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB9ECFE1963FAEF76253EE2 /* Pods_AgileCheetah.framework */; };
 		97DDBA6F223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 97DDBA6A223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3.csv */; };
 		97DDBA70223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 97DDBA6B223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3.csv */; };
 		97DDBA71223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 97DDBA6C223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3.csv */; };
@@ -67,6 +68,7 @@
 		5BF66C8220CD945200DC4A4C /* ChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceCell.xib; sourceTree = "<group>"; };
 		5BF66C8920CD99D300DC4A4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5BF66C8B20CDA0BB00DC4A4C /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		67D4A72AC6706270D91EDC7A /* Pods-AgileCheetah.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileCheetah.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgileCheetah/Pods-AgileCheetah.release.xcconfig"; sourceTree = "<group>"; };
 		97DDBA6A223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3.csv"; sourceTree = "<group>"; };
 		97DDBA6B223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3.csv"; sourceTree = "<group>"; };
 		97DDBA6C223CD51100F891C1 /* Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3.csv"; sourceTree = "<group>"; };
@@ -90,6 +92,8 @@
 		A0DE658B20DFDA2C0006706A /* CSVLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVLoader.swift; sourceTree = "<group>"; };
 		A0DE658D20DFE1030006706A /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		A0DE658F20DFE61E0006706A /* CSVComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVComponents.swift; sourceTree = "<group>"; };
+		B0AF564551781BE3B7BFD0CB /* Pods-AgileCheetah.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileCheetah.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgileCheetah/Pods-AgileCheetah.debug.xcconfig"; sourceTree = "<group>"; };
+		FDB9ECFE1963FAEF76253EE2 /* Pods_AgileCheetah.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgileCheetah.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D828DD1BF8E1C0DB15FC99B /* Pods_AgileCheetah.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +113,8 @@
 			children = (
 				5B720DFA20CD4C2B001A5532 /* AgileLife */,
 				5B720DF920CD4C2B001A5532 /* Products */,
+				A3E6EF6B07A097CDCDC39714 /* Pods */,
+				8E2B17B7B18EF96112D324B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +219,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8E2B17B7B18EF96112D324B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDB9ECFE1963FAEF76253EE2 /* Pods_AgileCheetah.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		97F145202203008F00B8900E /* Storekit */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +277,15 @@
 			path = CSVs;
 			sourceTree = "<group>";
 		};
+		A3E6EF6B07A097CDCDC39714 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0AF564551781BE3B7BFD0CB /* Pods-AgileCheetah.debug.xcconfig */,
+				67D4A72AC6706270D91EDC7A /* Pods-AgileCheetah.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -269,9 +293,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B720E0A20CD4C2B001A5532 /* Build configuration list for PBXNativeTarget "AgileCheetah" */;
 			buildPhases = (
+				08D8F402A0A82472DB08600C /* [CP] Check Pods Manifest.lock */,
 				5B720DF420CD4C2B001A5532 /* Sources */,
 				5B720DF520CD4C2B001A5532 /* Frameworks */,
 				5B720DF620CD4C2B001A5532 /* Resources */,
+				3FD5644571D5749869D1B558 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,6 +363,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08D8F402A0A82472DB08600C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgileCheetah-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FD5644571D5749869D1B558 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AgileCheetah/Pods-AgileCheetah-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AgileCheetah/Pods-AgileCheetah-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B720DF420CD4C2B001A5532 /* Sources */ = {
@@ -510,6 +583,7 @@
 		};
 		5B720E0B20CD4C2B001A5532 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0AF564551781BE3B7BFD0CB /* Pods-AgileCheetah.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -532,6 +606,7 @@
 		};
 		5B720E0C20CD4C2B001A5532 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D4A72AC6706270D91EDC7A /* Pods-AgileCheetah.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

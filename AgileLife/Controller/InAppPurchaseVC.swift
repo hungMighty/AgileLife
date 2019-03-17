@@ -132,10 +132,31 @@ extension InAppPurchaseVC: UITableViewDataSource {
                             return
                 }
                 
-                let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
+                let questionTemplate = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
                 vc.hidesBottomBarWhenPushed = true
-                vc.questionTemplate = template
-                self.navigationController?.pushViewController(vc, animated: true)
+                vc.questionTemplate = questionTemplate
+                
+                if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue) as? [String: Any],
+                    let lastQuestionIndex = dict[quizzLastQuestionIndexKey] as? Int,
+                    let score = dict[quizzLastScoreKey] as? Int {
+                    
+                    let alert = UIAlertController(
+                        title: "Howdy!", message: "Do you want to continue where you left?", preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "Yes", style: .default) { [unowned self] (action) in
+                        vc.curQuestionIndex = lastQuestionIndex
+                        vc.score = score
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    alert.addAction(UIAlertAction(title: "No", style: .default) { [unowned self] (action) in
+                        UserDefaults.standard.set(nil, forKey: questionTemplate.rawValue)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    
+                } else {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
         

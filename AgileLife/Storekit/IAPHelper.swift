@@ -1,4 +1,5 @@
 import StoreKit
+import KeychainSwift
 
 public typealias ProductIdentifier = String
 public typealias ProductsRequestCompletionHandler = (_ success: Bool, _ products: [SKProduct]?) -> Void
@@ -159,7 +160,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
             if identifier == QuestionTemplate.COMBO1.rawValue {
                 for id in QuestionTemplate.productIDsFor(combo: .COMBO1) {
                     purchasedProductIdentifiers.insert(id.rawValue)
-                    UserDefaults.standard.set(true, forKey: identifier)
+                    UserDefaults.standard.set(true, forKey: id.rawValue)
                 }
             } else {
                 purchasedProductIdentifiers.insert(identifier)
