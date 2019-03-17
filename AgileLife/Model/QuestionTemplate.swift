@@ -10,7 +10,9 @@ import Foundation
 
 enum QuestionTemplate: String {
     
-    case easy, medium, hard, COMBO1, PSMA, PSMB, PSMC, PSMD, PSME, PSMF
+    case easy, medium, hard,
+    COMBO1, PSMA, PSMB, PSMC, PSMD, PSME,
+    PSMF
     
     init(index: Int) {
         switch index {
@@ -23,7 +25,7 @@ enum QuestionTemplate: String {
         }
     }
     
-    static var storeProductIDs: Set<ProductIdentifier> {
+    static var allStoreProductIDs: Set<ProductIdentifier> {
         let productIdsSet: Set<ProductIdentifier> = [
             self.COMBO1.rawValue,
             self.PSMA.rawValue, self.PSMB.rawValue, self.PSMC.rawValue,
@@ -32,41 +34,32 @@ enum QuestionTemplate: String {
         return productIdsSet
     }
     
-    func csvName() -> String {
-        switch self {
-        case .easy:
-            return "Agile Cheetah - Easy"
-        case .medium:
-            return "Agile Cheetah - Medium"
-        case .hard:
-            return "Agile Cheetah - Hard"
-        
+    static func isComboProduct(id: String) -> Bool {
+        guard let enumValue = QuestionTemplate(rawValue: id) else {
+            return false
+        }
+        let comboEnums: [QuestionTemplate] = [.COMBO1]
+        return comboEnums.contains(enumValue)
+    }
+    
+    fileprivate static let comboOneTemplates: [QuestionTemplate] = [.COMBO1, .PSMA, .PSMB, .PSMC, .PSMD, .PSME]
+    
+    static func productIDsFor(combo: QuestionTemplate) -> [QuestionTemplate] {
+        switch combo {
         case .COMBO1:
-            return ""
-        case .PSMA:
-            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3"
-        case .PSMB:
-            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3"
-        case .PSMC:
-            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT3 PSM1 Series 3"
-        case .PSMD:
-            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3"
-        case .PSME:
-            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT5 PSM1 Series 3 (Random)"
-        case .PSMF:
-            return ""
+            return QuestionTemplate.comboOneTemplates
+        default:
+            return []
         }
     }
     
-    func limit() -> Int? {
-        switch self {
-        case .easy:
+    static func getComboIDStrings(fromProductID id: ProductIdentifier) -> [String]? {
+        guard let enumValue = QuestionTemplate(rawValue: id) else {
             return nil
-        case .medium:
-            return nil
-        case .hard:
-            return nil
-        default:
+        }
+        if comboOneTemplates.contains(enumValue) {
+            return comboOneTemplates.compactMap{ $0.rawValue }
+        } else {
             return nil
         }
     }
@@ -81,6 +74,45 @@ enum QuestionTemplate: String {
             return "background_cheetah4"
             
         default:
+            return ""
+        }
+    }
+    
+    func sessionLimit() -> Int? {
+        switch self {
+        case .easy:
+            return nil
+        case .medium:
+            return nil
+        case .hard:
+            return nil
+        default:
+            return nil
+        }
+    }
+    
+    func csvName() -> String {
+        switch self {
+        case .easy:
+            return "Agile Cheetah - Easy"
+        case .medium:
+            return "Agile Cheetah - Medium"
+        case .hard:
+            return "Agile Cheetah - Hard"
+            
+        case .COMBO1:
+            return ""
+        case .PSMA:
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT1 PSM1 Series 3"
+        case .PSMB:
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT2 PSM1 Series 3"
+        case .PSMC:
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT3 PSM1 Series 3"
+        case .PSMD:
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT4 PSM1 Series 3"
+        case .PSME:
+            return "Udemy Scrum Master (PSM1) Exam Prep - Pass on your FIRST try! - PT5 PSM1 Series 3 (Random)"
+        case .PSMF:
             return ""
         }
     }

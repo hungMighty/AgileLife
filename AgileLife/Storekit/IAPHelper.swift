@@ -14,7 +14,7 @@ open class IAPHelper: NSObject  {
     fileprivate var productsRequest: SKProductsRequest?
     fileprivate var productsRequestCompletionHandler: ProductsRequestCompletionHandler?
     
-    public init(productIds: Set<ProductIdentifier>) {
+    private init(productIds: Set<ProductIdentifier>) {
         self.productIdentifiers = productIds
         for id in productIds {
             let purchased = UserDefaults.standard.bool(forKey: id)
@@ -30,6 +30,8 @@ open class IAPHelper: NSObject  {
         
         SKPaymentQueue.default().add(self)
     }
+    
+    static let shared = IAPHelper(productIds: QuestionTemplate.allStoreProductIDs)
     
 }
 
@@ -149,11 +151,30 @@ extension IAPHelper: SKPaymentTransactionObserver {
     static let purchaseNotiIsSuccessKey = "IsSuccess"
     static let purchaseNotiErrorKey = "PurchaseError"
     
-    private func deliverPurchaseNotificationFor(identifier: String?, isSuccess: Bool, transactionError: String = "") {
-        guard let identifier = identifier else { return }
+    private func deliverPurchaseNotificationFor(
+        identifier: String?, isSuccess: Bool, transactionError: String = "") {
+        
+        guard var identifier = identifier else { return }
         if isSuccess {
-            purchasedProductIdentifiers.insert(identifier)
-            UserDefaults.standard.set(true, forKey: identifier)
+            if identifier == QuestionTemplate.COMBO1.rawValue {
+                for id in QuestionTemplate.productIDsFor(combo: .COMBO1) {
+                    purchasedProductIdentifiers.insert(id.rawValue)
+                    UserDefaults.standard.set(true, forKey: identifier)
+                }
+            } else {
+                purchasedProductIdentifiers.insert(identifier)
+                UserDefaults.standard.set(true, forKey: identifier)
+                
+                if var combo = QuestionTemplate.getComboIDStrings(fromProductID: identifier) {
+                    let comboID = combo.removeFirst()
+                    let comboSet: Set<ProductIdentifier> = Set(combo)
+                    if comboSet.isSubset(of: purchasedProductIdentifiers) {
+                        purchasedProductIdentifiers.insert(comboID)
+                        UserDefaults.standard.set(true, forKey: comboID)
+                        identifier = comboID
+                    }
+                }
+            }
         }
         let postObj: [String: Any] = [
             IAPHelper.purchaseNotiProductIDKey: identifier,

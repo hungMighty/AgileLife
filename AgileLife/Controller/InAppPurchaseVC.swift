@@ -57,10 +57,10 @@ class InAppPurchaseVC: UIViewController {
             refreshControl.beginRefreshing()
         }
         
-        PremiumProducts.store.requestProducts{ [weak self] success, products in
-            guard let self = self else { return }
+        IAPHelper.shared.requestProducts{ [weak self] success, products in
+            guard let self = self, let products = products else { return }
             if success {
-                self.products = products!
+                self.products = products
                 self.tableView.reloadData()
             }
             self.refreshControl.endRefreshing()
@@ -69,7 +69,7 @@ class InAppPurchaseVC: UIViewController {
     }
     
     @objc fileprivate func restoreTapped(_ sender: AnyObject) {
-        PremiumProducts.store.restorePurchases()
+        IAPHelper.shared.restorePurchases()
     }
     
     @objc func handlePurchaseNotification(_ notification: Notification) {
@@ -77,12 +77,16 @@ class InAppPurchaseVC: UIViewController {
             let productID = notiObj[IAPHelper.purchaseNotiProductIDKey] as? String,
             let index = products.index(where: { $0.productIdentifier == productID }) else { return }
         
-        if let errorStr = notiObj[IAPHelper.purchaseNotiErrorKey] as? String {
+        if let errorStr = notiObj[IAPHelper.purchaseNotiErrorKey] as? String, errorStr.isEmpty == false {
             let alert = UIAlertController(title: "Error!", message: errorStr, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        if QuestionTemplate.isComboProduct(id: productID) {
+            tableView.reloadData()
+        } else {
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        }
     }
 }
 
@@ -94,24 +98,45 @@ extension InAppPurchaseVC: UITableViewDataSource {
         return products.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard indexPath.row < products.count else {
+            return UITableView.automaticDimension
+        }
+        let product = products[indexPath.row]
+        let productID = product.productIdentifier
+        if QuestionTemplate.isComboProduct(id: productID) &&
+            IAPHelper.shared.isProductPurchased(productID) {
+            return 0
+        }
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: PurchaseCell.className(), for: indexPath) as! PurchaseCell
         
         let product = products[indexPath.row]
-        cell.product = product
-        cell.buyButtonHandler = { [unowned self] product in
-            guard PremiumProducts.store.isProductPurchased(product.productIdentifier),
-                let vc = UIStoryboard.viewController(
-                    fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
-                        PremiumProducts.store.buyProduct(product)
-                        return
+        let productID = product.productIdentifier
+        
+        cell.contentView.isHidden = false
+        if QuestionTemplate.isComboProduct(id: productID) &&
+            IAPHelper.shared.isProductPurchased(productID) {
+            cell.contentView.isHidden = true
+        } else {
+            cell.product = product
+            cell.buyButtonHandler = { [unowned self] product in
+                guard IAPHelper.shared.isProductPurchased(product.productIdentifier),
+                    let vc = UIStoryboard.viewController(
+                        fromIdentifier: QuizzViewController.className()) as? QuizzViewController else {
+                            IAPHelper.shared.buyProduct(product)
+                            return
+                }
+                
+                let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
+                vc.hidesBottomBarWhenPushed = true
+                vc.questionTemplate = template
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            
-            let template = QuestionTemplate(rawValue: product.productIdentifier) ?? .easy
-            vc.hidesBottomBarWhenPushed = true
-            vc.questionTemplate = template
-            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         return cell

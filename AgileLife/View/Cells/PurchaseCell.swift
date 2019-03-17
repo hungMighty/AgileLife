@@ -75,7 +75,7 @@ class PurchaseCell: UITableViewCell {
             indicator?.removeFromSuperview()
             indicator = nil
             
-            if PremiumProducts.store.isProductPurchased(product.productIdentifier) {
+            if IAPHelper.shared.isProductPurchased(product.productIdentifier) {
                 setupPurchaseBtn(state: .beginTest)
                 
             } else if IAPHelper.canMakePayments() {
@@ -156,7 +156,7 @@ class PurchaseCell: UITableViewCell {
     }
     
     @IBAction func priceBtnTap(_ sender: Any) {
-        if PremiumProducts.store.isProductPurchased(product!.productIdentifier) == false {
+        if IAPHelper.shared.isProductPurchased(product!.productIdentifier) == false {
             purchaseBtn.isHidden = true
             let indicator = newLoadingIndicator()
             indicator.translatesAutoresizingMaskIntoConstraints = false

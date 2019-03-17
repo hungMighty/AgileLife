@@ -66,7 +66,7 @@ class QuizzViewController: UIViewController {
         super.viewDidLoad()
         
         csv = CSVLoader.readFrom(fileName: questionTemplate.csvName())
-        numOfQuestionsToBeLoaded = questionTemplate.limit() ?? csv?.rows.count ?? 1
+        numOfQuestionsToBeLoaded = questionTemplate.sessionLimit() ?? csv?.rows.count ?? 1
         
         self.setupUI()
         loadNextQuestion()

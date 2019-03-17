@@ -32,7 +32,6 @@
 		97F1451D2202F96900B8900E /* InAppPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */; };
 		97F1451F2202FA6100B8900E /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F1451E2202FA6100B8900E /* PurchaseCell.swift */; };
 		97F145232203008F00B8900E /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145212203008F00B8900E /* IAPHelper.swift */; };
-		97F145242203008F00B8900E /* PremiumProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145222203008F00B8900E /* PremiumProducts.swift */; };
 		97F145282203033C00B8900E /* QuestionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F145272203033C00B8900E /* QuestionTemplate.swift */; };
 		A00048E1210B60DE00987997 /* InsetsLb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E0210B60DE00987997 /* InsetsLb.swift */; };
 		A00048E3210B610C00987997 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00048E2210B610C00987997 /* RoundBtn.swift */; };
@@ -77,7 +76,6 @@
 		97F1451A2202F79800B8900E /* InAppPurchaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseVC.swift; sourceTree = "<group>"; };
 		97F1451E2202FA6100B8900E /* PurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
 		97F145212203008F00B8900E /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
-		97F145222203008F00B8900E /* PremiumProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiumProducts.swift; sourceTree = "<group>"; };
 		97F145272203033C00B8900E /* QuestionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTemplate.swift; sourceTree = "<group>"; };
 		A00048E0210B60DE00987997 /* InsetsLb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetsLb.swift; sourceTree = "<group>"; };
 		A00048E2210B610C00987997 /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				97F145212203008F00B8900E /* IAPHelper.swift */,
-				97F145222203008F00B8900E /* PremiumProducts.swift */,
 			);
 			path = Storekit;
 			sourceTree = "<group>";
@@ -361,7 +358,6 @@
 				5B720E1120CD5013001A5532 /* HomeViewController.swift in Sources */,
 				5B720E1B20CD561E001A5532 /* UIView+Extension.swift in Sources */,
 				A0DE658C20DFDA2C0006706A /* CSVLoader.swift in Sources */,
-				97F145242203008F00B8900E /* PremiumProducts.swift in Sources */,
 				A0DE658E20DFE1030006706A /* IntExtension.swift in Sources */,
 				97F145192202F3C500B8900E /* TabBarController.swift in Sources */,
 				5BF66C8320CD945200DC4A4C /* ChoiceCell.swift in Sources */,
