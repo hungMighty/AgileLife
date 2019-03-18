@@ -8,10 +8,12 @@ class PurchaseCell: UITableViewCell {
     @IBOutlet weak var discountLb: InsetsLb!
     @IBOutlet weak var descriptionLb: UILabel!
     @IBOutlet weak var purchaseBtn: UIButton!
+    @IBOutlet weak var resumeBtn: UIButton!
     
     // Constraints
     @IBOutlet weak var discountIconWidth: NSLayoutConstraint!
     @IBOutlet weak var discountIconTrailingSpace: NSLayoutConstraint!
+    @IBOutlet weak var resumeBtnWidth: NSLayoutConstraint!
     
     fileprivate var indicator: UIActivityIndicatorView?
     
@@ -45,6 +47,7 @@ class PurchaseCell: UITableViewCell {
     }()
     
     var buyButtonHandler: ((_ product: SKProduct) -> Void)?
+    var resumeButtonHandler: (() -> Void)?
     
     var product: SKProduct? {
         didSet {
@@ -74,9 +77,13 @@ class PurchaseCell: UITableViewCell {
             descriptionLb.text = numOfQuestionsTxt
             indicator?.removeFromSuperview()
             indicator = nil
+            setupResumeBtn(isHidden: true)
             
             if IAPHelper.shared.isProductPurchased(product.productIdentifier) {
                 setupPurchaseBtn(state: .beginTest)
+                if let _ = UserDefaults.standard.value(forKey: product.productIdentifier) as? [String: Any] {
+                    setupResumeBtn(isHidden: false)
+                }
                 
             } else if IAPHelper.canMakePayments() {
                 PurchaseCell.priceFormatter.locale = product.priceLocale
@@ -130,19 +137,36 @@ class PurchaseCell: UITableViewCell {
     fileprivate func setupPurchaseBtn(state: PurchaseBtnState, price: String? = nil) {
         purchaseBtn.isHidden = false
         
-        let purchaseBtnLayer = purchaseBtn.layer
-        purchaseBtnLayer.masksToBounds = true
-        purchaseBtnLayer.cornerRadius = 6
-        purchaseBtnLayer.borderWidth = 1.5
+        let btnLayer = purchaseBtn.layer
+        btnLayer.masksToBounds = true
+        btnLayer.cornerRadius = 6
+        btnLayer.borderWidth = 1.5
         
         let color = state.theme
-        purchaseBtnLayer.borderColor = color.cgColor
+        btnLayer.borderColor = color.cgColor
         purchaseBtn.setTitleColor(color, for: .normal)
         
         if let price = price {
             purchaseBtn.setTitle(price, for: .normal)
         } else {
             purchaseBtn.setTitle(state.title, for: .normal)
+        }
+    }
+    
+    fileprivate func setupResumeBtn(isHidden: Bool) {
+        let btnLayer = resumeBtn.layer
+        btnLayer.masksToBounds = true
+        btnLayer.cornerRadius = 6
+        btnLayer.borderWidth = 1.5
+        
+        let theme = UIColor(red: 41, green: 98, blue: 24)
+        btnLayer.borderColor = theme.cgColor
+        resumeBtn.setTitleColor(theme, for: .normal)
+        
+        if isHidden {
+            resumeBtnWidth.constant = 0
+        } else {
+            resumeBtnWidth.constant = 78
         }
     }
     
@@ -171,6 +195,10 @@ class PurchaseCell: UITableViewCell {
         }
         
         buyButtonHandler?(product!)
+    }
+    
+    @IBAction func resumeBtnTap(_ sender: Any) {
+        resumeButtonHandler?()
     }
     
 }

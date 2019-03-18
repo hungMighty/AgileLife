@@ -389,30 +389,33 @@ to reach the end of the Quiz</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSM 1 - Pass it now!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFa-Mb-w6R">
-                                                    <rect key="frame" x="48" y="8" width="147" height="19.5"/>
+                                                    <rect key="frame" x="48" y="8" width="86.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Save 50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N16-js-djQ" customClass="InsetsLb" customModule="AgileCheetah" customModuleProvider="target">
-                                                    <rect key="frame" x="203" y="10.5" width="57" height="14.5"/>
+                                                    <rect key="frame" x="142.5" y="10.5" width="57" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 questions!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-yF-oNc">
-                                                    <rect key="frame" x="48" y="35.5" width="240" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="20 questions!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-yF-oNc">
+                                                    <rect key="frame" x="48" y="35.5" width="158" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUX-5i-uBE">
-                                                    <rect key="frame" x="296" y="16" width="63" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHY-Y9-RNG">
+                                                    <rect key="frame" x="210" y="16" width="78" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="78" id="uQb-h4-BJq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
-                                                    <state key="normal" title="$9.99"/>
+                                                    <state key="normal" title="Resume"/>
                                                     <connections>
-                                                        <action selector="priceBtnTap:" destination="V2Y-io-J36" eventType="touchUpInside" id="0aN-hV-z5U"/>
+                                                        <action selector="resumeBtnTap:" destination="V2Y-io-J36" eventType="touchUpInside" id="Kvq-if-zx0"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_discount" translatesAutoresizingMaskIntoConstraints="NO" id="kLQ-Xo-0zt">
@@ -422,21 +425,32 @@ to reach the end of the Quiz</string>
                                                         <constraint firstAttribute="width" secondItem="kLQ-Xo-0zt" secondAttribute="height" multiplier="1:1" id="qjA-sy-hBR"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUX-5i-uBE">
+                                                    <rect key="frame" x="296" y="16" width="63" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
+                                                    <state key="normal" title="$9.99"/>
+                                                    <connections>
+                                                        <action selector="priceBtnTap:" destination="V2Y-io-J36" eventType="touchUpInside" id="0aN-hV-z5U"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="nUX-5i-uBE" secondAttribute="trailing" constant="16" id="2Ln-HP-6bc"/>
                                                 <constraint firstItem="N16-js-djQ" firstAttribute="centerY" secondItem="vFa-Mb-w6R" secondAttribute="centerY" id="CsJ-xJ-Ftg"/>
                                                 <constraint firstItem="N16-js-djQ" firstAttribute="leading" secondItem="vFa-Mb-w6R" secondAttribute="trailing" constant="8" id="F2y-3s-VPy"/>
                                                 <constraint firstItem="nUX-5i-uBE" firstAttribute="centerY" secondItem="tx7-BN-lKo" secondAttribute="centerY" id="Ll5-B1-l9g"/>
                                                 <constraint firstItem="rhQ-yF-oNc" firstAttribute="leading" secondItem="vFa-Mb-w6R" secondAttribute="leading" id="TvB-D4-j4J"/>
                                                 <constraint firstItem="vFa-Mb-w6R" firstAttribute="leading" secondItem="kLQ-Xo-0zt" secondAttribute="trailing" constant="6" id="YWl-CT-kHn"/>
-                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="leading" secondItem="rhQ-yF-oNc" secondAttribute="trailing" constant="8" id="boZ-QH-F6U"/>
                                                 <constraint firstItem="kLQ-Xo-0zt" firstAttribute="centerY" secondItem="tx7-BN-lKo" secondAttribute="centerY" id="cpf-OL-RED"/>
+                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="leading" secondItem="sHY-Y9-RNG" secondAttribute="trailing" constant="8" id="gnb-HY-Mth"/>
                                                 <constraint firstAttribute="bottom" secondItem="rhQ-yF-oNc" secondAttribute="bottom" constant="10" id="h9h-H7-6ra"/>
                                                 <constraint firstItem="rhQ-yF-oNc" firstAttribute="top" secondItem="vFa-Mb-w6R" secondAttribute="bottom" constant="8" id="ket-p0-jZH"/>
+                                                <constraint firstItem="sHY-Y9-RNG" firstAttribute="leading" secondItem="rhQ-yF-oNc" secondAttribute="trailing" constant="4" id="kru-ph-7Bk"/>
+                                                <constraint firstAttribute="trailing" secondItem="nUX-5i-uBE" secondAttribute="trailing" constant="16" id="p5t-gW-zvc"/>
                                                 <constraint firstItem="kLQ-Xo-0zt" firstAttribute="leading" secondItem="tx7-BN-lKo" secondAttribute="leading" constant="16" id="pJH-sT-8LS"/>
-                                                <constraint firstItem="nUX-5i-uBE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N16-js-djQ" secondAttribute="trailing" constant="4" id="q8d-Ls-88d"/>
+                                                <constraint firstItem="sHY-Y9-RNG" firstAttribute="centerY" secondItem="tx7-BN-lKo" secondAttribute="centerY" id="qw4-CL-9io"/>
                                                 <constraint firstItem="vFa-Mb-w6R" firstAttribute="top" secondItem="tx7-BN-lKo" secondAttribute="top" constant="8" id="tPh-Uv-Xeq"/>
+                                                <constraint firstItem="sHY-Y9-RNG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N16-js-djQ" secondAttribute="trailing" constant="4" id="zXO-kB-V15"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -447,6 +461,8 @@ to reach the end of the Quiz</string>
                                             <outlet property="discountIconWidth" destination="XZ8-Vy-5C7" id="TyB-9m-OHz"/>
                                             <outlet property="discountLb" destination="N16-js-djQ" id="yQn-b9-igt"/>
                                             <outlet property="purchaseBtn" destination="nUX-5i-uBE" id="8X8-ac-49W"/>
+                                            <outlet property="resumeBtn" destination="sHY-Y9-RNG" id="SSJ-3U-Trj"/>
+                                            <outlet property="resumeBtnWidth" destination="uQb-h4-BJq" id="xqC-xm-l0j"/>
                                             <outlet property="titleLb" destination="vFa-Mb-w6R" id="yZx-HD-k5m"/>
                                         </connections>
                                     </tableViewCell>

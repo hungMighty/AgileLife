@@ -11,6 +11,10 @@ import UIKit
 let quizzLastQuestionIndexKey = "quizzLastQuestionIndex"
 let quizzLastScoreKey = "quizzLastScore"
 
+protocol QuizzViewControllerDelegate: class {
+    func quizzViewIsDismissed(atBundle bundle: QuestionTemplate)
+}
+
 class QuizzViewController: UIViewController {
 
     @IBOutlet var navItem: UINavigationItem!
@@ -41,7 +45,7 @@ class QuizzViewController: UIViewController {
     // UI Objs
     fileprivate var scoreBtn = UIBarButtonItem()
     
-    
+    weak var delegate: QuizzViewControllerDelegate?
     fileprivate var csv: CSwiftV?
     var questionTemplate: QuestionTemplate = .easy
     fileprivate var numOfQuestionsToBeLoaded = 0
@@ -90,12 +94,16 @@ class QuizzViewController: UIViewController {
     // MARK: - IB Actions
     
     @objc fileprivate func backBtnAction() {
-        let dict = [
-            quizzLastQuestionIndexKey:
-                areAnswersBeingDisplayed ? curQuestionIndex : curQuestionIndex - 1,
-            quizzLastScoreKey: score
-        ]
-        UserDefaults.standard.set(dict, forKey: questionTemplate.rawValue)
+        let isDoingFirstQuestion = (curQuestionIndex == 1 && areAnswersBeingDisplayed == false)
+        if isDoingFirstQuestion == false {
+            let dict = [
+                quizzLastQuestionIndexKey:
+                    areAnswersBeingDisplayed ? curQuestionIndex : curQuestionIndex - 1,
+                quizzLastScoreKey: score
+            ]
+            UserDefaults.standard.set(dict, forKey: questionTemplate.rawValue)
+            delegate?.quizzViewIsDismissed(atBundle: self.questionTemplate)
+        }
         navigationController?.popViewController(animated: true)
     }
     
