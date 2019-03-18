@@ -81,7 +81,8 @@ class PurchaseCell: UITableViewCell {
             
             if IAPHelper.shared.isProductPurchased(product.productIdentifier) {
                 setupPurchaseBtn(state: .beginTest)
-                if let _ = UserDefaults.standard.value(forKey: product.productIdentifier) as? [String: Any] {
+                if let _ = UserDefaults.standard.value(
+                    forKey: "\(quizzResumeInfoKey)-\(product.productIdentifier)") as? [String: Any] {
                     setupResumeBtn(isHidden: false)
                 }
                 

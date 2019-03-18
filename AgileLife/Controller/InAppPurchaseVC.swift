@@ -135,19 +135,18 @@ extension InAppPurchaseVC: UITableViewDataSource {
             }
             vc.hidesBottomBarWhenPushed = true
             vc.delegate = self
+            vc.questionTemplate = questionTemplate
             
             cell.buyButtonHandler = { [unowned self] product in
                 guard IAPHelper.shared.isProductPurchased(product.productIdentifier) else {
                     IAPHelper.shared.buyProduct(product)
                     return
                 }
-                
-                vc.questionTemplate = questionTemplate
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.resumeButtonHandler = { [unowned self] in
-                if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue)
-                    as? [String: Any],
+                if let dict = UserDefaults.standard.value(
+                    forKey: "\(quizzResumeInfoKey)-\(questionTemplate.rawValue)") as? [String: Any],
                     let lastQuestionIndex = dict[quizzLastQuestionIndexKey] as? Int,
                     let score = dict[quizzLastScoreKey] as? Int {
                     

@@ -109,7 +109,8 @@ extension HomeViewController: UITableViewDelegate {
         let questionTemplate = QuestionTemplate(index: indexPath.row)
         vc.questionTemplate = questionTemplate
         
-        if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue) as? [String: Any],
+        if let dict = UserDefaults.standard.value(
+            forKey: "\(quizzResumeInfoKey)-\(questionTemplate.rawValue)") as? [String: Any],
             let lastQuestionIndex = dict[quizzLastQuestionIndexKey] as? Int,
             let score = dict[quizzLastScoreKey] as? Int {
             
@@ -122,7 +123,7 @@ extension HomeViewController: UITableViewDelegate {
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             alert.addAction(UIAlertAction(title: "No", style: .default) { [unowned self] (action) in
-                UserDefaults.standard.set(nil, forKey: questionTemplate.rawValue)
+                UserDefaults.standard.set(nil, forKey: "\(quizzResumeInfoKey)-\(questionTemplate.rawValue)")
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             self.present(alert, animated: true, completion: nil)

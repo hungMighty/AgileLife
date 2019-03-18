@@ -8,6 +8,7 @@
 
 import UIKit
 
+let quizzResumeInfoKey = "quizzResumeInfo"
 let quizzLastQuestionIndexKey = "quizzLastQuestionIndex"
 let quizzLastScoreKey = "quizzLastScore"
 
@@ -101,7 +102,7 @@ class QuizzViewController: UIViewController {
                     areAnswersBeingDisplayed ? curQuestionIndex : curQuestionIndex - 1,
                 quizzLastScoreKey: score
             ]
-            UserDefaults.standard.set(dict, forKey: questionTemplate.rawValue)
+            UserDefaults.standard.set(dict, forKey: "\(quizzResumeInfoKey)-\(questionTemplate.rawValue)")
             delegate?.quizzViewIsDismissed(atBundle: self.questionTemplate)
         }
         navigationController?.popViewController(animated: true)
@@ -202,7 +203,7 @@ extension QuizzViewController {
             if let view = UIStoryboard.viewController(
                 fromIdentifier: ResultViewController.className()) as? ResultViewController {
                 
-                UserDefaults.standard.set(nil, forKey: questionTemplate.rawValue)
+                UserDefaults.standard.set(nil, forKey: "\(quizzResumeInfoKey)-\(questionTemplate.rawValue)")
                 view.questionTemplate = questionTemplate
                 view.totalQuestions = numOfQuestionsToBeLoaded
                 view.numOfCorrectAnswers = score
