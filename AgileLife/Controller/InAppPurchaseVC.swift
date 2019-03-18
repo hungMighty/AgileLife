@@ -136,7 +136,8 @@ extension InAppPurchaseVC: UITableViewDataSource {
                 vc.hidesBottomBarWhenPushed = true
                 vc.questionTemplate = questionTemplate
                 
-                if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue) as? [String: Any],
+                if let dict = UserDefaults.standard.value(forKey: questionTemplate.rawValue)
+                    as? [String: Any],
                     let lastQuestionIndex = dict[quizzLastQuestionIndexKey] as? Int,
                     let score = dict[quizzLastScoreKey] as? Int {
                     
